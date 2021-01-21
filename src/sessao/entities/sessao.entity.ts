@@ -1,5 +1,6 @@
-import { Table, Model, PrimaryKey, Column, AutoIncrement } from 'sequelize-typescript'
+import { Table, Model, PrimaryKey, Column, AutoIncrement, ForeignKey } from 'sequelize-typescript'
 import { underscoredIf } from 'sequelize/types/lib/utils'
+import { Usuario } from 'src/usuario/entities/usuario.entity';
 
 @Table({
     underscored: true,
@@ -11,6 +12,8 @@ export class Sessao extends  Model{
     @AutoIncrement
     @Column
       codSessao: number;
+    
+    @ForeignKey(()=>Usuario)
     @Column
       codUsuario: number;
     @Column

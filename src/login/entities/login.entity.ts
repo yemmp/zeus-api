@@ -1,4 +1,5 @@
-import { Table, Model, PrimaryKey, Column, AutoIncrement} from 'sequelize-typescript'
+import { Table, Model, PrimaryKey, Column, AutoIncrement, ForeignKey} from 'sequelize-typescript'
+import { Usuario } from 'src/usuario/entities/usuario.entity';
 
 @Table({
     underscored: true,
@@ -10,6 +11,7 @@ export class Login extends Model{
     @AutoIncrement
     @Column
       codLogin: number;
+    @ForeignKey(()=>Usuario)   
     @Column
       codUsuario: number;
     @Column

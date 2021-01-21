@@ -1,10 +1,36 @@
-import { Column, Model, Table } from 'sequelize-typescript';
+import { Column, Model, Table,PrimaryKey,AutoIncrement, ForeignKey, BelongsTo } from 'sequelize-typescript';
+import { Concessionaria } from 'src/concessionaria/entities/concessionaria.entity';
+import { TipoPerfil } from 'src/tipo-perfil/entities/tipo-perfil.entity';
 
-@Table
+@Table({
+  underscored: true,
+  tableName: 'usuario'
+})
 export class Usuario extends Model{
-   @Column
-     idUsuario: number;
-   @Column
+  @PrimaryKey
+  @AutoIncrement
+  @Column
+     codUsuario: number;
+  
+  @ForeignKey(()=>TipoPerfil)
+  @Column
+    codPerfil: string
+  @BelongsTo(()=>TipoPerfil)
+   tipoPerfil: TipoPerfil;  
+  @Column
      nomeUsuario: string;
+  @Column
+    dscLogin: string;
+  @ForeignKey(()=>Concessionaria)
+  @Column
+    codConcessionaria: number;
+  @BelongsTo(()=>Concessionaria)
+    concessionaria: Concessionaria;
+  @ForeignKey(()=>Usuario)
+    @Column
+    codUsuarioCriacao: number;
+  @Column
+    dataCriacao: Date;
+  
 
 }
