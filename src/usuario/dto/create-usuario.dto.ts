@@ -1,5 +1,11 @@
 export class CreateUsuarioDto {
-idUsuario: number;
+codUsuario: number;
+codPerfil: string;
 nomeUsuario: string;
+dscLogin: string;
+codConcessionaria: number;
+codUsuarioCriacao: number;
+dataCriacao: Date;
+
 
 }
