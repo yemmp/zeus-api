@@ -8,28 +8,38 @@ import { Usuario } from './entities/usuario.entity';
 export class UsuarioService {
   constructor(
     @InjectModel(Usuario)
-    private userModel: typeof Usuario,
+    private usuarioModel: typeof Usuario,
   ) {}
   create(createUsuarioDto: CreateUsuarioDto) {
     
-    this.userModel.create(createUsuarioDto);
-    
-    return 'Ok'
+    this.usuarioModel.create(createUsuarioDto);
+    console.log('Usuário criado com sucesso!');
+    return 'Ok!'
   }
 
   findAll() {
-    return `This action returns all usuario`;
+    return this.usuarioModel.findAll();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} usuario`;
+    return this.usuarioModel.findOne({where: {codUsuario: id}});
   }
 
   update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
-    return `This action updates a #${id} usuario`;
+    Usuario.update(
+      updateUsuarioDto,{
+      where: {codUsuario: id}}).then(()=> {
+        console.log(`Usuario  id=${id} atualizado com sucesso`)
+      });
+
+    
   }
 
   remove(id: number) {
-    return `This action removes a #${id} usuario`;
+    const deleteCount = this.usuarioModel.destroy({
+      where:{codUsuario: id}
+    });
+    console.log(`Usuario #${id} deletado! ${deleteCount} registros apagados!`);
+    
   }
 }
