@@ -18,17 +18,17 @@ export class ConcessionariaController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: number) {
     return this.concessionariaService.findOne(+id);
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateConcessionariaDto: UpdateConcessionariaDto) {
+  update(@Param('id') id: number, @Body() updateConcessionariaDto: UpdateConcessionariaDto) {
     return this.concessionariaService.update(+id, updateConcessionariaDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: number) {
     return this.concessionariaService.remove(+id);
   }
 }

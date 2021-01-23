@@ -13,8 +13,10 @@ export class ConcessionariaService {
     console.log ('Concessionaria criada com sucesso');
   }
 
-  findAll() {
-    return this.concessionariaModel.findAll();
+  async findAll() {
+    const concessionarias = await this.concessionariaModel.findAll();
+    console.info('Concessionarias', concessionarias);
+    return concessionarias;
   }
 
   findOne(id: number) {

@@ -14,6 +14,5 @@ export class Concessionaria extends Model{
       nomConcessionaria: string;
     @Column
       codUsuarioCriacao: number;
-    @Column
-      dataCriacao: Date;
+   
 }
