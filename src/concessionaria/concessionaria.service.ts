@@ -1,26 +1,34 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
 import { CreateConcessionariaDto } from './dto/create-concessionaria.dto';
 import { UpdateConcessionariaDto } from './dto/update-concessionaria.dto';
+import { Concessionaria } from './entities/concessionaria.entity';
 
 @Injectable()
 export class ConcessionariaService {
+  constructor(@InjectModel(Concessionaria) private concessionariaModel : typeof Concessionaria){}
+
   create(createConcessionariaDto: CreateConcessionariaDto) {
-    return 'This action adds a new concessionaria';
+   this.concessionariaModel.create(createConcessionariaDto);
+    console.log ('Concessionaria criada com sucesso');
   }
 
   findAll() {
-    return `This action returns all concessionaria`;
+    return this.concessionariaModel.findAll();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} concessionaria`;
+    return this.concessionariaModel.findOne({where:{ codConcessionaria:id}});;
   }
 
   update(id: number, updateConcessionariaDto: UpdateConcessionariaDto) {
-    return `This action updates a #${id} concessionaria`;
+    Concessionaria.update(updateConcessionariaDto,{
+      where:{codConcessionaria:id}}).then(()=>
+      console.log(`Concessionaria #${id} atualizadas com sucesso!`));
   }
 
   remove(id: number) {
-    return `This action removes a #${id} concessionaria`;
+    const deleteConcessionaria = this.concessionariaModel.destroy({
+      where:{codConcessionaria : id}});
   }
 }

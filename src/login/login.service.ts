@@ -1,26 +1,33 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
 import { CreateLoginDto } from './dto/create-login.dto';
 import { UpdateLoginDto } from './dto/update-login.dto';
+import { Login } from './entities/login.entity';
 
 @Injectable()
 export class LoginService {
+  constructor(@InjectModel(Login)private loginModel: typeof Login){}
   create(createLoginDto: CreateLoginDto) {
-    return 'This action adds a new login';
+    this.loginModel.create(createLoginDto);
+    console.log ('Login criado com sucesso');
   }
 
   findAll() {
-    return `This action returns all login`;
+    return this.loginModel.findAll();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} login`;
+    return this.loginModel.findOne({where:{ codLogin:id}});
   }
 
   update(id: number, updateLoginDto: UpdateLoginDto) {
-    return `This action updates a #${id} login`;
+    Login.update(updateLoginDto,{
+      where:{codLogin:id}}).then(()=>
+      console.log(`Login #${id} atualizado com sucesso!`));
   }
 
   remove(id: number) {
-    return `This action removes a #${id} login`;
+    const deleteLogin = this.loginModel.destroy({
+      where:{codLogin : id}});
   }
 }
