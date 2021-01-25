@@ -144,11 +144,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost3000/usuario",
+							"raw": "http://localhost:3000/usuario",
 							"protocol": "http",
 							"host": [
-								"localhost3000"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
 								"usuario"
 							]
@@ -264,11 +265,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost3000/tipo-perfil",
+							"raw": "http://localhost:3000/tipo-perfil",
 							"protocol": "http",
 							"host": [
-								"localhost3000"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
 								"tipo-perfil"
 							]
@@ -291,11 +293,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost3000/tipo-perfil/id",
+							"raw": "http://localhost:3000/tipo-perfil/id",
 							"protocol": "http",
 							"host": [
-								"localhost3000"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
 								"tipo-perfil",
 								"id"
@@ -310,11 +313,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost3000/tipo-perfil/id",
+							"raw": "http://localhost:3000/tipo-perfil/id",
 							"protocol": "http",
 							"host": [
-								"localhost3000"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
 								"tipo-perfil",
 								"id"
@@ -329,11 +333,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost3000/tipo-perfil/id",
+							"raw": "http://localhost:3000/tipo-perfil/id",
 							"protocol": "http",
 							"host": [
-								"localhost3000"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
 								"tipo-perfil",
 								"id"
@@ -348,11 +353,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost3000/tipo-perfil",
+							"raw": "http://localhost:3000/tipo-perfil",
 							"protocol": "http",
 							"host": [
-								"localhost3000"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
 								"tipo-perfil"
 							]
