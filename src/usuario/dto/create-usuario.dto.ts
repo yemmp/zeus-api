@@ -5,7 +5,7 @@ nomeUsuario: string;
 dscLogin: string;
 codConcessionaria: number;
 codUsuarioCriacao: number;
-dataCriacao: Date;
+
 
 
 }

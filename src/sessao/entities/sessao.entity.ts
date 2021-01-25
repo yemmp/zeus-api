@@ -17,10 +17,6 @@ export class Sessao extends  Model{
     @Column
       codUsuario: number;
     @Column
-      dataInicio: Date;
-    @Column
-      dataFim: Date;
-    @Column
       dscTokenAcesso: string;
     @Column
       codIpOrigem: number;

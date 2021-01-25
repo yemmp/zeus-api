@@ -16,7 +16,6 @@ export class Login extends Model{
       codUsuario: number;
     @Column
       codIpOrigem: number;
-    @Column
-      dataCriacao: Date;
+
     
 }

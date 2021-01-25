@@ -18,6 +18,5 @@ export class TipoPerfil extends Model {
   @Column
   nomPerfil: string;
   
-  @Column
-  datCriacao: Date;
+
 }

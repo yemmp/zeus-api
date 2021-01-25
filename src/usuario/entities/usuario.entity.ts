@@ -45,6 +45,5 @@ export class Usuario extends Model {
   @Column
   codUsuarioCriacao: number;
   
-  @Column
-  dataCriacao: Date;
+
 }
