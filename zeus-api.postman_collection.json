@@ -1,0 +1,608 @@
+{
+	"info": {
+		"_postman_id": "d9df4b2b-e5e9-43a2-b4bc-3594d516be84",
+		"name": "zeus-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Concessionaria",
+			"item": [
+				{
+					"name": "Concessionaria Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"nomConcessionaria\": \"ABC\",\r\n    \"codUsuarioCriacao\": 13\r\n   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/concessionaria",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"concessionaria"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Concessionaria Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codConcessionaria\": 21,\r\n    \"nomConcessionaria\": \"Concessionaria ABC\",\r\n    \"codUsuarioCriacao\": null\r\n   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/concessionaria/21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"concessionaria",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Concessionaria Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/concessionaria/22",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"concessionaria",
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Concessionaria Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/concessionaria",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"concessionaria"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Concessionaria Find By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/concessionaria/21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"concessionaria",
+								"21"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Usuario Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n\"codPerfil\": \"Admin\",\r\n\"nomeUsuario\": \"Flávio\",\r\n\"dscLogin\": \"string\",\r\n\"codConcessionaria\": 21,\r\n\"codUsuarioCriacao\": 29800\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost3000/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost3000"
+							],
+							"path": [
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuario Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n\"codPerfil\": \"Admin\",\r\n\"nomeUsuario\": \"Flávio\",\r\n\"dscLogin\": \"string\",\r\n\"codConcessionaria\": 21,\r\n\"codUsuarioCriacao\": 29800\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/usuario/id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuario",
+								"id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuario Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/usuario/id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuario",
+								"id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuario Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuario Find By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/usuario/id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuario",
+								"id"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tipo Perfil",
+			"item": [
+				{
+					"name": "Tipo Perfil Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \r\n    \"nomPerfil\": \"Roberto\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost3000/tipo-perfil",
+							"protocol": "http",
+							"host": [
+								"localhost3000"
+							],
+							"path": [
+								"tipo-perfil"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tipo Perfil Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \r\n    \"nomPerfil\": \"Roberto\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost3000/tipo-perfil/id",
+							"protocol": "http",
+							"host": [
+								"localhost3000"
+							],
+							"path": [
+								"tipo-perfil",
+								"id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tipo Perfil Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost3000/tipo-perfil/id",
+							"protocol": "http",
+							"host": [
+								"localhost3000"
+							],
+							"path": [
+								"tipo-perfil",
+								"id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tipo Perfil Find By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost3000/tipo-perfil/id",
+							"protocol": "http",
+							"host": [
+								"localhost3000"
+							],
+							"path": [
+								"tipo-perfil",
+								"id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tipo Perfil Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost3000/tipo-perfil",
+							"protocol": "http",
+							"host": [
+								"localhost3000"
+							],
+							"path": [
+								"tipo-perfil"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sessao",
+			"item": [
+				{
+					"name": "Sessao Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codUsuario\": 22816,\r\n    \"dscTokenAcesso\": \"dscTokenAcesso string\",\r\n    \"codIpOrigem\": 1122233857,\r\n    \"dscSoAcesso\": \"dscSoAcesso String\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/sessao",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"sessao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sessao Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codUsuario\": 22816,\r\n    \"dscTokenAcesso\": \"dscTokenAcesso string\",\r\n    \"codIpOrigem\": 1122233857,\r\n    \"dscSoAcesso\": \"dscSoAcesso String\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/sessao/id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"sessao",
+								"id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sessao Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/sessao/id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"sessao",
+								"id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sessao Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/sessao",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"sessao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sessao Find By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/sessao/id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"sessao",
+								"id"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"codUsuario\": 2229,\r\n    \"codIpOrigem\": 119107169244\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"codUsuario\": 2229,\r\n    \"codIpOrigem\": 119107169244\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/login/id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login",
+								"id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/login/id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login",
+								"id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Find By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/login/id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login",
+								"id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
