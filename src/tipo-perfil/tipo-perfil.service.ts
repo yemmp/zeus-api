@@ -17,20 +17,20 @@ export class TipoPerfilService {
     return this.tPerfilModel.findAll();
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.tPerfilModel.findOne({where:{codTPerfil:id}})
   }
 
-  update(id: number, updateTipoPerfilDto: UpdateTipoPerfilDto) {
+  update(id: string, updateTipoPerfilDto: UpdateTipoPerfilDto) {
     TipoPerfil.update(updateTipoPerfilDto, {
-      where: {codTPerfil:id}}).then(()=>
+      where: {codPerfil:id}}).then(()=>
       console.log(`Tipo-Perfil #${id} atualizado com sucesso!`)
       );
   }
 
-  remove(id: number) {
+  remove(id: string) {
     const deleteCount = this.tPerfilModel.destroy({
-      where: {codTPerfil: id}});
+      where: {codPerfil: id}});
       console.log(`Tipo-Perfil #${id} deletado!`)
   }
 }
