@@ -1,26 +1,67 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
 import { CreateTrajetoDto } from './dto/create-trajeto.dto';
 import { UpdateTrajetoDto } from './dto/update-trajeto.dto';
+import { Trajeto } from './entities/trajeto.entity';
 
 @Injectable()
 export class TrajetoService {
-  create(createTrajetoDto: CreateTrajetoDto) {
-    return 'This action adds a new trajeto';
+
+  constructor(@InjectModel(Trajeto)private trajetoModel: typeof Trajeto){}
+
+  async create(createTrajetoDto: CreateTrajetoDto) {
+    try {
+      this.trajetoModel.create(createTrajetoDto);
+    } catch (error) {
+      console.error('Erro ao Criar Trajeto',error.message);
+      throw new BadRequestException();
+    }
+    return 'Trajeto Criado com Sucesso';
   }
 
-  findAll() {
-    return `This action returns all trajeto`;
+  async findAll() {
+    try {
+      return this.trajetoModel.findAll();
+      
+    } catch (error) {
+      console.error(`Erro ao Buscar Trajetos`,error.message);
+      throw new BadRequestException();
+    }
   }
-
-  findOne(id: number) {
-    return `This action returns a #${id} trajeto`;
+  
+  async findOne(id: number) {
+    try {
+      
+      return this.trajetoModel.findOne({where:{codTrajeto:id}});
+    } catch (error) {
+      console.error(`Erro ao Buscar Trajeto #${id}`, error.message);
+      throw new BadRequestException();
+    }
+    
   }
-
-  update(id: number, updateTrajetoDto: UpdateTrajetoDto) {
-    return `This action updates a #${id} trajeto`;
+  
+  async update(id: number, updateTrajetoDto: UpdateTrajetoDto) {
+    try {
+      Trajeto.update(updateTrajetoDto,{where:{codTrajeto:id}}).then(()=>{
+        console.log(`Trajeto #${id} Atualizado com Sucesso!`);
+      })
+    } catch (error) {
+      
+      console.error(`Erro ao Atualizar Trajeto #${id}`, error.message);
+      throw new BadRequestException();
+    }
+    return `Trajeto #${id} Atualizado com Sucesso!`;
   }
-
-  remove(id: number) {
-    return `This action removes a #${id} trajeto`;
+  
+  async remove(id: number) {
+    try {
+      const deleteTrajeto = this.trajetoModel.destroy({where:{codTrajeto:id}});
+      console.log(`Trajeto #${id} Deletado! ${deleteTrajeto} Registros Apagados!`);
+      
+    } catch (error) {
+      console.error(`Erro ao Deletar Trajeto #${id}`, error.message);
+      throw new BadRequestException();
+    }
+    return `Trajeto #${id} Deletado!`;
   }
 }

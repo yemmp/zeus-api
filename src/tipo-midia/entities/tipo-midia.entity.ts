@@ -12,6 +12,9 @@ export class TipoMidia extends Model {
     codTipoMidia: number;
 
     @Column
+    nomTipoMidia: string;
+
+    @Column
     indAtivo: number;
 
     @Column

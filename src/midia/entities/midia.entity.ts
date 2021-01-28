@@ -1,4 +1,4 @@
-import {Table,Model,Column,PrimaryKey,ForeignKey,AutoIncrement} from "sequelize-typescript"
+import {Table,Model,Column,PrimaryKey,ForeignKey,AutoIncrement, BelongsTo} from "sequelize-typescript"
 import { TipoMidia } from "src/tipo-midia/entities/tipo-midia.entity";
 
 @Table({
@@ -16,6 +16,9 @@ export class Midia extends Model {
     @Column
     codTipoMidia: number;
 
+    @BelongsTo(()=>TipoMidia)
+    tipoMidia: TipoMidia;
+    
     @Column
     nomMidia:string;
 

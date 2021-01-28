@@ -1,4 +1,5 @@
-import { Table,Column,Model,PrimaryKey,AutoIncrement,ForeignKey} from "sequelize-typescript";
+import { Table,Column,Model,PrimaryKey,AutoIncrement,ForeignKey, BelongsTo} from "sequelize-typescript";
+import { Trajeto } from "src/trajeto/entities/trajeto.entity";
 
 @Table({
     underscored:true,
@@ -11,10 +12,12 @@ export class PontoTrajeto extends Model {
     @Column
     codPontoTrajeto: number;
 
-    //codTrajeto Marcado como PF
-    //Marcação para alteração futura
+    @ForeignKey(()=>Trajeto)
     @Column
     codTrajeto: number;
+
+    @BelongsTo(()=>Trajeto)
+    trajeto: Trajeto;
 
     @Column
     numSequencia: number;

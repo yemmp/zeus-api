@@ -32,15 +32,18 @@ export class Usuario extends Model {
   nomeUsuario: string;
 
   @Column
-  dscLogin: string;
-
+  dscLogin: string
+  
+  @Column
+  indAtivo: number;
+ 
   @ForeignKey(() => Concessionaria)
   @Column
   codConcessionaria: number;
 
   @BelongsTo(() => Concessionaria)
   concessionaria: Concessionaria;
-
+  
  @ForeignKey(() => Usuario)
   @Column
   codUsuarioCriacao: number;

@@ -19,16 +19,16 @@ export class TipoPerfilController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.tipoPerfilService.findOne(+id);
+    return this.tipoPerfilService.findOne(id);
   }
 
   @Put(':id')
   update(@Param('id') id: string, @Body() updateTipoPerfilDto: UpdateTipoPerfilDto) {
-    return this.tipoPerfilService.update(+id, updateTipoPerfilDto);
+    return this.tipoPerfilService.update(id, updateTipoPerfilDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.tipoPerfilService.remove(+id);
+    return this.tipoPerfilService.remove(id);
   }
 }

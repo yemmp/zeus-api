@@ -1,4 +1,4 @@
-import { Table, Model, PrimaryKey, Column, AutoIncrement, ForeignKey } from 'sequelize-typescript'
+import { Table, Model, PrimaryKey, Column, AutoIncrement, ForeignKey, BelongsTo } from 'sequelize-typescript'
 import { underscoredIf } from 'sequelize/types/lib/utils'
 import { Usuario } from 'src/usuario/entities/usuario.entity';
 
@@ -16,10 +16,16 @@ export class Sessao extends  Model{
     @ForeignKey(()=>Usuario)
     @Column
       codUsuario: number;
+
+    @BelongsTo(()=>Usuario)
+    usuario: Usuario
+
     @Column
       dscTokenAcesso: string;
+    
     @Column
       codIpOrigem: number;
+    
     @Column
       dscSoAcesso: string;
 
