@@ -1,26 +1,61 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
 import { CreateIconeDto } from './dto/create-icone.dto';
 import { UpdateIconeDto } from './dto/update-icone.dto';
+import { Icone } from './entities/icone.entity';
 
 @Injectable()
 export class IconeService {
-  create(createIconeDto: CreateIconeDto) {
-    return 'This action adds a new icone';
+
+  constructor(@InjectModel(Icone)private iconeModel: typeof Icone){}
+  async create(createIconeDto: CreateIconeDto) {
+    try {
+      this.iconeModel.create(createIconeDto);
+    } catch (error) {
+      console.error('Erro ao Criar Usuario',error.message);
+      throw new BadRequestException();
+    }
+    return 'Icone Criado com Sucesso!';
   }
 
-  findAll() {
-    return `This action returns all icone`;
+  async findAll() {
+    try {
+      return this.iconeModel.findAll();
+      
+    } catch (error) {
+      console.error('Erro ao Buscar Icones',error.message);
+      throw new BadRequestException();
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} icone`;
+  async findOne(id: number) {
+    try {
+      return this.iconeModel.findOne({where:{codIcone:id}});
+      
+    } catch (error) {
+      console.error(`Erro ao Criar Icone`, error.message);
+      throw new BadRequestException();
+    }
   }
 
-  update(id: number, updateIconeDto: UpdateIconeDto) {
-    return `This action updates a #${id} icone`;
+  async update(id: number, updateIconeDto: UpdateIconeDto) {
+    try {
+      Icone.update(updateIconeDto,{where:{codIcone:id}}).then(()=>{
+        console.log(`Icone #${id} Atualizado com Sucesso!`);
+      })
+    } catch (error) {
+      console.error(`Erro ao Atualizar Icone #${id}`,error.message);
+      throw new BadRequestException();
+    }
+    return `Icone #${id} Atualizado com Sucesso!`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} icone`;
+  async remove(id: number) {
+    try {
+      this.iconeModel.destroy({where:{codIcone:id}});
+    } catch (error) {
+      console.error(`Erro ao Deletar Icone #${id}`,error.message);
+    }
+    return `Icone #${id} Deletado!`;
   }
 }

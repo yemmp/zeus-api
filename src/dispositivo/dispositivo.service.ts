@@ -1,26 +1,65 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
 import { CreateDispositivoDto } from './dto/create-dispositivo.dto';
 import { UpdateDispositivoDto } from './dto/update-dispositivo.dto';
+import { Dispositivo } from './entities/dispositivo.entity';
 
 @Injectable()
 export class DispositivoService {
-  create(createDispositivoDto: CreateDispositivoDto) {
-    return 'This action adds a new dispositivo';
+
+  constructor(@InjectModel(Dispositivo)private dispositivoModel: typeof Dispositivo){}
+
+
+  async create(createDispositivoDto: CreateDispositivoDto) {
+    try {
+      this.dispositivoModel.create(createDispositivoDto);
+    } catch (error) {
+      console.error('Erro ao Criar Dispositivo',error.message);
+      throw new BadRequestException();
+    }
+    return 'Dispositivo Criado com Sucesso!';
   }
 
-  findAll() {
-    return `This action returns all dispositivo`;
+  async findAll() {
+    try {
+      return this.dispositivoModel.findAll();
+      
+    } catch (error) {
+      console.error('Erro ao Buscar Dispositivos',error.message);
+      throw new BadRequestException();
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} dispositivo`;
+  async findOne(id: number) {
+    try {
+      return this.dispositivoModel.findOne({where:{codDispositivo:id}});
+      
+    } catch (error) {
+      console.error(`Erro ao Buscar Dispositivo #${id}`,error.message);
+      throw new BadRequestException();
+    }
   }
 
-  update(id: number, updateDispositivoDto: UpdateDispositivoDto) {
-    return `This action updates a #${id} dispositivo`;
+  async update(id: number, updateDispositivoDto: UpdateDispositivoDto) {
+    try {
+      Dispositivo.update(updateDispositivoDto,{where:{codDispositivo:id}}).then(()=>{
+        console.log(`Dispositivo #${id} Atualizado com Sucesso!`);
+      });
+    } catch (error) {
+      console.error(`Erro ao Atualizar Dispositivo #${id}`,error.message);
+      throw new BadRequestException();
+      
+    }
+    return `Dispositivo #${id} Atualizado com Sucesso`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} dispositivo`;
+  async remove(id: number) {
+    try {
+      this.dispositivoModel.destroy({where:{codDispositivo:id}})
+    } catch (error) {
+      console.error(`Erro ao Deletar Dispositivo #${id}`,error.message);
+      throw new BadRequestException();
+    }
+    return `Dispositivo #${id} Deletado!`;
   }
 }

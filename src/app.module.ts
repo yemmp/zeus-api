@@ -15,7 +15,6 @@ import { AtividadeModule } from './atividade/atividade.module';
 import { MidiaModule } from './midia/midia.module';
 import { TipoMidiaModule } from './tipo-midia/tipo-midia.module';
 import { FormularioModule } from './formulario/formulario.module';
-import { TestModule } from './drive/test/test.module';
 import { DispositivoModule } from './dispositivo/dispositivo.module';
 import { ExperienciaModule } from './experiencia/experiencia.module';
 import { AvaliacaoModule } from './avaliacao/avaliacao.module';
@@ -53,7 +52,6 @@ import { InformacaoModule } from './informacao/informacao.module';
     MidiaModule,
     TipoMidiaModule,
     FormularioModule,
-    TestModule,
     DispositivoModule,
     ExperienciaModule,
     AvaliacaoModule,

@@ -1,26 +1,65 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
 import { CreateCheckListDto } from './dto/create-check-list.dto';
 import { UpdateCheckListDto } from './dto/update-check-list.dto';
+import { CheckList } from './entities/check-list.entity';
 
 @Injectable()
 export class CheckListService {
-  create(createCheckListDto: CreateCheckListDto) {
-    return 'This action adds a new checkList';
+
+constructor(@InjectModel(CheckList)private checkListModel: typeof CheckList){}
+
+  async create(createCheckListDto: CreateCheckListDto) {
+    try {
+      this.checkListModel.create(createCheckListDto);
+    } catch (error) {
+      console.error('Erro ao Criar Check-List',error.message);
+      throw new BadRequestException();
+    }
+    return 'Check-List Criado com Sucesso!';
   }
 
-  findAll() {
-    return `This action returns all checkList`;
+  async findAll() {
+    try {
+      return this.checkListModel.findAll();
+      
+    } catch (error) {
+      console.error('Erro ao Buscar Check-Lists', error.message);
+      throw new BadRequestException();
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} checkList`;
+  async findOne(id: number) {
+    try {
+      return this.checkListModel.findOne({where:{codCheckList:id}});
+      
+    } catch (error) {
+      console.error(`Erro ao Buscar Check-List #${id}`, error.message);
+      throw new BadRequestException();
+      
+    }
   }
 
-  update(id: number, updateCheckListDto: UpdateCheckListDto) {
-    return `This action updates a #${id} checkList`;
+  async update(id: number, updateCheckListDto: UpdateCheckListDto) {
+    try {
+      CheckList.update(updateCheckListDto,{where:{codCheckList:id}}).then(()=>{
+        console.log(`Check-List #${id} Atualizado com Sucesso`);
+      })
+    } catch (error) {
+      console.error(`Erro ao Atualizar Check-List #${id}`,error.message);
+      throw new BadRequestException();
+    }
+    
+    return `Check-List #${id} Atualizada com Sucesso`;
   }
 
   remove(id: number) {
-    return `This action removes a #${id} checkList`;
+    try {
+      this.checkListModel.destroy({where:{codCheckList:id}});
+    } catch (error) {
+      console.error(`Erro ao Deletar Check-List #${id}`,error.message);
+      throw new BadRequestException();
+    }
+    return `Check-List #${id} Deletada!`;
   }
 }

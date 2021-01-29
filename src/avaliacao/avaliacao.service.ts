@@ -1,26 +1,65 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
 import { CreateAvaliacaoDto } from './dto/create-avaliacao.dto';
 import { UpdateAvaliacaoDto } from './dto/update-avaliacao.dto';
+import { Avaliacao } from './entities/avaliacao.entity';
 
 @Injectable()
 export class AvaliacaoService {
-  create(createAvaliacaoDto: CreateAvaliacaoDto) {
-    return 'This action adds a new avaliacao';
+
+  constructor(@InjectModel(Avaliacao)private avaliacaoModel: typeof Avaliacao){}
+  async create(createAvaliacaoDto: CreateAvaliacaoDto) {
+    try {
+     this.avaliacaoModel.create(createAvaliacaoDto);
+    } catch (error) {
+      console.error('Erro ao Criar Avaliacao',error.message);
+      throw new BadRequestException();
+    }
+    return 'Avaliacao Criada com Sucesso!';
   }
 
-  findAll() {
-    return `This action returns all avaliacao`;
+  async findAll() {
+    try {
+      return this.avaliacaoModel.findAll();
+      
+    } catch (error) {
+      console.error('Erro ao Buscar Avaliacoes');
+      throw new BadRequestException();
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} avaliacao`;
-  }
+  async findOne(id: number) {
+    try {
+      return this.avaliacaoModel.findOne({where:{codAvaliacao:id}});
 
-  update(id: number, updateAvaliacaoDto: UpdateAvaliacaoDto) {
-    return `This action updates a #${id} avaliacao`;
+      
+    } catch (error) {
+      console.error(`Erro ao Buscar Avaliacao #${id}`,error.message);
+      throw new BadRequestException();
+    }
   }
-
-  remove(id: number) {
-    return `This action removes a #${id} avaliacao`;
+  
+  async update(id: number, updateAvaliacaoDto: UpdateAvaliacaoDto) {
+    try {
+      Avaliacao.update(updateAvaliacaoDto,{where:{codAvaliacao:id}}).then(()=>{
+        console.log(`Avaliacao #${id} Atualizada com Sucesso!`);
+      })
+    } catch (error) {
+      
+      console.error(`Erro ao Atualizar Avaliacao #${id}`,error.message);
+      throw new BadRequestException();
+    }
+    return `Avaliacao #${id} Atualizada com Sucesso!`;
+  }
+  
+  async remove(id: number) {
+    try {
+      this.avaliacaoModel.destroy({where:{codAvaliacao:id}});
+    } catch (error) {
+      
+      console.error(`Erro ao Deletar Avaliacao #${id}`,error.message);
+      throw new BadRequestException();
+    }
+    return `Avaliacao #${id} Deletada!`;
   }
 }

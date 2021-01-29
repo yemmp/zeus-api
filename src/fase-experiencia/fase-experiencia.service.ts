@@ -1,26 +1,65 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
+import { where } from 'sequelize';
 import { CreateFaseExperienciaDto } from './dto/create-fase-experiencia.dto';
 import { UpdateFaseExperienciaDto } from './dto/update-fase-experiencia.dto';
+import { FaseExperiencia } from './entities/fase-experiencia.entity';
 
 @Injectable()
 export class FaseExperienciaService {
-  create(createFaseExperienciaDto: CreateFaseExperienciaDto) {
-    return 'This action adds a new faseExperiencia';
+
+  constructor(@InjectModel(FaseExperiencia)private faseExperienciaModel: typeof FaseExperiencia){}
+
+  
+  async create(createFaseExperienciaDto: CreateFaseExperienciaDto) {
+    try {
+      this.faseExperienciaModel.create(createFaseExperienciaDto);
+    } catch (error) {
+      console.error('Erro ao criar Fase-Experiencia',error.message);
+      throw new BadRequestException();
+    }
+    return 'Fase-Experiencia Criada com Sucesso';
   }
 
-  findAll() {
-    return `This action returns all faseExperiencia`;
+  async findAll() {
+    try {
+      return this.faseExperienciaModel.findAll();
+      
+    } catch (error) {
+      console.error('Erro ao Buscar Fase-Experiencia',error.message);
+      throw new BadRequestException();
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} faseExperiencia`;
+  async findOne(id: number) {
+    try {
+      return this.faseExperienciaModel.findOne({where:{codFaseExperiencia:id}})
+    } catch (error) {
+      console.error(`Erro ao Buscar Fase-Experiencia #${id}`,error.message);
+      throw new BadRequestException();
+    }
+    
   }
 
-  update(id: number, updateFaseExperienciaDto: UpdateFaseExperienciaDto) {
-    return `This action updates a #${id} faseExperiencia`;
+  async update(id: number, updateFaseExperienciaDto: UpdateFaseExperienciaDto) {
+    try {
+    FaseExperiencia.update(updateFaseExperienciaDto,{where:{codFaseExperiencia:id}}).then(()=>{
+      console.log(`Fase-Experiencia  Atualizada com Sucesso`);
+    })  
+    } catch (error) {
+      console.error(`Erro ao Aualizar Fase-Experiencia #${id}`)
+      throw new BadRequestException();
+    }
+    return `Fase-Experiencia #${id} Atualizada com Sucesso!`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} faseExperiencia`;
+  async remove(id: number) {
+    try {
+      this.faseExperienciaModel.destroy({where:{codFaseExperiencia :id}});
+    } catch (error) {
+      console.error(`Erro ao Deleter Fase-Experiencia #${id}`,error.message);
+      throw new BadRequestException();
+    }
+    return `Fase-Experiencia #${id} Deletada`;
   }
 }
