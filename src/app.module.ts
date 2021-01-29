@@ -16,6 +16,18 @@ import { PontoTrajetoModule } from './ponto-trajeto/ponto-trajeto.module';
 import { AtividadeModule } from './atividade/atividade.module';
 import { MidiaModule } from './midia/midia.module';
 import { TipoMidiaModule } from './tipo-midia/tipo-midia.module';
+import { FormularioModule } from './formulario/formulario.module';
+import { TestModule } from './drive/test/test.module';
+import { DispositivoModule } from './dispositivo/dispositivo.module';
+import { ExperienciaModule } from './experiencia/experiencia.module';
+import { AvaliacaoModule } from './avaliacao/avaliacao.module';
+import { TestDriveModule } from './test-drive/test-drive.module';
+import { AvaliacaoDispositivoModule } from './avaliacao-dispositivo/avaliacao-dispositivo.module';
+import { FaseExperienciaModule } from './fase-experiencia/fase-experiencia.module';
+import { CheckListModule } from './check-list/check-list.module';
+import { DetalheChecklistModule } from './detalhe-checklist/detalhe-checklist.module';
+import { IconeModule } from './icone/icone.module';
+import { InformacaoModule } from './informacao/informacao.module';
 
 @Module({
   imports: [
@@ -44,6 +56,18 @@ import { TipoMidiaModule } from './tipo-midia/tipo-midia.module';
     AtividadeModule,
     MidiaModule,
     TipoMidiaModule,
+    FormularioModule,
+    TestModule,
+    DispositivoModule,
+    ExperienciaModule,
+    AvaliacaoModule,
+    TestDriveModule,
+    AvaliacaoDispositivoModule,
+    FaseExperienciaModule,
+    CheckListModule,
+    DetalheChecklistModule,
+    IconeModule,
+    InformacaoModule,
   ],
   controllers: [AppController],
   providers: [AppService],
