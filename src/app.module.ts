@@ -8,9 +8,7 @@ import { LoginModule } from './login/login.module';
 import { SessaoModule } from './sessao/sessao.module';
 import { ConcessionariaModule } from './concessionaria/concessionaria.module';
 import { RotaModule } from './rota/rota.module';
-import { RotaFaseModule } from './rota-fase/rota-fase.module';
 import { TrajetoModule } from './trajeto/trajeto.module';
-import { FaseModule } from './fase/fase.module';
 import { TipoFaseModule } from './tipo-fase/tipo-fase.module';
 import { PontoTrajetoModule } from './ponto-trajeto/ponto-trajeto.module';
 import { AtividadeModule } from './atividade/atividade.module';
@@ -32,11 +30,11 @@ import { InformacaoModule } from './informacao/informacao.module';
 @Module({
   imports: [
     SequelizeModule.forRoot({
-      dialect: 'mariadb',
+      dialect: 'mysql',
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '132702',
+      password: 'a1b2c3d4e5',
       database: 'zeus',
       autoLoadModels: true,
       synchronize: true,
@@ -48,9 +46,7 @@ import { InformacaoModule } from './informacao/informacao.module';
     SessaoModule,
     ConcessionariaModule,
     RotaModule,
-    RotaFaseModule,
     TrajetoModule,
-    FaseModule,
     TipoFaseModule,
     PontoTrajetoModule,
     AtividadeModule,

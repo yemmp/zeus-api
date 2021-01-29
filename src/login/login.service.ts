@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateLoginDto } from './dto/create-login.dto';
 import { UpdateLoginDto } from './dto/update-login.dto';
@@ -7,27 +7,71 @@ import { Login } from './entities/login.entity';
 @Injectable()
 export class LoginService {
   constructor(@InjectModel(Login)private loginModel: typeof Login){}
-  create(createLoginDto: CreateLoginDto) {
-    this.loginModel.create(createLoginDto);
+
+  async create(createLoginDto: CreateLoginDto) {
+    try {
+      this.loginModel.create(createLoginDto);
+      
+    } catch (error) {
+      console.error('Erro ao Criar Login', error.message);
+      throw new BadRequestException();
+    }
     console.log ('Login criado com sucesso');
+    return 'Login Criado com Sucesso!';
   }
 
-  findAll() {
-    return this.loginModel.findAll();
+  async findAll() {
+    try {
+      return this.loginModel.findAll();
+      
+    } catch (error) {
+      console.error('Erro ao Buscar Logins', error.message);
+      throw new BadRequestException();
+    }
   }
 
-  findOne(id: number) {
-    return this.loginModel.findOne({where:{ codLogin:id}});
+  async findOne(id: number) {
+    try {
+      return this.loginModel.findOne({where:{ codLogin:id}});
+      
+    } catch (error) {
+      console.error(`Erro ao Buscar Login #${id}`, error.message);
+      throw new BadRequestException();
+      
+    }
   }
 
-  update(id: number, updateLoginDto: UpdateLoginDto) {
-    Login.update(updateLoginDto,{
-      where:{codLogin:id}}).then(()=>
-      console.log(`Login #${id} atualizado com sucesso!`));
+  async update(id: number, updateLoginDto: UpdateLoginDto) {
+    try {
+
+      Login.update(updateLoginDto,{
+        where:{codLogin:id}}).then(()=>
+        console.log(`Login #${id} atualizado com sucesso!`));
+      
+    } catch (error) {
+      
+      console.error(`Erro ao Atualizar Login #${id}`, error.message);
+      throw new BadRequestException();
+      
+    }
+
+    return `Login #${id} Atualizado com Sucesso!`;
+
   }
 
-  remove(id: number) {
-    const deleteLogin = this.loginModel.destroy({
+  async remove(id: number) {
+
+    try {
+      const deleteLogin = this.loginModel.destroy({
       where:{codLogin : id}});
+
+      console.log(`Login #${id} Deletado! ${deleteLogin} Registros Apagados`);
+      
+    } catch (error) {
+      
+      console.error(`Erro ao Deletar Login #${id}`, error.message);
+      throw new BadRequestException();
+      
+    }
   }
 }

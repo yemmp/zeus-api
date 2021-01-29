@@ -1,6 +1,12 @@
+import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+
 export class CreateConcessionariaDto {
-    codConcessionaria: number;
+    
+    @IsNotEmpty()
+    @IsString()
     nomConcessionaria: string;
+
+    @IsNumber() 
     codUsuarioCriacao: number;
     
 }

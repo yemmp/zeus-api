@@ -1,7 +1,5 @@
-import {Table,Model,Column,PrimaryKey,ForeignKey,AutoIncrement} from 'sequelize-typescript'
-import { Fase } from 'src/fase/entities/fase.entity';
+import {Table,Model,Column,PrimaryKey,ForeignKey,AutoIncrement, BelongsTo} from 'sequelize-typescript'
 import { Midia } from 'src/midia/entities/midia.entity';
-import { TipoFase } from 'src/tipo-fase/entities/tipo-fase.entity';
 import { TipoMidia } from 'src/tipo-midia/entities/tipo-midia.entity';
 
 
@@ -15,21 +13,20 @@ export class Atividade extends Model{
 @AutoIncrement
 @Column
   codAtividade: number;
-@ForeignKey(()=> Fase)
-@Column
- codFase: number;
 
 @ForeignKey(()=> Midia)
 @Column 
  codMidia: number;
 
-@ForeignKey(()=> TipoFase)
-@Column
- codTipoFase: number;
+ @BelongsTo(()=>Midia)
+midia: Midia;
 
 @ForeignKey(()=>TipoMidia)
 @Column
  codTipoMidia: number;
+
+@BelongsTo(()=>TipoMidia)
+tipoMidia: TipoMidia;
 
 @Column
  numSequencia: number;
@@ -40,11 +37,6 @@ export class Atividade extends Model{
 @Column
  codTipoAtividade: string;
 
-@Column
- numPosicaoX: number;
-
-@Column
- numPosicaoY: number;
 
 @Column
  codConcessionaria: number;
