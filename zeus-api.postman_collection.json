@@ -46,7 +46,11 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
+<<<<<<< HEAD
 									"raw": "{\r\n    \"nomConcessionaria\": \"Concessionaria ABC\",\r\n    \"codUsuarioCriacao\": 23\r\n    \r\n}",
+=======
+									"raw": "",
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									"options": {
 										"raw": {
 											"language": "json"
@@ -54,7 +58,11 @@
 									}
 								},
 								"url": {
+<<<<<<< HEAD
 									"raw": "http://localhost:3000/concessionaria/2",
+=======
+									"raw": "http://localhost:3000/concessionaria/id",
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -62,7 +70,11 @@
 									"port": "3000",
 									"path": [
 										"concessionaria",
+<<<<<<< HEAD
 										"2"
+=======
+										"id"
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									]
 								}
 							},
@@ -260,7 +272,11 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
+<<<<<<< HEAD
 									"raw": "{\r\n    \"codPerfil\": \"3\",\r\n    \"nomeUsuario\":\"Matias\",\r\n    \"dscLogin\":  \"S212F3DF4\",\r\n    \"indAtivo\": 0,\r\n    \"codConcessionaria\": 21,\r\n    \"codUsuarioCriacao\": 2120\r\n}",
+=======
+									"raw": "{\r\n    \"codPerfil\": \"Tem de ser stringoso\",\r\n    \"nomeUsuario\":\"Matias\",\r\n    \"dscLogin\":  \"S212F3DF4\",\r\n    \"codConcessionaria\": 21,\r\n    \"codUsuarioCriacao\": 2120\r\n}",
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									"options": {
 										"raw": {
 											"language": "json"
@@ -288,7 +304,11 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
+<<<<<<< HEAD
 									"raw": "{\r\n    \"codPerfil\": \"5\",\r\n    \"nomeUsuario\":\"Joao\",\r\n    \"dscLogin\":  \"S212F3DF4\",\r\n    \"codConcessionaria\": 2,\r\n    \"codUsuarioCriacao\": 2120\r\n}",
+=======
+									"raw": "{\r\n    \"codPerfil\": \"Tem de ser stringoso\",\r\n    \"nomeUsuario\":\"Matias\",\r\n    \"dscLogin\":  \"S212F3DF4\",\r\n    \"codConcessionaria\": 21,\r\n    \"codUsuarioCriacao\": 2120\r\n}",
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									"options": {
 										"raw": {
 											"language": "json"
@@ -296,7 +316,11 @@
 									}
 								},
 								"url": {
+<<<<<<< HEAD
 									"raw": "http://localhost:3000/usuario/5",
+=======
+									"raw": "http://localhost:3000/usuario/id",
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -304,7 +328,11 @@
 									"port": "3000",
 									"path": [
 										"usuario",
+<<<<<<< HEAD
 										"5"
+=======
+										"id"
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									]
 								}
 							},
@@ -476,7 +504,11 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
+<<<<<<< HEAD
 									"raw": "http://localhost:3000/login/4",
+=======
+									"raw": "http://localhost:3000/login/id",
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -484,7 +516,11 @@
 									"port": "3000",
 									"path": [
 										"login",
+<<<<<<< HEAD
 										"4"
+=======
+										"id"
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									]
 								}
 							},
@@ -502,7 +538,11 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
+<<<<<<< HEAD
 									"raw": "{\r\n    \"codUsuario\":4,\r\n    \"dscTokenAcesso\": \"ASDWee\",\r\n    \"codIpOrigem\": 12,\r\n    \"dscSoAcesso\": \"Tokenado\"\r\n}",
+=======
+									"raw": "{\r\n    \"codUsuario\":1,\r\n    \"dscTokenAcesso\": \"ASDWee\",\r\n    \"codIpOrigem\": 12,\r\n    \"dscSoAcesso\": \"Tokenado\"\r\n}",
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									"options": {
 										"raw": {
 											"language": "json"
@@ -596,7 +636,11 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
+<<<<<<< HEAD
 									"raw": "http://localhost:3000/sessao/1",
+=======
+									"raw": "http://localhost:3000/sessao/id",
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -604,7 +648,11 @@
 									"port": "3000",
 									"path": [
 										"sessao",
+<<<<<<< HEAD
 										"1"
+=======
+										"id"
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									]
 								}
 							},
@@ -627,7 +675,11 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
+<<<<<<< HEAD
 									"raw": "{\r\n    \"nomTrajeto\": \"Trajeto Ceilandia\",\r\n    \"dscTrajeto\": \"223-i\",\r\n    \"qtdPontos\": 29,\r\n     \"indAtivo\": 10,\r\n     \"codConcessionaria\": 1,\r\n     \"codUsuarioCriacao\": 1\r\n}",
+=======
+									"raw": "{\r\n    \"nomeTrajeto\": \"Trajeto Ceilandia\",\r\n    \"dscTrajeto\": \"223-i\",\r\n    \"qtdPontos\": 29,\r\n     \"indAtivo\": 10,\r\n     \"codConcessionaria\": 21,\r\n     \"codUsuarioCriacao\": 88\r\n}",
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									"options": {
 										"raw": {
 											"language": "json"
@@ -869,7 +921,11 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
+<<<<<<< HEAD
 									"raw": "{\r\n    \"codTrajeto\": 2,\r\n    \"nomRota\": \"Rota A\",\r\n    \"indProducao\": 5,\r\n    \"indAtivo\": 2,\r\n    \"codConcessionaria\": 1,\r\n    \"codUsuarioCriacao\": 3\r\n}",
+=======
+									"raw": "{\r\n    \"codTrajeto\": 1,\r\n    \"nomeRota\": \"Rota A\",\r\n    \"indProducao\": 5,\r\n    \"codConcessionaria\": 21,\r\n    \"codUsuarioCriacao\": 3\r\n}",
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									"options": {
 										"raw": {
 											"language": "json"
@@ -990,7 +1046,11 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
+<<<<<<< HEAD
 									"raw": "{\r\n    \"nomeTipoMidia\": \"nome\",\r\n    \"indAtivo\": 2,\r\n    \"codUsuarioCriacao\": 10\r\n}",
+=======
+									"raw": "{\r\n    \"indAtivo\": 2,\r\n    \"codUsuarioCriacao\": 10\r\n}",
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1018,7 +1078,11 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
+<<<<<<< HEAD
 									"raw": "{\r\n    \"nomTipoMidia\": \"nome\",\r\n    \"indAtivo\": 2,\r\n    \"codUsuarioCriacao\": 10\r\n}",
+=======
+									"raw": "{\r\n    \"indAtivo\": 2,\r\n    \"codUsuarioCriacao\": 10\r\n}",
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1026,7 +1090,11 @@
 									}
 								},
 								"url": {
+<<<<<<< HEAD
 									"raw": "http://localhost:3000/tipo-midia/1",
+=======
+									"raw": "http://localhost:3000/tipo-midia/id",
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1034,7 +1102,11 @@
 									"port": "3000",
 									"path": [
 										"tipo-midia",
+<<<<<<< HEAD
 										"1"
+=======
+										"id"
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									]
 								}
 							},
@@ -1111,7 +1183,11 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
+<<<<<<< HEAD
 									"raw": "{\r\n    \"codTipoMidia\": 1,\r\n    \"nomMidia\": \"Áudio 201D\",\r\n    \"nomArquivo\": \"Arquivo Audio ABCS\",\r\n    \"nomDiretorio\": \" ../Fulano\",\r\n    \"indAtivo\": 46,\r\n    \"codConcessionaria\": 1,\r\n    \"codUsuarioCriacao\": 1\r\n}",
+=======
+									"raw": "{\r\n    \"codTipoMidia\": 1,\r\n    \"nomMidia\": \"Áudio 201D\",\r\n    \"nomArquivo\": \"Arquivo Audio ABCS\",\r\n    \"nomDiretorio\": \" ../Fulano\",\r\n    \"indAtivo\": 46,\r\n    \"codConcessionaria\": 21,\r\n    \"codUsuarioCriacao\": 110\r\n}",
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1232,7 +1308,11 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
+<<<<<<< HEAD
 									"raw": "{\r\n    \"codTrajeto\": 1,\r\n    \"numSequencia\": 5,\r\n    \"numPosicaoX\": 10,\r\n    \"numPosicaoY\": 50,\r\n    \"codConcessionaria\": 1,\r\n    \"codUsuarioCriacao\": 1\r\n}",
+=======
+									"raw": "{\r\n    \"codTrajeto\": 1,\r\n    \"numSequencia\": 5,\r\n    \"numPosicaoX\": 10,\r\n    \"numPosicaoY\": 50,\r\n    \"codConcessionaria\": 21,\r\n    \"codUsuarioCriacao\": 30\r\n}",
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1353,7 +1433,11 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
+<<<<<<< HEAD
 									"raw": "{\r\n   \"codFase\": 1,\r\n   \"codMidia\": 1,\r\n   \"codTipoMidia\": 1,\r\n   \"numSequencia\": 1,\r\n   \"nomAtividade\": \"Atividade Nome\",\r\n   \"codTipoAtividade\":\"1\" ,\r\n   \"codConcessionaria\": 1,\r\n   \"codUsuarioCriacao\": 1\r\n}",
+=======
+									"raw": "{\r\n    \"codFase\": 3,\r\n    \"codMidia\": 1,\r\n    \"codTipoFase\": 1,\r\n    \"codTipoMidia\": 1,\r\n    \"numSequencia\": 40,\r\n    \"nomAtividade\": \"Ordem 66\",\r\n    \"codTipoAtividade\": \"Codigo Tipo Atividade\",\r\n    \"numPosicaoX\": 30,\r\n    \"numPosicaoY\": 10,\r\n    \"codConcessionaria\": 21,\r\n    \"codUsuarioCriacao\": 102\r\n}",
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1479,12 +1563,16 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
+<<<<<<< HEAD
 									"raw": "{\r\n   \"nomAvaliacao\": \"Avaliacao\",\r\n   \"nomArquivo\": \"Arquivo\",\r\n   \"nomDiretorio\": \"../Diretorio/\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
 										}
 									}
+=======
+									"raw": "{\r\n    \"nomAvaliacao\": \"AvaliacaoX\",\r\n    \"nomArquivo\": \"Arquivo Secreto\",\r\n    \"nomDiretorio\": \"../Ultra-Secreto/\"\r\n     \r\n}"
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 								},
 								"url": {
 									"raw": "http://localhost:3000/avaliacao",
@@ -1600,7 +1688,11 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
+<<<<<<< HEAD
 									"raw": "{\r\n    \"codDispositivo\": 1,\r\n    \"codAvaliacao\": 1,\r\n    \"numNotaGostou\": 5,\r\n    \"numNotaIndica\": 5\r\n}",
+=======
+									"raw": "{\r\n    \"codDispositivo\": 2141,\r\n    \"codAvaliacao\": 1,\r\n    \"numNotaGostou\": 5,\r\n    \"numNotaIndica\": 5\r\n}",
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1842,7 +1934,11 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
+<<<<<<< HEAD
 									"raw": "{\r\n    \"codCheckList\": 1,\r\n    \"numSequencia\": 2,\r\n    \"dscTextoCheckList\": \"dscTexto....\",\r\n    \"codConcessionaria\": 2,\r\n    \"codUsuarioCriacao\": 1\r\n}",
+=======
+									"raw": "{\r\n    \"codCheckList\": 1,\r\n    \"numSequencia\": 2,\r\n    \"dscTextoChecklist\": \"dscTexto....\",\r\n    \"codConcessionaria\": 2,\r\n    \"codUsuarioCriacao\": 1\r\n}",
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2084,7 +2180,11 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
+<<<<<<< HEAD
 									"raw": "{\r\n    \"codCheckList\": 1,\r\n    \"indAtivo\": 4,\r\n    \"codConcessionaria\": 1,\r\n    \"codUsuarioCriacao\": 2\r\n}",
+=======
+									"raw": "{\r\n    \"codCheckList\": 2201,\r\n    \"indAtivo\": 4,\r\n    \"codConcessionaria\": 1,\r\n    \"codUsuarioCriacao\": 2\r\n}",
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2205,7 +2305,11 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
+<<<<<<< HEAD
 									"raw": "{\r\n   \"codDispositivo\": 1,\r\n   \"codExperiencia\": 1,\r\n    \"codConcessionaria\": 1,\r\n    \"codUsuarioCriacao\": 2\r\n}",
+=======
+									"raw": "{\r\n   \"codDispositivo\": 2,\r\n   \"codExperiencia\": 1,\r\n    \"codConcessionaria\": 1,\r\n    \"codUsuarioCriacao\": 2\r\n}",
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2326,7 +2430,11 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
+<<<<<<< HEAD
 									"raw": "{\r\n    \"codExperiencia\": 1,\r\n    \"codTipoFase\": 1,\r\n    \"codFase\": 2,\r\n    \"numSequencia\": 1,\r\n    \"codConcessionaria\": 1,\r\n    \"codUsuarioCriacao\": 2\r\n}",
+=======
+									"raw": "{\r\n    \"codExperiencia\": 2,\r\n    \"codTipoFase\": 4,\r\n    \"codFase\": 2,\r\n    \"numSequencia\": 1,\r\n    \"codConcessionaria\": 1,\r\n    \"codUsuarioCriacao\": 2\r\n}",
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2447,7 +2555,11 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
+<<<<<<< HEAD
 									"raw": "{\r\n    \"codTestDrive\": 1,\r\n    \"nomCliente\": \"Beltrano\",\r\n    \"numTelefone\": 998402014,\r\n    \"dscEmail\": \"beltrano@email.com\",\r\n    \"dscRG\": \"RG-12200423\",\r\n    \"numCelular\": 9191919192,\r\n    \"numCPF\": 19228374123,\r\n    \"numCNH\": 19188188431,\r\n    \"datValidadeCNH\":  22212,\r\n    \"codConcessionaria\": 1,\r\n    \"codUsuarioCriacao\": 1\r\n\r\n}",
+=======
+									"raw": "{\r\n    \"codTestDrive\": 1,\r\n    \"nomCliente\": \"Beltrano\",\r\n    \"numTelefone\": 998402014,\r\n    \"dscEmail\": \"beltrano@email.com\",\r\n    \"dscRG\": \"RG-12200423\",\r\n    \"numCelular\": 9191919192,\r\n    \"numCPF\": 19228374123,\r\n    \"numCNH\": 19188188431,\r\n    \"datValidadeCNH\":  101010,\r\n    \"codConcessionaria\": 1,\r\n    \"codUsuarioCriacao\": 1\r\n\r\n}",
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2810,7 +2922,11 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
+<<<<<<< HEAD
 									"raw": "{\r\n    \"dataTesteDrive\": 20210201,\r\n    \"numKmInicial\": 0,\r\n    \"numKmFinal\": 10,\r\n    \"datSaida\": 20210201,\r\n    \"datRetorno\":20210201 ,\r\n    \"codConcessionaria\": 1,\r\n    \"codUsuarioCriacao\": 2\r\n}",
+=======
+									"raw": "{\r\n    \"dataTesteDrive\": 122212,\r\n    \"numKmInicial\": 0,\r\n    \"numKmFinal\": 10,\r\n    \"datSaida\": 111111,\r\n    \"datRetorno\" 111111,\r\n    \"codConcessionaria\": 1,\r\n    \"codUsuarioCriacao\": 2\r\n}",
+>>>>>>> e2364d1df2f0853c4af1492a9b34c4a36768ba23
 									"options": {
 										"raw": {
 											"language": "json"
