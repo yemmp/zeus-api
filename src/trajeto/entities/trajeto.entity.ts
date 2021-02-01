@@ -12,7 +12,7 @@ export class Trajeto  extends Model{
     codTrajeto: number;
 
     @Column
-    nomeTrajeto: string;
+    nomTrajeto: string;
 
     @Column
     dscTrajeto: string;

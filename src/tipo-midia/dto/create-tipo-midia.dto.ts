@@ -4,7 +4,7 @@ export class CreateTipoMidiaDto {
     
     @IsNotEmpty()
     @IsString()
-    nomeTipoMidia: string;
+    nomTipoMidia: string;
     
     @IsNumber()
     indAtivo: number;

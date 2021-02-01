@@ -21,7 +21,7 @@ export class Rota extends Model {
     trajeto: Trajeto;
 
     @Column
-    nomeRota: string;
+    nomRota: string;
 
     @Column
     indAtivo: number

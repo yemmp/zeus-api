@@ -15,6 +15,6 @@ export class CreateSessaoDto {
     codIpOrigem: number;
     
     @IsNotEmpty()
-    @IsNumber()
+    @IsString()
     dscSoAcesso: string;
 }
