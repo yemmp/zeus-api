@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber } from "class-validator";
+import { IsBoolean, IsNotEmpty, IsNumber } from "class-validator";
 
 export class CreateExperienciaDto {
 
@@ -6,8 +6,8 @@ export class CreateExperienciaDto {
     @IsNumber()
     codCheckList: number;
     
-    @IsNumber()
-    indAtivo: number;
+    @IsBoolean()
+    indAtivo: boolean;
     
     @IsNotEmpty()
     @IsNumber()

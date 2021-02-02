@@ -1,4 +1,4 @@
-import { IsDate, IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsDate, IsEmail, IsISO8601, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateFormularioDto {
 
@@ -34,8 +34,9 @@ export class CreateFormularioDto {
     numCNH: number;
 
     @IsNotEmpty()
-    @IsDate()
-    datValidadeCNH: Date;
+    @IsString()
+    @IsISO8601()
+    datValidadeCNH: string;
 
     @IsNotEmpty()
     @IsNumber()

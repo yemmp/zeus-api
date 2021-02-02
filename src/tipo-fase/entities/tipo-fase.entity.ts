@@ -18,7 +18,7 @@ export class TipoFase  extends Model{
     dscTipoFase: string;
 
     @Column
-    indAtivo: number;
+    indAtivo: boolean;
 
     @Column
     codUsuarioCriacao: number;

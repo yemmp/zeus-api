@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsIP } from "sequelize-typescript";
 
 export class CreateSessaoDto {
 
@@ -11,8 +12,8 @@ export class CreateSessaoDto {
     dscTokenAcesso: string;
 
     @IsNotEmpty()
-    @IsNumber()
-    codIpOrigem: number;
+    @IsString()
+    codIpOrigem: string;
     
     @IsNotEmpty()
     @IsString()

@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsBoolean, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateDispositivoDto {
 
@@ -14,8 +14,8 @@ export class CreateDispositivoDto {
     @IsString()
     nomModelo: string;
     
-    @IsNumber()
-    indAtivo: number;
+    @IsBoolean()
+    indAtivo: boolean;
     
     @IsNotEmpty()
     @IsNumber()

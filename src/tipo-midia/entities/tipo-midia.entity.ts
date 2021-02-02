@@ -15,7 +15,7 @@ export class TipoMidia extends Model {
     nomTipoMidia: string;
 
     @Column
-    indAtivo: number;
+    indAtivo: boolean;
 
     @Column
     codUsuarioCriacao: number;

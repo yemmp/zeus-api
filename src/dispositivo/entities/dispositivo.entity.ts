@@ -22,7 +22,7 @@ export class Dispositivo extends Model{
     nomModelo: string;
     
     @Column
-    indAtivo: number;
+    indAtivo: boolean;
 
     @Column
     codConcessionaria: number;

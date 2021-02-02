@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsBoolean, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateRotaDto {
     
@@ -10,8 +10,8 @@ export class CreateRotaDto {
     @IsString()
     nomRota: string;
     
-    @IsNumber()
-    indAtivo: number;
+    @IsBoolean()
+    indAtivo: boolean;
     
     @IsNotEmpty()
     @IsNumber()

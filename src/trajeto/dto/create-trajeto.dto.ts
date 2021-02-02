@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsBoolean, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateTrajetoDto {
 
@@ -16,8 +16,8 @@ export class CreateTrajetoDto {
     qtdPontos: number;
     
     
-    @IsNumber()
-    indAtivo: number;
+    @IsBoolean()
+    indAtivo: boolean;
     
     
     @IsNotEmpty()

@@ -20,7 +20,7 @@ export class Experiencia extends Model {
     checkList: CheckList;
 
     @Column
-    indAtivo: number;
+    indAtivo: boolean;
 
     @Column
     codConcessionaria: number;

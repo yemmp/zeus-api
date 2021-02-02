@@ -14,7 +14,7 @@ export class TestDrive extends Model {
     codTestDrive: number;
 
     @Column
-    datTestDrive: Date;
+    dataTestDrive: string;
 
     @Column
     numKmInicial: number;
@@ -23,10 +23,10 @@ export class TestDrive extends Model {
     numKmFinal: number;
 
     @Column
-    datSaida: Date;
+    datSaida: string;
 
     @Column
-    datRetorn: Date;
+    datRetorno: string;
     
     @Column
     codConcessionaria: number;

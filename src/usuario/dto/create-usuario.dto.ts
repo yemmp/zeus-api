@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsBoolean, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateUsuarioDto {
 
@@ -17,8 +17,8 @@ nomeUsuario: string;
 dscLogin: string;
 
 
-@IsNumber()
-indAtivo: number;
+@IsBoolean()
+indAtivo: boolean;
 
 
 @IsNotEmpty()

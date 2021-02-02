@@ -12,7 +12,7 @@ export class CheckList  extends Model{
     codCheckList:number;
 
     @Column
-    codConsessionaria: number;
+    codConcessionaria: number;
 
     @Column
     codUsuarioCriacao: number;

@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsNumber } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsIP, IsIPv6 } from "sequelize-typescript";
 
 export class CreateLoginDto {
 
@@ -6,7 +7,8 @@ export class CreateLoginDto {
     @IsNumber()
     codUsuario: number;
 
-    @IsNumber()   //Existe tipo de validação pra string "@IsIP()" que chega se uma string é um codigo ip
-    codIpOrigem: number;   //Será que compensa mais usa-lo?
+    @IsString()
+     //Existe tipo de validação pra string "@IsIP()" que chega se uma string é um codigo ip
+    codIpOrigem: string;   //Será que compensa mais usa-lo?
     
 }

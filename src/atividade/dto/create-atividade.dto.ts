@@ -1,11 +1,11 @@
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateAtividadeDto {
-
+/*
     @IsNotEmpty()
     @IsNumber()
     codFase: number;
-
+*/
     @IsNotEmpty()
     @IsNumber()
     codMidia: number;

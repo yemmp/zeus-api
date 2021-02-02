@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsBoolean, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateMidiaDto {
 
@@ -18,8 +18,8 @@ export class CreateMidiaDto {
     @IsString()
     nomDiretorio: string;
 
-    @IsNumber()
-    indAtivo: number;
+    @IsBoolean()
+    indAtivo: boolean;
     
     @IsNumber()
     codConcessionaria: number;

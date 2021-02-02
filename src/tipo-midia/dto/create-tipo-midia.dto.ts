@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsBoolean, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateTipoMidiaDto {
     
@@ -6,8 +6,8 @@ export class CreateTipoMidiaDto {
     @IsString()
     nomTipoMidia: string;
     
-    @IsNumber()
-    indAtivo: number;
+    @IsBoolean()
+    indAtivo: boolean;
     
     @IsNotEmpty()
     @IsNumber()

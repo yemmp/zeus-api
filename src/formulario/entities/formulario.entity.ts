@@ -41,7 +41,7 @@ export class Formulario extends Model {
     numCNH: number;
 
     @Column
-    datValidadeCNH: Date;
+    datValidadeCNH: string;
 
     @Column
     codConcessionaria: number;

@@ -29,7 +29,7 @@ export class Midia extends Model {
     nomDiretorio: string;
 
     @Column
-    indAtivo: number;
+    indAtivo: boolean;
 
     @Column
     codConcessionaria: number;

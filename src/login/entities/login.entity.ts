@@ -17,8 +17,9 @@ export class Login extends Model{
       codUsuario: number;
     @BelongsTo(()=>Usuario)
     usuario: Usuario;
+    
     @Column
-      codIpOrigem: number;
+      codIpOrigem: string;
 
     
 }

@@ -24,7 +24,7 @@ export class Sessao extends  Model{
       dscTokenAcesso: string;
     
     @Column
-      codIpOrigem: number;
+      codIpOrigem: string;
     
     @Column
       dscSoAcesso: string;

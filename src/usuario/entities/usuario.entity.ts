@@ -35,7 +35,7 @@ export class Usuario extends Model {
   dscLogin: string
   
   @Column
-  indAtivo: number;
+  indAtivo: boolean;
  
   @ForeignKey(() => Concessionaria)
   @Column

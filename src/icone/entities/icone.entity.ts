@@ -25,7 +25,7 @@ export class Icone extends Model{
     @Column
     nomDiretorio: string;
     @Column
-    indAtivo: number;
+    indAtivo: boolean;
 
     @Column
     codUsuarioCriacao: number;
