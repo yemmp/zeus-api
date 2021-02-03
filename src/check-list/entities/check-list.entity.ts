@@ -12,6 +12,9 @@ export class CheckList  extends Model{
     codCheckList:number;
 
     @Column
+    indAtivo: string;
+
+    @Column
     codConcessionaria: number;
 
     @Column

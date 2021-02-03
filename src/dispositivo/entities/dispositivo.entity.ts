@@ -16,13 +16,13 @@ export class Dispositivo extends Model{
     nomDispositivo: string;
 
     @Column
-    numSerial: number;
+    numSerial: string;
 
     @Column
     nomModelo: string;
     
     @Column
-    indAtivo: boolean;
+    indAtivo: string;
 
     @Column
     codConcessionaria: number;

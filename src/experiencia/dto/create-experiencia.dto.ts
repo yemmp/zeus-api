@@ -1,13 +1,14 @@
-import { IsBoolean, IsNotEmpty, IsNumber } from "class-validator";
+import { IsBoolean, IsByteLength, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateExperienciaDto {
 
-    @IsNotEmpty()
     @IsNumber()
     codCheckList: number;
     
-    @IsBoolean()
-    indAtivo: boolean;
+    @IsNotEmpty()
+    @IsString()
+    @IsByteLength(1,1)
+    indAtivo: string;
     
     @IsNotEmpty()
     @IsNumber()

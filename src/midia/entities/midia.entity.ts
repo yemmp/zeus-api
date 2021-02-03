@@ -1,4 +1,4 @@
-import {Table,Model,Column,PrimaryKey,ForeignKey,AutoIncrement, BelongsTo} from "sequelize-typescript"
+import {Table,Model,Column,PrimaryKey,AutoIncrement} from "sequelize-typescript"
 
 @Table({
     underscored:true,
@@ -11,21 +11,20 @@ export class Midia extends Model {
     @Column
     codMidia: number;
 
+    @Column
+    nomMidia: string;
     
-    @Column
-    codTipoMidia: number;
-        
-    @Column
-    nomMidia:string;
-
     @Column
     nomArquivo: string;
 
     @Column
     nomDiretorio: string;
-
+    
     @Column
-    indAtivo: boolean;
+    codTipoMidia: string;
+     
+    @Column
+    indAtivo: string;
 
     @Column
     codConcessionaria: number;

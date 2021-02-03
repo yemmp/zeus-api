@@ -6,6 +6,7 @@ export class CreatePontoTrajetoDto {
     @IsNumber()
     codTrajeto: number;
     
+    @IsNotEmpty()
     @IsNumber()
     numSequencia: number;
     

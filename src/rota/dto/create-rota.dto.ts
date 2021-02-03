@@ -1,21 +1,27 @@
-import { IsBoolean, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsBoolean, IsByteLength, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateRotaDto {
     
-    @IsNotEmpty()
+
     @IsNumber()
     codTrajeto: number;
     
+    
     @IsNotEmpty()
     @IsString()
+    @IsByteLength(1,100)
     nomRota: string;
     
-    @IsBoolean()
-    indAtivo: boolean;
+    
+    @IsNotEmpty()
+    @IsByteLength(1,1)
+    indAtivo: string;
+    
     
     @IsNotEmpty()
     @IsNumber()
     codConcessionaria: number;
+    
     
     @IsNotEmpty()
     @IsNumber()

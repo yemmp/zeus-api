@@ -21,7 +21,7 @@ export class Trajeto  extends Model{
     qtdPontos: number;
 
     @Column
-    indAtivo: boolean;
+    indAtivo: string;
 
     @Column
     codConcessionaria: number;

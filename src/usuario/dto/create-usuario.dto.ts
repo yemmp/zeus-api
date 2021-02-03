@@ -1,34 +1,39 @@
-import { IsBoolean, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsAlphanumeric, IsBoolean, IsByteLength, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateUsuarioDto {
 
 @IsNotEmpty()
 @IsString()
-codPerfil: string;
-
-
-@IsNotEmpty()
-@IsString()
-nomeUsuario: string;
-
+@IsByteLength(1,100)
+nomUsuario: string
 
 @IsNotEmpty()
 @IsString()
+@IsByteLength(1,50)
 dscLogin: string;
 
+@IsNotEmpty()
+@IsString()
+@IsByteLength(1,40)
+//@IsAlphanumeric() limita a senha apenas a letras e numeros
+dscSenha: string;
 
-@IsBoolean()
-indAtivo: boolean;
+@IsNotEmpty()
+@IsString()
+@IsByteLength(1,5)
+codTipoPerfil: string
 
+@IsNotEmpty()
+@IsString()
+@IsByteLength(1,1)
+indAtivo:string;
 
 @IsNotEmpty()
 @IsNumber()
 codConcessionaria: number;
 
-
+@IsNotEmpty()
 @IsNumber()
 codUsuarioCriacao: number;
-
-
 
 }

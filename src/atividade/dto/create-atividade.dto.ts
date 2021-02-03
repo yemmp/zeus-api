@@ -1,26 +1,30 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsByteLength, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateAtividadeDto {
-/*
+
     @IsNotEmpty()
     @IsNumber()
     codFase: number;
-*/
+
     @IsNotEmpty()
     @IsNumber()
     codMidia: number;
-
+    
+    
     @IsNotEmpty()
-    @IsNumber()
-    codTipoMidia: number;
-
     @IsNumber()
     numSequencia: number;
     
+    
+    @IsNotEmpty()
     @IsString()
+    @IsByteLength(1,100)
     nomAtividade: string;
-
+    
+    
+    @IsNotEmpty()
     @IsString()
+    @IsByteLength(1,40)
     codTipoAtividade: String;
 
     @IsNotEmpty() //Optando por não deixar vazio, para ter um track de qual concessionaria pertence tal Atividade

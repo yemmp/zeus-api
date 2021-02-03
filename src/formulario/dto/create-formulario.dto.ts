@@ -1,42 +1,53 @@
-import { IsDate, IsEmail, IsISO8601, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsByteLength, IsDate, IsEmail,IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateFormularioDto {
 
-    @IsNotEmpty()
+    
     @IsNumber()
     codTestDrive: number;
 
     @IsNotEmpty()
     @IsString()
+    @IsByteLength(1,300)
     nomCliente: string;
     
-    @IsNumber()
-    numTelefone: number;
+    
+    @IsNotEmpty()
+    @IsString()
+    @IsByteLength(1,40)
+    numTelefone: string;
 
     @IsNotEmpty()
     @IsString()
     @IsEmail()
+    @IsByteLength(1,300)
     dscEmail: string;
 
     @IsNotEmpty()
     @IsString()
+    @IsByteLength(1,40)
     dscRG: string;
-
-    @IsNumber()
-    numCelular: number;
-
-    @IsNotEmpty()
-    @IsNumber()
-    numCPF: number;
-
-    @IsNotEmpty()
-    @IsNumber()
-    numCNH: number;
-
+    
+    
     @IsNotEmpty()
     @IsString()
-    @IsISO8601()
-    datValidadeCNH: string;
+    @IsByteLength(1,40)
+    numCelular: string;
+    
+    @IsNotEmpty()
+    @IsString()
+    @IsByteLength(1,20)
+    numCPF: string;
+    
+    
+    @IsNotEmpty()
+    @IsString()
+    @IsByteLength(1,40)
+    numCNH: string;
+
+    @IsNotEmpty()
+    @IsDate()
+    datValidadeCNH: Date;
 
     @IsNotEmpty()
     @IsNumber()

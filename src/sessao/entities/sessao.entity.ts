@@ -21,6 +21,12 @@ export class Sessao extends  Model{
     usuario: Usuario
 
     @Column
+    datInicio: Date;
+
+    @Column
+    datFim: Date;
+    
+    @Column
       dscTokenAcesso: string;
     
     @Column

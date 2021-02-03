@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber } from "class-validator";
+import { IsByteLength, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateCheckListDto {
 
@@ -7,6 +7,10 @@ export class CreateCheckListDto {
     codConcessionaria: number;
 
     @IsNotEmpty()
+    @IsString()
+    @IsByteLength(1,1)
+    indAtivo: string;
+
     @IsNumber()
     codUsuarioCriacao: number;
 }

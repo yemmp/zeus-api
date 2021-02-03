@@ -24,7 +24,7 @@ export class Rota extends Model {
     nomRota: string;
 
     @Column
-    indAtivo: boolean;
+    indAtivo: string;
     
     @Column
     codConcessionaria: number;

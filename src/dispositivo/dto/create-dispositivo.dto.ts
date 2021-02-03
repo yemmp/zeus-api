@@ -1,21 +1,26 @@
-import { IsBoolean, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsBoolean, IsByteLength, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateDispositivoDto {
 
-    @IsNotEmpty()
+    
     @IsString()
+    @IsByteLength(1,100)
     nomDispositivo: string;
     
-    @IsNotEmpty()
-    @IsNumber()
-    numSerial: number;
+    
+    @IsString()
+    @IsByteLength(1,100)
+    numSerial: string;
+    
+    
+    @IsString()
+    @IsByteLength(1,100)
+    nomModelo: string;
     
     @IsNotEmpty()
     @IsString()
-    nomModelo: string;
-    
-    @IsBoolean()
-    indAtivo: boolean;
+    @IsByteLength(1,1)
+    indAtivo: string;
     
     @IsNotEmpty()
     @IsNumber()

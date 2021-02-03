@@ -17,9 +17,11 @@ codAtividade: number;
 
 /*
 @ForeignKey(()=>FaseExperiencia)
+*/
 @Column
 codFase: number;
 
+/*
 @BelongsTo(()=>FaseExperiencia)
 faseExperiencia: FaseExperiencia;
 */
@@ -29,11 +31,6 @@ faseExperiencia: FaseExperiencia;
 
  @BelongsTo(()=>Midia)
 midia: Midia;
-
-
-@Column
- codTipoMidia: number;
-
 
 @Column
  numSequencia: number;

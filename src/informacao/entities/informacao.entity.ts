@@ -16,6 +16,9 @@ export class Informacao extends Model{
 
     @Column
     dscInformacao: string;
+    
+    @Column
+    indAtivo: string;
 
     @Column
     codConcessionaria: number;

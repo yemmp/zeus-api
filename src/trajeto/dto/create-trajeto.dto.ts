@@ -1,23 +1,27 @@
-import { IsBoolean, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsBoolean, IsByteLength, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateTrajetoDto {
 
     @IsNotEmpty()
     @IsString()
+    @IsByteLength(1,100)
     nomTrajeto: string;
     
     
-    @IsNotEmpty()
+    
     @IsString()
+    @IsByteLength(1,500)
     dscTrajeto: string;
     
-    
+    @IsNotEmpty()
     @IsNumber()
     qtdPontos: number;
     
     
-    @IsBoolean()
-    indAtivo: boolean;
+    @IsNotEmpty()
+    @IsString()
+    @IsByteLength(1,1)
+    indAtivo: string;
     
     
     @IsNotEmpty()

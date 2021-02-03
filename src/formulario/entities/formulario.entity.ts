@@ -1,5 +1,4 @@
 import { Model,Table,Column,PrimaryKey,ForeignKey,AutoIncrement, BelongsTo } from "sequelize-typescript";
-import { Col } from "sequelize/types/lib/utils";
 import { TestDrive } from "src/test-drive/entities/test-drive.entity";
 
 @Table({
@@ -22,8 +21,9 @@ export class Formulario extends Model {
 
     @Column
     nomCliente: string;
+    
     @Column
-    numTelefone: number;
+    numTelefone: string;
 
     @Column
     dscEmail:string;
@@ -32,16 +32,16 @@ export class Formulario extends Model {
     dscRG: string;
 
     @Column
-    numCelular: number;
+    numCelular: string;
 
     @Column
-    numCPF: number;
+    numCPF: string;
 
     @Column
-    numCNH: number;
+    numCNH: string;
 
     @Column
-    datValidadeCNH: string;
+    datValidadeCNH: Date;
 
     @Column
     codConcessionaria: number;

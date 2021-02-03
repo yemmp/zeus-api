@@ -1,10 +1,13 @@
-import { IsNotEmpty, IsNumber } from "class-validator";
+import { IsByteLength, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateAvaliacaoDispositivoDto {
 
     @IsNotEmpty()
     @IsNumber()
     codDispositivo: number;
+
+    @IsNumber()
+    codExperienciaDispositivo: number;
     
     @IsNotEmpty()
     @IsNumber()
@@ -15,7 +18,8 @@ export class CreateAvaliacaoDispositivoDto {
     numNotaGostou: number;
     
     @IsNotEmpty()
-    @IsNumber()
-    numNotaIndica: number;
+    @IsString()
+    @IsByteLength(1,40)
+    numNotaIndica: string;
     
 }
