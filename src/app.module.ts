@@ -3,17 +3,14 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { UsuarioModule } from './usuario/usuario.module';
-import { TipoPerfilModule } from './tipo-perfil/tipo-perfil.module';
 import { LoginModule } from './login/login.module';
 import { SessaoModule } from './sessao/sessao.module';
 import { ConcessionariaModule } from './concessionaria/concessionaria.module';
 import { RotaModule } from './rota/rota.module';
 import { TrajetoModule } from './trajeto/trajeto.module';
-import { TipoFaseModule } from './tipo-fase/tipo-fase.module';
 import { PontoTrajetoModule } from './ponto-trajeto/ponto-trajeto.module';
 import { AtividadeModule } from './atividade/atividade.module';
 import { MidiaModule } from './midia/midia.module';
-import { TipoMidiaModule } from './tipo-midia/tipo-midia.module';
 import { FormularioModule } from './formulario/formulario.module';
 import { DispositivoModule } from './dispositivo/dispositivo.module';
 import { ExperienciaModule } from './experiencia/experiencia.module';
@@ -42,17 +39,14 @@ import { ExperienciaDispositivoModule } from './experiencia-dispositivo/experien
       models: [],
     }),
     UsuarioModule,
-    TipoPerfilModule,
     LoginModule,
     SessaoModule,
     ConcessionariaModule,
     RotaModule,
     TrajetoModule,
-    TipoFaseModule,
     PontoTrajetoModule,
     AtividadeModule,
     MidiaModule,
-    TipoMidiaModule,
     FormularioModule,
     DispositivoModule,
     ExperienciaModule,

@@ -8,7 +8,6 @@ import {
   BelongsTo,
 } from 'sequelize-typescript';
 import { Concessionaria } from 'src/concessionaria/entities/concessionaria.entity';
-import { TipoPerfil } from 'src/tipo-perfil/entities/tipo-perfil.entity';
 
 @Table({
   underscored: true,
@@ -21,12 +20,11 @@ export class Usuario extends Model {
   @Column
   codUsuario: number;
 
-  @ForeignKey(() => TipoPerfil)
+
   @Column
   codPerfil: string;
 
-  @BelongsTo(() => TipoPerfil)
-  tipoPerfil: TipoPerfil;
+ 
 
   @Column
   nomeUsuario: string;

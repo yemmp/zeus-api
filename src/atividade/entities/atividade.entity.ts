@@ -1,7 +1,7 @@
 import {Table,Model,Column,PrimaryKey,ForeignKey,AutoIncrement, BelongsTo} from 'sequelize-typescript'
 //import { FaseExperiencia } from 'src/fase-experiencia/entities/fase-experiencia.entity';
 import { Midia } from 'src/midia/entities/midia.entity';
-import { TipoMidia } from 'src/tipo-midia/entities/tipo-midia.entity';
+
 
 
 @Table({
@@ -30,12 +30,10 @@ faseExperiencia: FaseExperiencia;
  @BelongsTo(()=>Midia)
 midia: Midia;
 
-@ForeignKey(()=>TipoMidia)
+
 @Column
  codTipoMidia: number;
 
-@BelongsTo(()=>TipoMidia)
-tipoMidia: TipoMidia;
 
 @Column
  numSequencia: number;

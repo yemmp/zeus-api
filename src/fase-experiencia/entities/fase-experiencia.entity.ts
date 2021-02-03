@@ -1,6 +1,5 @@
 import {Table,Model,Column,PrimaryKey,ForeignKey,AutoIncrement, BelongsTo } from 'sequelize-typescript'
 import { Experiencia } from 'src/experiencia/entities/experiencia.entity';
-import { TipoFase } from 'src/tipo-fase/entities/tipo-fase.entity';
 
 
 @Table({
@@ -21,12 +20,10 @@ export class FaseExperiencia  extends Model{
     @BelongsTo(()=>Experiencia)
     experiencia: Experiencia;
 
-    @ForeignKey(()=>TipoFase)
+
     @Column
     codTipoFase: number;
 
-    @BelongsTo(()=>TipoFase)
-    tipoFase: TipoFase;
 
     //@ForeignKey() codFase é um codObj, podendo ser uma key vinda de avaliacao, rota, informacao etc...
     @Column
