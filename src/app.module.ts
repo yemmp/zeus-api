@@ -25,6 +25,8 @@ import { CheckListModule } from './check-list/check-list.module';
 import { DetalheChecklistModule } from './detalhe-checklist/detalhe-checklist.module';
 import { IconeModule } from './icone/icone.module';
 import { InformacaoModule } from './informacao/informacao.module';
+import { PontoRotaModule } from './ponto-rota/ponto-rota.module';
+import { ExperienciaDispositivoModule } from './experiencia-dispositivo/experiencia-dispositivo.module';
 
 @Module({
   imports: [
@@ -62,6 +64,8 @@ import { InformacaoModule } from './informacao/informacao.module';
     DetalheChecklistModule,
     IconeModule,
     InformacaoModule,
+    PontoRotaModule,
+    ExperienciaDispositivoModule,
   ],
   controllers: [AppController],
   providers: [AppService],

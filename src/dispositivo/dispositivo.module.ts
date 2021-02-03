@@ -5,9 +5,10 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { Dispositivo } from './entities/dispositivo.entity';
 
 
+
 @Module({
   controllers: [DispositivoController],
   providers: [DispositivoService],
-  imports: [SequelizeModule.forFeature([Dispositivo])]
+  imports: [SequelizeModule.forFeature([Dispositivo]),]
 })
 export class DispositivoModule {}

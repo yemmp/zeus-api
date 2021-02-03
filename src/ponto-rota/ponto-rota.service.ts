@@ -1,62 +1,26 @@
-import { BadRequestException, Injectable } from '@nestjs/common'
-import {InjectModel} from '@nestjs/sequelize'
-import {CreatePontoRotaDto} from './dto/create-ponto-rota.dto'
-import {UpdatePontoRotaDto} from './dto/update-ponto-rota.dto'
-import {PontoRota} from './entities/ponto-rota.entity'
+import { Injectable } from '@nestjs/common';
+import { CreatePontoRotaDto } from './dto/create-ponto-rota.dto';
+import { UpdatePontoRotaDto } from './dto/update-ponto-rota.dto';
 
 @Injectable()
 export class PontoRotaService {
+  create(createPontoRotaDto: CreatePontoRotaDto) {
+    return 'This action adds a new pontoRota';
+  }
 
-    constructor(@InjectModel(PontoRota)private pontoRotaModel: typeof PontoRota){}
+  findAll() {
+    return `This action returns all pontoRota`;
+  }
 
-    async create(createPontoRotaDto: CreatePontoRotaDto){
+  findOne(id: number) {
+    return `This action returns a #${id} pontoRota`;
+  }
 
-        try {
-            this.pontoRotaModel.create(createPontoRotaDto);
-        } catch (error) {
-            console.error('Erro ao Criar Ponto-Rota',error.message);
-            throw new BadRequestException();
-        }
-        return 'Ponto-Rota Criado com Sucesso!';
-    }
+  update(id: number, updatePontoRotaDto: UpdatePontoRotaDto) {
+    return `This action updates a #${id} pontoRota`;
+  }
 
-    async findAll(){
-        try {
-            return this.pontoRotaModel.findAll();
-        } catch (error) {
-            console.error('Erro ao Buscar Pontos-Rota',error.message);
-            throw new BadRequestException();
-        }
-    }
-
-    async findOne(id: number){
-        try {
-            return this.pontoRotaModel.findOne({where:{codPontoRota:id}});
-        } catch (error) {
-            console.error(`Erro ao Buscar Ponto-Rota #${id}`,error.message);
-            throw new BadRequestException();
-        }
-
-    }
-
-    async update(id: number, updatePontoRotaDto: UpdatePontoRotaDto){
-        try {
-            PontoRota.update(updatePontoRotaDto,{where:{codPontoRota: id}}).then(()=>
-            console.log(`Ponto-Rota #${id} Atualizado com Sucesso`));
-        } catch (error) {
-            console.error(`Erro ao Atualizar Ponto-Rota #${id}`, error.message);
-            throw new BadRequestException();
-            
-        }
-        return `Ponto-Rota #${id} Atualizado com Sucesso!`;
-    }
-    
-    async remove(id: number){
-        try {
-            this.pontoRotaModel.destroy({where:{codPontoRota:id}})
-        } catch (error) {
-            console.error(`Erro ao Deletar Ponto-Rota #${id}`, error.message);
-            throw new BadRequestException();
-        }
-    }
+  remove(id: number) {
+    return `This action removes a #${id} pontoRota`;
+  }
 }

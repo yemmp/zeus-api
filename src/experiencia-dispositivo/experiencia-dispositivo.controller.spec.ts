@@ -1,21 +1,20 @@
-import {Test, TestingModule} from '@nestjs/testing';
-import {ExperienciaDispositivoService} from './experiencia-dispositivo.service';
-import {ExperienciaDispositivoController} from './experiencia-dispositivo.controller';
+import { Test, TestingModule } from '@nestjs/testing';
+import { ExperienciaDispositivoController } from './experiencia-dispositivo.controller';
+import { ExperienciaDispositivoService } from './experiencia-dispositivo.service';
 
-describe('ExperienciaDispositivoController',()=>{
+describe('ExperienciaDispositivoController', () => {
+  let controller: ExperienciaDispositivoController;
 
-    let controller: ExperienciaDispositivoController;
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      controllers: [ExperienciaDispositivoController],
+      providers: [ExperienciaDispositivoService],
+    }).compile();
 
-    beforeEach(async ()=>{
-        const module: TestingModule = await Test.createTestingModule({
-            controllers: [ExperienciaDispositivoController],
-            providers: [ExperienciaDispositivoService],
-        }).compile();
+    controller = module.get<ExperienciaDispositivoController>(ExperienciaDispositivoController);
+  });
 
-        controller= module.get<ExperienciaDispositivoController>(ExperienciaDispositivoController);
-    });
-
-    it('should be defined', ()=>{
-        expect(controller).toBeDefined();
-    })
-})
+  it('should be defined', () => {
+    expect(controller).toBeDefined();
+  });
+});
