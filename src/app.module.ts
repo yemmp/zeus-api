@@ -29,11 +29,11 @@ import { ExperienciaDispositivoModule } from './experiencia-dispositivo/experien
   imports: [
     SequelizeModule.forRoot({
       dialect: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'a1b2c3d4e5',
-      database: 'zeus',
+      host: process.env.DB_HOST,
+      port: +process.env.DB_PORT,
+      username: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
       autoLoadModels: true,
       synchronize: true,
       models: [],
