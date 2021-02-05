@@ -1,4 +1,4 @@
-import { IsByteLength, IsDate, IsIP, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsByteLength, IsDate, IsDateString, IsIP, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 
 export class CreateSessaoDto {
@@ -8,11 +8,11 @@ export class CreateSessaoDto {
     codUsuario: number;
     
     @IsNotEmpty()
-    @IsDate()
+    @IsDateString()
     datInicio: Date;
     
     
-    @IsDate()
+    @IsDateString()
     datFim: Date;
 
     @IsNotEmpty()
