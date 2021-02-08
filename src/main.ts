@@ -15,7 +15,7 @@ async function bootstrap() {
   .addTag('zeus')
   .build();
 const document = SwaggerModule.createDocument(app, config);
-SwaggerModule.setup('api', app, document);
+SwaggerModule.setup('_doc', app, document);
 
   await app.listen(process.env.PORT);
 }
