@@ -1,3 +1,4 @@
+
 import {
   Column,
   Model,
@@ -12,6 +13,9 @@ import { Concessionaria } from 'src/concessionaria/entities/concessionaria.entit
 @Table({
   underscored: true,
   tableName: 'usuario',
+  createdAt: 'dat_criacao',
+  updatedAt: 'dat_atualizacao',
+  deletedAt: 'dat_exclusao'
 })
 export class Usuario extends Model {
  
@@ -29,7 +33,8 @@ export class Usuario extends Model {
   @Column
   dscSenha: string;
 
-  @Column
+  //Perfis: MASTER, ADMINISTRADOR, CONFIGURADOR, ANALISTA
+  @Column({validate: {isIn: [["MA","AD","CO","AN"]]}})
   codTipoPerfil: string;
 
   @Column

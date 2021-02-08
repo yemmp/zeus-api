@@ -24,9 +24,11 @@ import { IconeModule } from './icone/icone.module';
 import { InformacaoModule } from './informacao/informacao.module';
 import { PontoRotaModule } from './ponto-rota/ponto-rota.module';
 import { ExperienciaDispositivoModule } from './experiencia-dispositivo/experiencia-dispositivo.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     SequelizeModule.forRoot({
       dialect: 'mysql',
       host: process.env.DB_HOST,
