@@ -1,10 +1,10 @@
-import { IsDate,  IsNotEmpty, IsNumber,  } from "class-validator";
+import { IsDate,  IsDateString,  IsNotEmpty, IsNumber,  } from "class-validator";
 
 export class CreateTestDriveDto {
 
     
     @IsNotEmpty()
-    @IsDate()
+    @IsDateString()
     dataTestDrive: Date;
     
     @IsNotEmpty()
@@ -16,10 +16,10 @@ export class CreateTestDriveDto {
     
     
     @IsNotEmpty()
-    @IsDate()
+    @IsDateString()
     datSaida: Date;
     
-    @IsDate()
+    @IsDateString()
     datRetorno: Date;
     
     @IsNotEmpty()
