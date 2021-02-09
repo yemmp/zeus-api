@@ -1,4 +1,5 @@
-import {Table,Model,Column,PrimaryKey,AutoIncrement,ForeignKey, BelongsTo} from 'sequelize-typescript'
+import {Table,Model,Column,PrimaryKey,AutoIncrement,ForeignKey, BelongsTo, HasMany} from 'sequelize-typescript'
+import { PontoRota } from 'src/ponto-rota/entities/ponto-rota.entity';
 import { Trajeto } from 'src/trajeto/entities/trajeto.entity';
 
 
@@ -19,6 +20,9 @@ export class Rota extends Model {
 
     @BelongsTo(()=>Trajeto)
     trajeto: Trajeto;
+
+    //@HasMany(()=>PontoRota)
+    //pontosRota : PontoRota[];
 
     @Column
     nomRota: string;

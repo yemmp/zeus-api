@@ -1,4 +1,6 @@
-import {Table,Model,Column,PrimaryKey,AutoIncrement} from 'sequelize-typescript'
+import {Table,Model,Column,PrimaryKey,AutoIncrement, HasMany, ForeignKey, BelongsTo} from 'sequelize-typescript'
+import { PontoTrajeto } from 'src/ponto-trajeto/entities/ponto-trajeto.entity';
+
 
 @Table({
     underscored: true,
@@ -20,6 +22,10 @@ export class Trajeto  extends Model{
     @Column
     qtdPontos: number;
 
+    //@HasMany(()=>PontoTrajeto)
+
+   // pontosTrajeto: PontoTrajeto[];
+
     @Column
     indAtivo: string;
 
@@ -28,4 +34,7 @@ export class Trajeto  extends Model{
 
     @Column
     codUsuarioCriacao: number;
+
+   
+
 }
