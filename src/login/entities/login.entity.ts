@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Table, Model, PrimaryKey, Column, AutoIncrement, ForeignKey,BelongsTo} from 'sequelize-typescript'
 
 import { Usuario } from 'src/usuario/entities/usuario.entity';
@@ -8,18 +9,24 @@ import { Usuario } from 'src/usuario/entities/usuario.entity';
 })
 export class Login extends Model{
 
-    @PrimaryKey
-    @AutoIncrement
-    @Column
-      codLogin: number;
-    @ForeignKey(()=>Usuario)   
-    @Column
-      codUsuario: number;
-    @BelongsTo(()=>Usuario)
-    usuario: Usuario;
-    
-    @Column
-      codIpOrigem: string;
+
+  @ApiProperty()
+  @PrimaryKey
+  @AutoIncrement
+  @Column
+    codLogin: number;
+
+  @ApiProperty()
+  @ForeignKey(()=>Usuario)   
+  @Column
+    codUsuario: number;
+  @BelongsTo(()=>Usuario)
+  usuario: Usuario;
+  
+  
+  @ApiProperty()
+  @Column
+    codIpOrigem: string;
 
     
 }

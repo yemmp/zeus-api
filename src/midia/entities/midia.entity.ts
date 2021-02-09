@@ -1,3 +1,4 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { Exclude } from "class-transformer";
 import {Table,Model,Column,PrimaryKey,AutoIncrement} from "sequelize-typescript"
 
@@ -7,34 +8,42 @@ import {Table,Model,Column,PrimaryKey,AutoIncrement} from "sequelize-typescript"
 })
 export class Midia extends Model {
 
+    @ApiProperty()
     @PrimaryKey
     @AutoIncrement
     @Column
     codMidia: number;
 
-    @Exclude()
+    @ApiProperty()
+    @Exclude({toPlainOnly: true})
     @Column
     nomMidia: string;
     
+    @ApiProperty()
     @Column
     nomArquivo: string;
     
-    @Exclude()
+    @ApiProperty()
+    @Exclude({toPlainOnly: true})
     @Column
     nomDiretorio: string;
     
+    @ApiProperty()
     @Column
     codTipoMidia: string;
     
-    @Exclude()
+    @ApiProperty()
+    @Exclude({toPlainOnly: true})
     @Column
     indAtivo: string;
     
-    @Exclude()
+    @ApiProperty()
+    @Exclude({toPlainOnly: true})
     @Column
     codConcessionaria: number;
     
-    @Exclude()
+    @ApiProperty()
+    @Exclude({toPlainOnly: true})
     @Column
     codUsuarioCriacao: number;
 

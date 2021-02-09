@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Table,Model,PrimaryKey,Column,AutoIncrement} from 'sequelize-typescript'
 
 
@@ -6,13 +7,19 @@ import { Table,Model,PrimaryKey,Column,AutoIncrement} from 'sequelize-typescript
     tableName: 'concessionaria'
 })
 export class Concessionaria extends Model{
-    @PrimaryKey
-    @AutoIncrement
-    @Column
-      codConcessionaria: number;
-    @Column
-      nomConcessionaria: string;
-    @Column
-      codUsuarioCriacao: number;
+
+  @ApiProperty()
+  @PrimaryKey
+  @AutoIncrement
+  @Column
+    codConcessionaria: number;
+
+  @ApiProperty()
+  @Column
+    nomConcessionaria: string;
+
+  @ApiProperty()
+  @Column
+    codUsuarioCriacao: number;
    
 }

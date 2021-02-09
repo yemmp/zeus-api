@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {Table,Column,Model,PrimaryKey,ForeignKey,AutoIncrement, BelongsTo } from 'sequelize-typescript'
 import { CheckList } from 'src/check-list/entities/check-list.entity';
 
@@ -7,11 +8,15 @@ import { CheckList } from 'src/check-list/entities/check-list.entity';
 })
 export class DetalheChecklist extends Model{
 
+    
+    @ApiProperty()
     @PrimaryKey
     @AutoIncrement
     @Column
     codDetalheCheckList: number;
 
+    
+    @ApiProperty()
     @ForeignKey(()=>CheckList)
     @Column
     codCheckList: number;
@@ -19,14 +24,22 @@ export class DetalheChecklist extends Model{
     @BelongsTo(()=> CheckList)
     checkList: CheckList;
 
+    
+    @ApiProperty()
     @Column
     numSequencia: number;
+    
+    @ApiProperty()
     @Column
     dscTextoCheckList: string;
 
+    
+    @ApiProperty()
     @Column
     codConcessionaria: number;
 
+    
+    @ApiProperty()
     @Column
     codUsuarioCriacao: number;
 }
