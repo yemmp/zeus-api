@@ -1,4 +1,5 @@
 
+import { ApiProperty } from '@nestjs/swagger';
 import {
   Column,
   Model,
@@ -19,27 +20,33 @@ import { Concessionaria } from 'src/concessionaria/entities/concessionaria.entit
 })
 export class Usuario extends Model {
  
+  @ApiProperty()
   @PrimaryKey
   @AutoIncrement
   @Column
   codUsuario: number;
 
+  @ApiProperty()
   @Column
   nomUsuario: string;
 
+  @ApiProperty()
   @Column
   dscLogin: string;
 
+  @ApiProperty()
   @Column
   dscSenha: string;
 
   //Perfis: MASTER, ADMINISTRADOR, CONFIGURADOR, ANALISTA
+  @ApiProperty()
   @Column({validate: {isIn: [["MA","AD","CO","AN"]]}})
   codTipoPerfil: string;
 
   @Column
   indAtivo: string;
 
+  @ApiProperty()
   @ForeignKey(()=>Concessionaria)
   @Column
   codConcessionaria: number;
