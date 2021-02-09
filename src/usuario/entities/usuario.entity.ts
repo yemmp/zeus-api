@@ -42,10 +42,11 @@ export class Usuario extends Model {
   @ApiProperty()
   @Column({validate: {isIn: [["MA","AD","CO","AN"]]}})
   codTipoPerfil: string;
-
+  
+  @ApiProperty()
   @Column
   indAtivo: string;
-
+  
   @ApiProperty()
   @ForeignKey(()=>Concessionaria)
   @Column
@@ -53,6 +54,7 @@ export class Usuario extends Model {
   @BelongsTo(()=>Concessionaria)
   concessionaria:Concessionaria;
   
+  @ApiProperty()
   @ForeignKey(()=>Usuario)
   @Column
   codUsuarioCriacao: number;
