@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {Table,Model,Column,PrimaryKey,ForeignKey,AutoIncrement, BelongsTo} from 'sequelize-typescript'
+import { Informacao } from 'src/informacao/entities/informacao.entity';
 //import { FaseExperiencia } from 'src/fase-experiencia/entities/fase-experiencia.entity';
 import { Midia } from 'src/midia/entities/midia.entity';
 
@@ -61,5 +62,7 @@ midia: Midia;
  codUsuarioCriacao: number;
 
 
-
+@ForeignKey(()=>Informacao)
+@Column
+codInformacao: number;
 }
