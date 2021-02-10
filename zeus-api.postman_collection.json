@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "005616b7-f874-4706-8d5b-eaf5164f544c",
+		"_postman_id": "3e9e9dfc-7e2f-419e-bade-7c419634e9be",
 		"name": "zeus-api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -26,13 +26,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/concessionaria",
+									"raw": "http://localhost:3000/zeus-api/concessionaria",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"concessionaria"
 									]
 								}
@@ -54,13 +55,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/concessionaria/2",
+									"raw": "http://localhost:3000/zeus-api/concessionaria/2",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"concessionaria",
 										"2"
 									]
@@ -74,13 +76,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/concessionaria",
+									"raw": "http://localhost:3000/zeus-api/concessionaria",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"concessionaria"
 									]
 								}
@@ -93,13 +96,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/concessionaria/id",
+									"raw": "http://localhost:3000/zeus-api/concessionaria/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"concessionaria",
 										"id"
 									]
@@ -113,13 +117,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/concessionaria/id",
+									"raw": "http://localhost:3000/zeus-api/concessionaria/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"concessionaria",
 										"id"
 									]
@@ -147,13 +152,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/usuario",
+									"raw": "http://localhost:3000/zeus-api/usuario",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"usuario"
 									]
 								}
@@ -175,13 +181,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/usuario/5",
+									"raw": "http://localhost:3000/zeus-api/usuario/5",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"usuario",
 										"5"
 									]
@@ -195,13 +202,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/usuario",
+									"raw": "http://localhost:3000/zeus-api/usuario",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"usuario"
 									]
 								}
@@ -214,13 +222,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/usuario/id",
+									"raw": "http://localhost:3000/zeus-api/usuario/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"usuario",
 										"id"
 									]
@@ -234,13 +243,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/usuario/id",
+									"raw": "http://localhost:3000/zeus-api/usuario/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"usuario",
 										"id"
 									]
@@ -268,13 +278,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/login",
+									"raw": "http://localhost:3000/zeus-api/login",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"login"
 									]
 								}
@@ -296,13 +307,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/login/2",
+									"raw": "http://localhost:3000/zeus-api/login/2",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"login",
 										"2"
 									]
@@ -316,13 +328,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/login",
+									"raw": "http://localhost:3000/zeus-api/login",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"login"
 									]
 								}
@@ -335,13 +348,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/login/id",
+									"raw": "http://localhost:3000/zeus-api/login/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"login",
 										"id"
 									]
@@ -355,13 +369,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/login/4",
+									"raw": "http://localhost:3000/zeus-api/login/4",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"login",
 										"4"
 									]
@@ -389,13 +404,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/sessao",
+									"raw": "http://localhost:3000/zeus-api/sessao",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"sessao"
 									]
 								}
@@ -417,13 +433,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/sessao/id",
+									"raw": "http://localhost:3000/zeus-api/sessao/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"sessao",
 										"id"
 									]
@@ -437,13 +454,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/sessao",
+									"raw": "http://localhost:3000/zeus-api/sessao",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"sessao"
 									]
 								}
@@ -456,13 +474,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/sessao",
+									"raw": "http://localhost:3000/zeus-api/sessao",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"sessao"
 									]
 								}
@@ -475,13 +494,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/sessao/1",
+									"raw": "http://localhost:3000/zeus-api/sessao/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"sessao",
 										"1"
 									]
@@ -514,13 +534,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/trajeto",
+									"raw": "http://localhost:3000/zeus-api/trajeto",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"trajeto"
 									]
 								}
@@ -542,13 +563,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/trajeto/2",
+									"raw": "http://localhost:3000/zeus-api/trajeto/2",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"trajeto",
 										"2"
 									]
@@ -562,13 +584,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/trajeto/id",
+									"raw": "http://localhost:3000/zeus-api/trajeto/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"trajeto",
 										"id"
 									]
@@ -582,13 +605,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/trajeto",
+									"raw": "http://localhost:3000/zeus-api/trajeto",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"trajeto"
 									]
 								}
@@ -601,13 +625,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/trajeto/id",
+									"raw": "http://localhost:3000/zeus-api/trajeto/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"trajeto",
 										"id"
 									]
@@ -635,13 +660,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/rota",
+									"raw": "http://localhost:3000/zeus-api/rota",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"rota"
 									]
 								}
@@ -663,13 +689,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/rota/id",
+									"raw": "http://localhost:3000/zeus-api/rota/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"rota",
 										"id"
 									]
@@ -683,13 +710,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/rota/id",
+									"raw": "http://localhost:3000/zeus-api/rota/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"rota",
 										"id"
 									]
@@ -703,13 +731,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/rota",
+									"raw": "http://localhost:3000/zeus-api/rota",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"rota"
 									]
 								}
@@ -722,13 +751,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/rota/3",
+									"raw": "http://localhost:3000/zeus-api/rota/3",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"rota",
 										"3"
 									]
@@ -756,13 +786,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/midia",
+									"raw": "http://localhost:3000/zeus-api/midia",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"midia"
 									]
 								}
@@ -784,13 +815,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/midia/id",
+									"raw": "http://localhost:3000/zeus-api/midia/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"midia",
 										"id"
 									]
@@ -804,13 +836,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/midia/id",
+									"raw": "http://localhost:3000/zeus-api/midia/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"midia",
 										"id"
 									]
@@ -824,13 +857,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/midia",
+									"raw": "http://localhost:3000/zeus-api/midia",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"midia"
 									]
 								}
@@ -843,13 +877,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/midia/id",
+									"raw": "http://localhost:3000/zeus-api/midia/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"midia",
 										"id"
 									]
@@ -877,13 +912,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/ponto-trajeto",
+									"raw": "http://localhost:3000/zeus-api/ponto-trajeto",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"ponto-trajeto"
 									]
 								}
@@ -905,13 +941,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/ponto-trajeto/id",
+									"raw": "http://localhost:3000/zeus-api/ponto-trajeto/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"ponto-trajeto",
 										"id"
 									]
@@ -925,13 +962,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/ponto-trajeto/id",
+									"raw": "http://localhost:3000/zeus-api/ponto-trajeto/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"ponto-trajeto",
 										"id"
 									]
@@ -945,13 +983,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/ponto-trajeto",
+									"raw": "http://localhost:3000/zeus-api/ponto-trajeto",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"ponto-trajeto"
 									]
 								}
@@ -964,13 +1003,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/ponto-trajeto/id",
+									"raw": "http://localhost:3000/zeus-api/ponto-trajeto/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"ponto-trajeto",
 										"id"
 									]
@@ -990,7 +1030,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"codFase\": 2,\r\n    \"codMidia\": 4,\r\n    \"numSequencia\": 5,\r\n    \"nomAtividade\": \"Atividade 02\",\r\n    \"codTipoAtividade\": \"Atividade Video\",\r\n    \"codConcessionaria\": 1,\r\n    \"codUsuarioCriacao\": 1\r\n}",
+									"raw": "{\r\n    \"codFase\": 2,\r\n    \"codMidia\": 4,\r\n    \"numSequencia\": 5,\r\n    \"nomAtividade\": \"Atividade 02\",\r\n    \"codTipoAtividade\": \"Atividade Video\",\r\n    \"codConcessionaria\": 1,\r\n    \"codUsuarioCriacao\": 1,\r\n    \"codInformacao\": 1\r\n    \r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -998,13 +1038,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/atividade",
+									"raw": "http://localhost:3000/zeus-api/atividade",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"atividade"
 									]
 								}
@@ -1026,13 +1067,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/atividade/id",
+									"raw": "http://localhost:3000/zeus-api/atividade/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"atividade",
 										"id"
 									]
@@ -1046,13 +1088,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/atividade/id",
+									"raw": "http://localhost:3000/zeus-api/atividade/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"atividade",
 										"id"
 									]
@@ -1066,13 +1109,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/atividade",
+									"raw": "http://localhost:3000/zeus-api/atividade",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"atividade"
 									]
 								}
@@ -1085,13 +1129,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/atividade/id",
+									"raw": "http://localhost:3000/zeus-api/atividade/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"atividade",
 										"id"
 									]
@@ -1124,13 +1169,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/avaliacao",
+									"raw": "http://localhost:3000/zeus-api/avaliacao",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"avaliacao"
 									]
 								}
@@ -1152,13 +1198,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/avaliacao/id",
+									"raw": "http://localhost:3000/zeus-api/avaliacao/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"avaliacao",
 										"id"
 									]
@@ -1172,13 +1219,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/avaliacao",
+									"raw": "http://localhost:3000/zeus-api/avaliacao",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"avaliacao"
 									]
 								}
@@ -1191,13 +1239,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/avaliacao/id",
+									"raw": "http://localhost:3000/zeus-api/avaliacao/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"avaliacao",
 										"id"
 									]
@@ -1211,13 +1260,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/avaliacao/id",
+									"raw": "http://localhost:3000/zeus-api/avaliacao/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"avaliacao",
 										"id"
 									]
@@ -1245,13 +1295,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/avaliacao-dispositivo",
+									"raw": "http://localhost:3000/zeus-api/avaliacao-dispositivo",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"avaliacao-dispositivo"
 									]
 								}
@@ -1273,13 +1324,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/avaliacao-dispositivo/id",
+									"raw": "http://localhost:3000/zeus-api/avaliacao-dispositivo/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"avaliacao-dispositivo",
 										"id"
 									]
@@ -1293,13 +1345,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/avaliacao-dispositivo",
+									"raw": "http://localhost:3000/zeus-api/avaliacao-dispositivo",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"avaliacao-dispositivo"
 									]
 								}
@@ -1312,13 +1365,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/avaliacao-dispositivo/id",
+									"raw": "http://localhost:3000/zeus-api/avaliacao-dispositivo/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"avaliacao-dispositivo",
 										"id"
 									]
@@ -1332,13 +1386,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/avaliacao-dispositivo/id",
+									"raw": "http://localhost:3000/zeus-api/avaliacao-dispositivo/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"avaliacao-dispositivo",
 										"id"
 									]
@@ -1366,13 +1421,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/check-list",
+									"raw": "http://localhost:3000/zeus-api/check-list",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"check-list"
 									]
 								}
@@ -1394,13 +1450,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/check-list/id",
+									"raw": "http://localhost:3000/zeus-api/check-list/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"check-list",
 										"id"
 									]
@@ -1414,13 +1471,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/check-list",
+									"raw": "http://localhost:3000/zeus-api/check-list",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"check-list"
 									]
 								}
@@ -1433,13 +1491,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/check-list/id",
+									"raw": "http://localhost:3000/zeus-api/check-list/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"check-list",
 										"id"
 									]
@@ -1453,13 +1512,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/check-list/id",
+									"raw": "http://localhost:3000/zeus-api/check-list/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"check-list",
 										"id"
 									]
@@ -1487,13 +1547,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/detalhe-checklist",
+									"raw": "http://localhost:3000/zeus-api/detalhe-checklist",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"detalhe-checklist"
 									]
 								}
@@ -1515,13 +1576,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/detalhe-checklist/id",
+									"raw": "http://localhost:3000/zeus-api/detalhe-checklist/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"detalhe-checklist",
 										"id"
 									]
@@ -1535,13 +1597,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/detalhe-checklist",
+									"raw": "http://localhost:3000/zeus-api/detalhe-checklist",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"detalhe-checklist"
 									]
 								}
@@ -1554,13 +1617,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/detalhe-checklist/id",
+									"raw": "http://localhost:3000/zeus-api/detalhe-checklist/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"detalhe-checklist",
 										"id"
 									]
@@ -1574,13 +1638,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/detalhe-checklist/id",
+									"raw": "http://localhost:3000/zeus-api/detalhe-checklist/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"detalhe-checklist",
 										"id"
 									]
@@ -1608,13 +1673,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/dispositivo",
+									"raw": "http://localhost:3000/zeus-api/dispositivo",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"dispositivo"
 									]
 								}
@@ -1636,13 +1702,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/dispositivo/id",
+									"raw": "http://localhost:3000/zeus-api/dispositivo/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"dispositivo",
 										"id"
 									]
@@ -1656,13 +1723,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/dispositivo",
+									"raw": "http://localhost:3000/zeus-api/dispositivo",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"dispositivo"
 									]
 								}
@@ -1675,13 +1743,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/dispositivo/id",
+									"raw": "http://localhost:3000/zeus-api/dispositivo/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"dispositivo",
 										"id"
 									]
@@ -1695,13 +1764,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/dispositivo/id",
+									"raw": "http://localhost:3000/zeus-api/dispositivo/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"dispositivo",
 										"id"
 									]
@@ -1729,13 +1799,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/experiencia",
+									"raw": "http://localhost:3000/zeus-api/experiencia",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"experiencia"
 									]
 								}
@@ -1757,13 +1828,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/experiencia/id",
+									"raw": "http://localhost:3000/zeus-api/experiencia/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"experiencia",
 										"id"
 									]
@@ -1777,13 +1849,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/experiencia",
+									"raw": "http://localhost:3000/zeus-api/experiencia",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"experiencia"
 									]
 								}
@@ -1796,13 +1869,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/experiencia/id",
+									"raw": "http://localhost:3000/zeus-api/experiencia/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"experiencia",
 										"id"
 									]
@@ -1816,13 +1890,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/experiencia/id",
+									"raw": "http://localhost:3000/zeus-api/experiencia/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"experiencia",
 										"id"
 									]
@@ -1850,13 +1925,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/experiencia-dispositivo",
+									"raw": "http://localhost:3000/zeus-api/experiencia-dispositivo",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"experiencia-dispositivo"
 									]
 								}
@@ -1878,13 +1954,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/experiencia-dispositivo/id",
+									"raw": "http://localhost:3000/zeus-api/experiencia-dispositivo/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"experiencia-dispositivo",
 										"id"
 									]
@@ -1898,13 +1975,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/experiencia-dispositivo",
+									"raw": "http://localhost:3000/zeus-api/experiencia-dispositivo",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"experiencia-dispositivo"
 									]
 								}
@@ -1917,13 +1995,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/experiencia-dispositivo/id",
+									"raw": "http://localhost:3000/zeus-api/experiencia-dispositivo/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"experiencia-dispositivo",
 										"id"
 									]
@@ -1937,13 +2016,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/experiencia-dispositivo/id",
+									"raw": "http://localhost:3000/zeus-api/experiencia-dispositivo/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"experiencia-dispositivo",
 										"id"
 									]
@@ -1971,13 +2051,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/fase-experiencia",
+									"raw": "http://localhost:3000/zeus-api/fase-experiencia",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"fase-experiencia"
 									]
 								}
@@ -1999,13 +2080,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/fase-experiencia/id",
+									"raw": "http://localhost:3000/zeus-api/fase-experiencia/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"fase-experiencia",
 										"id"
 									]
@@ -2019,13 +2101,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/fase-experiencia",
+									"raw": "http://localhost:3000/zeus-api/fase-experiencia",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"fase-experiencia"
 									]
 								}
@@ -2038,13 +2121,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/fase-experiencia/id",
+									"raw": "http://localhost:3000/zeus-api/fase-experiencia/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"fase-experiencia",
 										"id"
 									]
@@ -2058,13 +2142,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/fase-experiencia/id",
+									"raw": "http://localhost:3000/zeus-api/fase-experiencia/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"fase-experiencia",
 										"id"
 									]
@@ -2092,13 +2177,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/formulario",
+									"raw": "http://localhost:3000/zeus-api/formulario",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"formulario"
 									]
 								}
@@ -2120,13 +2206,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/formulario/id",
+									"raw": "http://localhost:3000/zeus-api/formulario/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"formulario",
 										"id"
 									]
@@ -2140,13 +2227,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/formulario",
+									"raw": "http://localhost:3000/zeus-api/formulario",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"formulario"
 									]
 								}
@@ -2159,13 +2247,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/formulario/id",
+									"raw": "http://localhost:3000/zeus-api/formulario/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"formulario",
 										"id"
 									]
@@ -2179,13 +2268,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/formulario/id",
+									"raw": "http://localhost:3000/zeus-api/formulario/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"formulario",
 										"id"
 									]
@@ -2213,13 +2303,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/icone",
+									"raw": "http://localhost:3000/zeus-api/icone",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"icone"
 									]
 								}
@@ -2241,13 +2332,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/icone/id",
+									"raw": "http://localhost:3000/zeus-api/icone/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"icone",
 										"id"
 									]
@@ -2261,13 +2353,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/icone",
+									"raw": "http://localhost:3000/zeus-api/icone",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"icone"
 									]
 								}
@@ -2280,13 +2373,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/icone/id",
+									"raw": "http://localhost:3000/zeus-api/icone/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"icone",
 										"id"
 									]
@@ -2300,13 +2394,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/icone/id",
+									"raw": "http://localhost:3000/zeus-api/icone/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"icone",
 										"id"
 									]
@@ -2334,13 +2429,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/informacao",
+									"raw": "http://localhost:3000/zeus-api/informacao",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"informacao"
 									]
 								}
@@ -2362,13 +2458,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/informacao/1",
+									"raw": "http://localhost:3000/zeus-api/informacao/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"informacao",
 										"1"
 									]
@@ -2382,13 +2479,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/informacao",
+									"raw": "http://localhost:3000/zeus-api/informacao",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"informacao"
 									]
 								}
@@ -2401,13 +2499,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/informacao/id",
+									"raw": "http://localhost:3000/zeus-api/informacao/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"informacao",
 										"id"
 									]
@@ -2421,13 +2520,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/informacao/id",
+									"raw": "http://localhost:3000/zeus-api/informacao/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"informacao",
 										"id"
 									]
@@ -2455,13 +2555,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/test-drive",
+									"raw": "http://localhost:3000/zeus-api/test-drive",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"test-drive"
 									]
 								}
@@ -2483,13 +2584,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/test-drive/id",
+									"raw": "http://localhost:3000/zeus-api/test-drive/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"test-drive",
 										"id"
 									]
@@ -2503,13 +2605,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/test-drive",
+									"raw": "http://localhost:3000/zeus-api/test-drive",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"test-drive"
 									]
 								}
@@ -2522,13 +2625,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/test-drive/id",
+									"raw": "http://localhost:3000/zeus-api/test-drive/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"test-drive",
 										"id"
 									]
@@ -2542,13 +2646,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/test-drive/id",
+									"raw": "http://localhost:3000/zeus-api/test-drive/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"test-drive",
 										"id"
 									]
@@ -2576,13 +2681,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/ponto-rota",
+									"raw": "http://localhost:3000/zeus-api/ponto-rota",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"ponto-rota"
 									]
 								}
@@ -2604,13 +2710,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/ponto-rota/id",
+									"raw": "http://localhost:3000/zeus-api/ponto-rota/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"ponto-rota",
 										"id"
 									]
@@ -2624,13 +2731,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/ponto-rota",
+									"raw": "http://localhost:3000/zeus-api/ponto-rota",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"ponto-rota"
 									]
 								}
@@ -2643,13 +2751,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/ponto-rota/id",
+									"raw": "http://localhost:3000/zeus-api/ponto-rota/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"ponto-rota",
 										"id"
 									]
@@ -2663,13 +2772,14 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/ponto-rota/id",
+									"raw": "http://localhost:3000/zeus-api/ponto-rota/id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
+										"zeus-api",
 										"ponto-rota",
 										"id"
 									]
