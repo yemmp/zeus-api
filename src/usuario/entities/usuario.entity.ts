@@ -14,9 +14,9 @@ import { Concessionaria } from 'src/concessionaria/entities/concessionaria.entit
 @Table({
   underscored: true,
   tableName: 'usuario',
-  createdAt: 'dat_criacao',
-  updatedAt: 'dat_atualizacao',
-  deletedAt: 'dat_exclusao'
+  createdAt: 'datCriacao',
+  updatedAt: 'datAtualizacao',
+  deletedAt: 'datExclusao'
 })
 export class Usuario extends Model {
  

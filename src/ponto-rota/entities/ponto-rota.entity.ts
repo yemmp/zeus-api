@@ -6,9 +6,9 @@ import { Rota } from 'src/rota/entities/rota.entity';
 @Table({
     underscored:true,
     tableName:'ponto rota',  
-    createdAt: 'dat_criacao',
-    updatedAt: 'dat_atualizacao',
-    deletedAt: 'dat_exclusao'
+    createdAt: 'datCriacao',
+    updatedAt: 'datAtualizacao',
+    deletedAt: 'datExclusao'
 })
 export class PontoRota extends Model{
 

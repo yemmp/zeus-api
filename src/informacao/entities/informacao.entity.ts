@@ -5,9 +5,9 @@ import { Atividade } from 'src/atividade/entities/atividade.entity';
 @Table({
     underscored:true,
     tableName: 'informacao',  
-    createdAt: 'dat_criacao',
-    updatedAt: 'dat_atualizacao',
-    deletedAt: 'dat_exclusao'
+    createdAt: 'datCriacao',
+    updatedAt: 'datAtualizacao',
+    deletedAt: 'datExclusao'
 })
 export class Informacao extends Model{
     

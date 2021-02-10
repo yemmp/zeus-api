@@ -9,9 +9,9 @@ import { Midia } from 'src/midia/entities/midia.entity';
 @Table({
     underscored: true,
     tableName: "atividade",  
-    createdAt: 'dat_criacao',
-    updatedAt: 'dat_atualizacao',
-    deletedAt: 'dat_exclusao'
+    createdAt: 'datCriacao',
+    updatedAt: 'datAtualizacao',
+    deletedAt: 'datExclusao'
 })
 export class Atividade extends Model{
 

@@ -6,9 +6,9 @@ import { Col } from 'sequelize/types/lib/utils';
 @Table({
     underscored:true,
     tableName:'test drive',  
-    createdAt: 'dat_criacao',
-  updatedAt: 'dat_atualizacao',
-  deletedAt: 'dat_exclusao'
+    createdAt: 'datCriacao',
+    updatedAt: 'datAtualizacao',
+    deletedAt: 'datExclusao'
 })
 export class TestDrive extends Model {
 

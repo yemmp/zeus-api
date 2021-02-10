@@ -4,9 +4,9 @@ import {Table,Column,Model,PrimaryKey,AutoIncrement} from 'sequelize-typescript'
 @Table({
     underscored:true,
     tableName: 'icone',  
-    createdAt: 'dat_criacao',
-  updatedAt: 'dat_atualizacao',
-  deletedAt: 'dat_exclusao'
+    createdAt: 'datCriacao',
+    updatedAt: 'datAtualizacao',
+    deletedAt: 'datExclusao'
 })
 export class Icone extends Model{
 

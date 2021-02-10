@@ -6,9 +6,9 @@ import { Experiencia } from 'src/experiencia/entities/experiencia.entity';
 @Table({
     underscored:true,
     tableName: 'fase experiencia',  
-    createdAt: 'dat_criacao',
-    updatedAt: 'dat_atualizacao',
-    deletedAt: 'dat_exclusao'
+    createdAt: 'datCriacao',
+    updatedAt: 'datAtualizacao',
+    deletedAt: 'datExclusao'
 })
 export class FaseExperiencia  extends Model{
 
