@@ -4,7 +4,9 @@ import { Table,Model,PrimaryKey,Column,AutoIncrement} from 'sequelize-typescript
 
 @Table({
     underscored:true,
-    tableName: 'concessionaria'
+    createdAt: 'dat_criacao',
+    updatedAt: 'dat_atualizacao',
+    deletedAt: 'dat_exclusao'
 })
 export class Concessionaria extends Model{
 

@@ -3,7 +3,10 @@ import {Table, Model, Column, PrimaryKey, AutoIncrement} from 'sequelize-typescr
 
 @Table({
     underscored: true,
-    tableName: 'avaliacao'
+    tableName: 'avaliacao',  
+    createdAt: 'dat_criacao',
+  updatedAt: 'dat_atualizacao',
+  deletedAt: 'dat_exclusao'
 })
 export class Avaliacao extends Model{
 

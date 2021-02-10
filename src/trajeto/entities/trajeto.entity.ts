@@ -5,7 +5,10 @@ import { PontoTrajeto } from 'src/ponto-trajeto/entities/ponto-trajeto.entity';
 
 @Table({
     underscored: true,
-    tableName: 'trajeto'
+    tableName: 'trajeto',  
+    createdAt: 'dat_criacao',
+  updatedAt: 'dat_atualizacao',
+  deletedAt: 'dat_exclusao'
 })
 export class Trajeto  extends Model{
 

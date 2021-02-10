@@ -3,7 +3,10 @@ import {Table,Column,Model,PrimaryKey,AutoIncrement} from 'sequelize-typescript'
 
 @Table({
     underscored:true,
-    tableName: 'icone'
+    tableName: 'icone',  
+    createdAt: 'dat_criacao',
+  updatedAt: 'dat_atualizacao',
+  deletedAt: 'dat_exclusao'
 })
 export class Icone extends Model{
 

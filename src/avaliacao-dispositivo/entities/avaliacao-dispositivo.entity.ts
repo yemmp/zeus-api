@@ -6,7 +6,10 @@ import { ExperienciaDispositivo } from 'src/experiencia-dispositivo/entities/exp
 
 @Table({
     underscored:true,
-    tableName: 'avaliacao dispositivo'
+    tableName: 'avaliacao dispositivo',  
+    createdAt: 'dat_criacao',
+    updatedAt: 'dat_atualizacao',
+    deletedAt: 'dat_exclusao'
 })
 export class AvaliacaoDispositivo extends Model{
 

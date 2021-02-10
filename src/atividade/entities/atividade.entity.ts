@@ -7,7 +7,10 @@ import { Midia } from 'src/midia/entities/midia.entity';
 
 @Table({
     underscored: true,
-    tableName: "atividade"
+    tableName: "atividade",  
+    createdAt: 'dat_criacao',
+    updatedAt: 'dat_atualizacao',
+    deletedAt: 'dat_exclusao'
 })
 export class Atividade extends Model{
 
