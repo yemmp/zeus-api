@@ -1,10 +1,11 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import { Trajeto } from 'src/trajeto/entities/trajeto.entity';
 import { CreateRotaDto } from './dto/create-rota.dto';
 import { UpdateRotaDto } from './dto/update-rota.dto';
 import { Rota } from './entities/rota.entity';
 
-const EXCLUDED_APP_ATTRIBUTES = ['']
+const EXCLUDED_APP_ATTRIBUTES = ['codTrajeto','indAtivo','codConcessionaria','codUsuarioCriacao','datCriacao','datAtualizacao','datExclusao']
 
 @Injectable()
 export class RotaService {
@@ -23,7 +24,8 @@ export class RotaService {
   async findAll(projecao = 'APP') {
     try {
       const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
-      return this.rotaModel.findAll({attributes:{exclude:[...exclude_attr]}});
+      return this.rotaModel.findAll({include:{model:Trajeto,attributes:['nomTrajeto','qtdPontos'],through:{attributes:['numPosicaoX','numPosicaoY']}}
+      ,attributes:{exclude:[...exclude_attr]}});
     } catch (error) {
       console.error('Erro ao Buscar Rotas', error.message);
       throw new BadRequestException();

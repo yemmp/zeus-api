@@ -25,7 +25,7 @@ export class InformacaoService {
   async findAll(projecao = 'APP') {
     try {
       const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
-      return this.informacaoModel.findAll({include:Atividade,
+      return this.informacaoModel.findAll({include:{model:Atividade, attributes:['nomAtividade','codMidia']},
         attributes:{exclude:[...exclude_attr]}
         , order:[
           [{model:Atividade, 'as':'atividades'}, 'numSequencia', 'ASC']
@@ -41,7 +41,7 @@ export class InformacaoService {
       try {
         const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
         
-        return this.informacaoModel.findOne({include:Atividade,
+        return this.informacaoModel.findOne({include:{model:Atividade, attributes:['nomAtividade','codMidia']},
           attributes:{exclude:[...exclude_attr]}
           , order:[
             [{model:Atividade, 'as':'atividades'}, 'numSequencia', 'ASC']

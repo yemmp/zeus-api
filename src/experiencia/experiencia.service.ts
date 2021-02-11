@@ -1,5 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import { CheckList } from 'src/check-list/entities/check-list.entity';
+import { FaseExperiencia } from 'src/fase-experiencia/entities/fase-experiencia.entity';
 import { CreateExperienciaDto } from './dto/create-experiencia.dto';
 import { UpdateExperienciaDto } from './dto/update-experiencia.dto';
 import { Experiencia } from './entities/experiencia.entity';
@@ -24,7 +26,11 @@ export class ExperienciaService {
   async findAll(projecao = 'APP') {
     try {
       const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
-      return this.experienciaModule.findAll({attributes:{exclude:[...exclude_attr]}});
+      return this.experienciaModule.findAll({include:[CheckList,{model:FaseExperiencia,attributes:['codFase','codTipoFase']}],
+        attributes:{exclude:[...exclude_attr]},
+      order:[
+        [{model:FaseExperiencia, 'as': 'faseExperiencia'}, 'numSequencia', 'ASC']
+      ]});
       
     } catch (error) {
       console.error('Erro ao Buscar Experiencias',error.message);
@@ -35,7 +41,11 @@ export class ExperienciaService {
   async findOne(projecao = 'APP',id: number) {
     try {
       const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
-      return this.experienciaModule.findOne({attributes:{exclude:[...exclude_attr]},where:{codExperiencia:id}});
+      return this.experienciaModule.findOne({include:{include:[CheckList,{model:FaseExperiencia,attributes:['codFase','codTipoFase']}]},
+        attributes:{exclude:[...exclude_attr]},
+        order:[
+          [{model: FaseExperiencia, 'as': 'faseExperiencia'}, 'numSequencia','ASC']
+        ],where:{codExperiencia:id}});
     } catch (error) {
       console.error(`Erro ao Buscar Experiencia #${id}`,error.message);
     }

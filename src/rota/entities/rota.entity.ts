@@ -27,13 +27,11 @@ export class Rota extends Model {
     @BelongsTo(()=>Trajeto)
     trajeto: Trajeto;
 
-    //@HasMany(()=>PontoRota)
-    //pontosRota : PontoRota[];
-
+    
     @ApiProperty()
     @Column
     nomRota: string;
-
+    
     @ApiProperty()
     @Column
     indAtivo: string;
@@ -41,8 +39,11 @@ export class Rota extends Model {
     @ApiProperty()
     @Column
     codConcessionaria: number;
-
+    
     @ApiProperty()
     @Column
     codUsuarioCriacao: number;
+    
+    @HasMany(()=>PontoRota)
+    pontosRota : PontoRota[];
 }
