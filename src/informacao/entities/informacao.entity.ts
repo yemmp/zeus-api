@@ -1,9 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {Table,Model,Column,PrimaryKey,AutoIncrement} from 'sequelize-typescript'
+import {Table,Model,Column,PrimaryKey,AutoIncrement, HasMany} from 'sequelize-typescript'
+import { Atividade } from 'src/atividade/entities/atividade.entity';
 
 @Table({
     underscored:true,
-    tableName: 'informacao'
+    tableName: 'informacao',  
+    createdAt: 'datCriacao',
+    updatedAt: 'datAtualizacao',
+    deletedAt: 'datExclusao'
 })
 export class Informacao extends Model{
     
@@ -32,4 +36,7 @@ export class Informacao extends Model{
     @ApiProperty()
     @Column
     codUsuarioCriacao: number;
+
+    @HasMany(()=>Atividade)
+    atividades: Atividade[];
 }

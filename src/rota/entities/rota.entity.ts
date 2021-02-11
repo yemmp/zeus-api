@@ -6,7 +6,10 @@ import { Trajeto } from 'src/trajeto/entities/trajeto.entity';
 
 @Table({
     underscored:true,
-    tableName: 'rota'
+    tableName: 'rota',  
+    createdAt: 'datCriacao',
+    updatedAt: 'datAtualizacao',
+    deletedAt: 'datExclusao'
 })
 export class Rota extends Model {
 

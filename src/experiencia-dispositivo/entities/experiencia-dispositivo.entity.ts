@@ -5,7 +5,10 @@ import { Experiencia } from 'src/experiencia/entities/experiencia.entity';
 
 @Table({
     underscored: true,
-    tableName:'experiencia dispositivo'
+    tableName:'experiencia dispositivo',  
+    createdAt: 'datCriacao',
+    updatedAt: 'datAtualizacao',
+    deletedAt: 'datExclusao'
 })
 export class ExperienciaDispositivo extends Model{
 

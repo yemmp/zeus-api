@@ -4,7 +4,10 @@ import { CheckList } from 'src/check-list/entities/check-list.entity';
 
 @Table({
     underscored:true,
-    tableName: 'detalhe checklist'
+    tableName: 'detalhe checklist',  
+    createdAt: 'datCriacao',
+    updatedAt: 'datAtualizacao',
+    deletedAt: 'datExclusao'
 })
 export class DetalheChecklist extends Model{
 

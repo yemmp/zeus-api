@@ -4,7 +4,10 @@ import { Trajeto } from "src/trajeto/entities/trajeto.entity";
 
 @Table({
     underscored:true,
-    tableName: 'ponto trajeto'
+    tableName: 'ponto trajeto',  
+    createdAt: 'datCriacao',
+    updatedAt: 'datAtualizacao',
+    deletedAt: 'datExclusao'
 })
 export class PontoTrajeto extends Model {
 

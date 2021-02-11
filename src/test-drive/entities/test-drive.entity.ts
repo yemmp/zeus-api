@@ -5,7 +5,10 @@ import { Col } from 'sequelize/types/lib/utils';
 
 @Table({
     underscored:true,
-    tableName:'test drive'
+    tableName:'test drive',  
+    createdAt: 'datCriacao',
+    updatedAt: 'datAtualizacao',
+    deletedAt: 'datExclusao'
 })
 export class TestDrive extends Model {
 

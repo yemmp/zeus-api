@@ -64,4 +64,7 @@ export class CreateAtividadeDto {
     @IsNumber()
     codUsuarioCriacao: number;
 
+
+    codInformacao: number;
+
 }

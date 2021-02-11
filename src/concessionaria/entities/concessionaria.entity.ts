@@ -4,7 +4,10 @@ import { Table,Model,PrimaryKey,Column,AutoIncrement} from 'sequelize-typescript
 
 @Table({
     underscored:true,
-    tableName: 'concessionaria'
+    tableName: 'concessionaria',
+    createdAt: 'datCriacao',
+    updatedAt: 'datAtualizacao',
+    deletedAt: 'datExclusao'
 })
 export class Concessionaria extends Model{
 

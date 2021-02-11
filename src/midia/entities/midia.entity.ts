@@ -4,7 +4,10 @@ import {Table,Model,Column,PrimaryKey,AutoIncrement} from "sequelize-typescript"
 
 @Table({
     underscored:true,
-    tableName:'midia'
+    tableName:'midia',  
+    createdAt: 'datCriacao',
+    updatedAt: 'datAtualizacao',
+    deletedAt: 'datExclusao'
 })
 export class Midia extends Model {
 

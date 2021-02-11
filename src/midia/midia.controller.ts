@@ -20,7 +20,6 @@ export class MidiaController {
 
   @ApiOperation({summary:'Listar midias'})
   @ApiResponse({status: 200,description:'Ok', type: [Midia]})
-  @UseInterceptors(ClassSerializerInterceptor)
   @Get()
   findAll() {
     return this.midiaService.findAll();
@@ -28,7 +27,6 @@ export class MidiaController {
 
   @ApiOperation({summary:'Buscar uma midia'})
   @ApiResponse({status: 200,description:'Ok', type: Midia})
-  @UseInterceptors(ClassSerializerInterceptor)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.midiaService.findOne(+id);

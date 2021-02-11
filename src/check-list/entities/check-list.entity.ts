@@ -3,7 +3,10 @@ import {Table,Model,Column,PrimaryKey,AutoIncrement} from 'sequelize-typescript'
 
 @Table({
     underscored: true,
-    tableName: 'check list'
+    tableName: 'check list',  
+    createdAt: 'datCriacao',
+    updatedAt: 'datAtualizacao',
+    deletedAt: 'datExclusao'
 })
 export class CheckList  extends Model{
 

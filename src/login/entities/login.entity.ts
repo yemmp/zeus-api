@@ -5,7 +5,10 @@ import { Usuario } from 'src/usuario/entities/usuario.entity';
 
 @Table({
     underscored: true,
-    tableName: 'login'
+    tableName: 'login',  
+    createdAt: 'datCriacao',
+    updatedAt: 'datAtualizacao',
+    deletedAt: 'datExclusao'
 })
 export class Login extends Model{
 

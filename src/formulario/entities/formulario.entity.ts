@@ -4,7 +4,10 @@ import { TestDrive } from "src/test-drive/entities/test-drive.entity";
 
 @Table({
     underscored:true,
-    tableName: 'formulario'
+    tableName: 'formulario',  
+    createdAt: 'datCriacao',
+    updatedAt: 'datAtualizacao',
+    deletedAt: 'datExclusao'
 })
 export class Formulario extends Model {
 
