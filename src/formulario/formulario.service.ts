@@ -4,6 +4,8 @@ import { CreateFormularioDto } from './dto/create-formulario.dto';
 import { UpdateFormularioDto } from './dto/update-formulario.dto';
 import { Formulario } from './entities/formulario.entity';
 
+const EXCLUDED_APP_ATTRIBUTES = ['']
+
 @Injectable()
 export class FormularioService {
 
@@ -20,19 +22,21 @@ export class FormularioService {
     return 'Formulario Criado com Sucesso!';
   }
 
-  async findAll() {
+  async findAll(projecao = 'APP') {
     try {
-      return this.formularioModel.findAll();
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      return this.formularioModel.findAll({attributes:{exclude:[...exclude_attr]}});
       
     } catch (error) {
       console.error('Erro ao Buscar Formularios',error.message);
       throw new BadRequestException();
     }
   }
-
-  async findOne(id: number) {
+  
+  async findOne(projecao = 'APP',id: number) {
     try {
-      return this.formularioModel.findOne({where:{codFormulario:id}});
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      return this.formularioModel.findOne({attributes:{exclude:[...exclude_attr]},where:{codFormulario:id}});
       
     } catch (error) {
       console.error(`Erro ao Buscar Formulario #${id}`,error.message);

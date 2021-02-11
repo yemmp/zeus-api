@@ -4,6 +4,8 @@ import { CreateConcessionariaDto } from './dto/create-concessionaria.dto';
 import { UpdateConcessionariaDto } from './dto/update-concessionaria.dto';
 import { Concessionaria } from './entities/concessionaria.entity';
 
+const EXCLUDED_APP_ATTRIBUTES = ['']
+
 @Injectable()
 export class ConcessionariaService {
   constructor(@InjectModel(Concessionaria) private concessionariaModel : typeof Concessionaria){}
@@ -24,10 +26,11 @@ export class ConcessionariaService {
     return 'Concessionaria Criada com Sucesso!';
   }
 
-  async findAll() {
+  async findAll(projecao = 'APP') {
     try {
-      
-      return this.concessionariaModel.findAll();
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+
+      return this.concessionariaModel.findAll({attributes:{exclude:[...exclude_attr]}});
 
     } catch (error) {
       
@@ -38,10 +41,11 @@ export class ConcessionariaService {
 
   }
 
-  async findOne(id: number) {
+  async findOne(projecao = 'APP',id: number) {
     try {
-      
-      return this.concessionariaModel.findOne({where:{ codConcessionaria:id}});;
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+
+      return this.concessionariaModel.findOne({attributes:{exclude:[...exclude_attr]},where:{ codConcessionaria:id}});;
 
     } catch (error) {
 

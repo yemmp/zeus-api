@@ -1,5 +1,5 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { DetalheChecklistService } from './detalhe-checklist.service';
 import { CreateDetalheChecklistDto } from './dto/create-detalhe-checklist.dto';
 import { UpdateDetalheChecklistDto } from './dto/update-detalhe-checklist.dto';
@@ -17,15 +17,17 @@ export class DetalheChecklistController {
   }
 @ApiOperation({summary:'Listar detalhes-checklist'})
 @ApiResponse({status: 200,description:'Ok', type: [DetalheChecklist]})
-  @Get()
-  findAll() {
-    return this.detalheChecklistService.findAll();
-  }
+@ApiQuery({name:'projecao',allowEmptyValue: true, schema:{default:'APP'}})
+@Get()
+findAll(@Query('projecao') projecao:string = 'APP') {
+  return this.detalheChecklistService.findAll(projecao);
+}
 @ApiOperation({summary:'Buscar um detalhe-checklist'})
 @ApiResponse({status: 200,description:'Ok', type: DetalheChecklist})
+@ApiQuery({name:'projecao',allowEmptyValue: true, schema:{default:'APP'}})
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.detalheChecklistService.findOne(+id);
+  findOne(@Query('projecao') projecao:string = 'APP',@Param('id') id: string) {
+    return this.detalheChecklistService.findOne(projecao,+id);
   }
 @ApiOperation({summary:'Atualizar um detalhe-checklist'})
 @ApiResponse({status: 200,description:'Detalhe-checklist atualizado com sucesso.', type: DetalheChecklist})

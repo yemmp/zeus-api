@@ -14,8 +14,8 @@ async function bootstrap() {
   .setDescription('The ZEUS Project REST Webservices')
   .setVersion('1.0')
   .addTag('zeus')
-  .addServer("http://100.26.1.157/zeus-api", "zeus-api")
   .addServer("http://localhost:3000", "dev-local")
+  .addServer("http://100.26.1.157/zeus-api", "zeus-api")
   .build();
 const document = SwaggerModule.createDocument(app, config);
 SwaggerModule.setup(process.env.SWAGGER_ENDPOINT, app, document);

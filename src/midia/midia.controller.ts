@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Put, Param, Delete, UseInterceptors, ClassSerializerInterceptor } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, UseInterceptors, ClassSerializerInterceptor, Query } from '@nestjs/common';
 import { MidiaService } from './midia.service';
 import { CreateMidiaDto } from './dto/create-midia.dto';
 import { UpdateMidiaDto } from './dto/update-midia.dto';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Midia } from './entities/midia.entity';
 
 
@@ -20,16 +20,18 @@ export class MidiaController {
 
   @ApiOperation({summary:'Listar midias'})
   @ApiResponse({status: 200,description:'Ok', type: [Midia]})
+  @ApiQuery({name:'projecao', allowEmptyValue: true, schema:{default: 'APP'}})
   @Get()
-  findAll() {
-    return this.midiaService.findAll();
+  findAll(@Query('projecao') projecao:string = 'APP') {
+    return this.midiaService.findAll(projecao);
   }
-
+  
   @ApiOperation({summary:'Buscar uma midia'})
   @ApiResponse({status: 200,description:'Ok', type: Midia})
+  @ApiQuery({name:'projecao', allowEmptyValue: true, schema:{default: 'APP'}})
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.midiaService.findOne(+id);
+  findOne(@Query('projecao')projecao:string = 'APP',@Param('id') id: string) {
+    return this.midiaService.findOne(projecao,+id);
   }
 
   @ApiOperation({summary:'Atualizar uma midia'})

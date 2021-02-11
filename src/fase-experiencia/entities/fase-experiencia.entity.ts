@@ -47,5 +47,7 @@ export class FaseExperiencia  extends Model{
     @ApiProperty()
     @Column
     codUsuarioCriacao: number;
+    
+  
 
 }

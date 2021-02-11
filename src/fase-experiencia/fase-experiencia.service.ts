@@ -5,6 +5,8 @@ import { CreateFaseExperienciaDto } from './dto/create-fase-experiencia.dto';
 import { UpdateFaseExperienciaDto } from './dto/update-fase-experiencia.dto';
 import { FaseExperiencia } from './entities/fase-experiencia.entity';
 
+const EXCLUDED_APP_ATTRIBUTES = ['datCriacao','datAtualizacao','datExclusao','codFaseExperiencia','codExperiencia','numSequencia','codConcessionaria','codUsuarioCriacao']
+
 @Injectable()
 export class FaseExperienciaService {
 
@@ -21,19 +23,23 @@ export class FaseExperienciaService {
     return 'Fase-Experiencia Criada com Sucesso';
   }
 
-  async findAll() {
+  async findAll(projecao = 'APP') {
     try {
-      return this.faseExperienciaModel.findAll();
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      
+      return this.faseExperienciaModel.findAll({attributes:{exclude:[...exclude_attr]}});
       
     } catch (error) {
       console.error('Erro ao Buscar Fase-Experiencia',error.message);
       throw new BadRequestException();
     }
   }
-
-  async findOne(id: number) {
+  
+  async findOne(projecao = 'APP',id: number) {
     try {
-      return this.faseExperienciaModel.findOne({where:{codFaseExperiencia:id}})
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+
+      return this.faseExperienciaModel.findOne({attributes:{exclude:[...exclude_attr]},where:{codFaseExperiencia:id}})
     } catch (error) {
       console.error(`Erro ao Buscar Fase-Experiencia #${id}`,error.message);
       throw new BadRequestException();

@@ -1,5 +1,5 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AtividadeService } from './atividade.service';
 import { CreateAtividadeDto } from './dto/create-atividade.dto';
 import { UpdateAtividadeDto } from './dto/update-atividade.dto';
@@ -20,15 +20,17 @@ export class AtividadeController {
   @ApiOperation({summary:'Listar atividades'})
   @ApiResponse({status: 200, description:'Ok', type:[Atividade]})
   @Get()
-  findAll() {
-    return this.atividadeService.findAll();
+  @ApiQuery({name:'projecao',allowEmptyValue: true,schema:{default: 'APP'}})
+  findAll(@Query('projecao') projecao:string = 'APP') {
+    return this.atividadeService.findAll(projecao);
   }
-
+  
   @ApiOperation({summary:'Buscar uma atividade'})
   @ApiResponse({status: 200, description:'Ok', type:Atividade})
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.atividadeService.findOne(+id);
+  @ApiQuery({name:'projecao',allowEmptyValue: true,schema:{default: 'APP'}})
+  findOne(@Query('projecao') projecao:string = 'APP',@Param('id') id: string) {
+    return this.atividadeService.findOne(projecao,+id);
   }
 
   @ApiOperation({summary:'Atualizar uma atividade'})

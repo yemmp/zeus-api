@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
 import { ExperienciaDispositivoService } from './experiencia-dispositivo.service';
 import { CreateExperienciaDispositivoDto } from './dto/create-experiencia-dispositivo.dto';
 import { UpdateExperienciaDispositivoDto } from './dto/update-experiencia-dispositivo.dto';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ExperienciaDispositivo } from './entities/experiencia-dispositivo.entity';
 
 @Controller('experiencia-dispositivo')
@@ -19,16 +19,18 @@ export class ExperienciaDispositivoController {
 
   @ApiOperation({summary:'Listar experiencias-dispositivo'})
   @ApiResponse({status: 200,description:'Ok', type: [ExperienciaDispositivo]})
+  @ApiQuery({name:'projecao',allowEmptyValue: true,schema:{default:'APP'}})
   @Get()
-  findAll() {
-    return this.experienciaDispositivoService.findAll();
+  findAll(@Query('projecao') projecao:string = 'APP') {
+    return this.experienciaDispositivoService.findAll(projecao);
   }
-
+  
   @ApiOperation({summary:'Buscar uma experiencia-dispositivo'})
   @ApiResponse({status: 200,description:'Ok', type: ExperienciaDispositivo})
+  @ApiQuery({name:'projecao',allowEmptyValue: true,schema:{default:'APP'}})
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.experienciaDispositivoService.findOne(+id);
+  findOne(@Query('projecao') projecao:string = 'APP' ,@Param('id') id: string) {
+    return this.experienciaDispositivoService.findOne(projecao,+id);
   }
 
   @ApiOperation({summary:'Atualizar uma experiencia-dispositivo'})

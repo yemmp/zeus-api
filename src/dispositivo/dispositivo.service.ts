@@ -4,6 +4,8 @@ import { CreateDispositivoDto } from './dto/create-dispositivo.dto';
 import { UpdateDispositivoDto } from './dto/update-dispositivo.dto';
 import { Dispositivo } from './entities/dispositivo.entity';
 
+const EXCLUDED_APP_ATTRIBUTES = ['']
+
 @Injectable()
 export class DispositivoService {
 
@@ -20,9 +22,10 @@ export class DispositivoService {
     return 'Dispositivo Criado com Sucesso!';
   }
 
-  async findAll() {
+  async findAll(projecao = 'APP') {
     try {
-      return this.dispositivoModel.findAll();
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      return this.dispositivoModel.findAll({attributes:{exclude:[...exclude_attr]}});
       
     } catch (error) {
       console.error('Erro ao Buscar Dispositivos',error.message);
@@ -30,9 +33,10 @@ export class DispositivoService {
     }
   }
 
-  async findOne(id: number) {
+  async findOne(projecao = 'APP',id: number) {
     try {
-      return this.dispositivoModel.findOne({where:{codDispositivo:id}});
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      return this.dispositivoModel.findOne({attributes:{exclude:[...exclude_attr]},where:{codDispositivo:id}});
       
     } catch (error) {
       console.error(`Erro ao Buscar Dispositivo #${id}`,error.message);

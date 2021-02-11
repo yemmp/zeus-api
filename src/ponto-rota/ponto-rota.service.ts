@@ -4,6 +4,8 @@ import { CreatePontoRotaDto } from './dto/create-ponto-rota.dto';
 import { UpdatePontoRotaDto } from './dto/update-ponto-rota.dto';
 import { PontoRota } from './entities/ponto-rota.entity';
 
+const EXCLUDED_APP_ATTRIBUTES = ['']
+
 @Injectable()
 export class PontoRotaService {
   constructor(@InjectModel(PontoRota)private pontoRotaModel: typeof PontoRota){}
@@ -17,9 +19,10 @@ export class PontoRotaService {
     return 'Ponto-Rota Criado com Sucesso';
   }
 
-  async findAll() {
+  async findAll(projecao ='APP') {
     try {
-      return this.pontoRotaModel.findAll();
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      return this.pontoRotaModel.findAll({attributes:{exclude:[...exclude_attr]}});
       
     } catch (error) {
       console.error('Erro ao Buscar Pontos-Rota',error.message);
@@ -27,9 +30,10 @@ export class PontoRotaService {
     }
   }
 
-  async findOne(id: number) {
+  async findOne(projecao = 'APP',id: number) {
     try {
-      return this.pontoRotaModel.findOne({where:{codPontoRota: id}});
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      return this.pontoRotaModel.findOne({attributes:{exclude:[...exclude_attr]},where:{codPontoRota: id}});
       
     } catch (error) {
       console.error(`Erro ao Buscar Ponto-Rota #${id}`,error.message)

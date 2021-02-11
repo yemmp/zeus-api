@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
 import { ConcessionariaService } from './concessionaria.service';
 import { CreateConcessionariaDto } from './dto/create-concessionaria.dto';
 import { UpdateConcessionariaDto } from './dto/update-concessionaria.dto';
@@ -8,6 +8,7 @@ import {
   ApiBody,
   ApiResponse,
   ApiTags,
+  ApiQuery,
 } from '@nestjs/swagger';
 import { Concessionaria } from './entities/concessionaria.entity';
 
@@ -26,16 +27,18 @@ export class ConcessionariaController {
 
   @ApiOperation({summary:'Listar concessionarias'})
   @ApiResponse({status: 200, description:'Ok', type: [Concessionaria]})
+  @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default:'APP'}})
   @Get()
-  findAll() {
-    return this.concessionariaService.findAll();
+  findAll(@Query('projecao') projecao:string = 'APP') {
+    return this.concessionariaService.findAll(projecao);
   }
-
+  
   @ApiOperation({summary:'Buscar uma concessionaria'})
   @ApiResponse({status: 200, description:'Ok', type: Concessionaria})
+  @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default:'APP'}})
   @Get(':id')
-  findOne(@Param('id') id: number) {
-    return this.concessionariaService.findOne(+id);
+  findOne(@Query('project') projecao: string = 'APP',@Param('id') id: number) {
+    return this.concessionariaService.findOne(projecao,+id);
   }
 
   @ApiOperation({summary:'Atualizar uma concessionaria'})

@@ -4,6 +4,8 @@ import { CreateMidiaDto } from './dto/create-midia.dto';
 import { UpdateMidiaDto } from './dto/update-midia.dto';
 import { Midia } from './entities/midia.entity';
 
+const EXCLUDED_APP_ATTRIBUTES = ['datExclusao','datCriacao','datAtualizacao','nomMidia','nomDiretorio','indAtivo','codConcessionaria','codUsuarioCriacao']
+
 @Injectable()
 export class MidiaService {
 
@@ -19,9 +21,11 @@ export class MidiaService {
     return 'Midia Criada com Sucesso';
   }
 
-  async findAll() {
+  async findAll(projecao = 'APP') {
     try {
-      return this.midiaModel.findAll();
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES: []
+
+      return this.midiaModel.findAll({attributes:{exclude:[...exclude_attr]}});
       
     } catch (error) {
       console.error('Erro ao Buscar Midias', error.message);
@@ -29,9 +33,10 @@ export class MidiaService {
     }
   }
 
-  async findOne(id: number) {
+  async findOne(projecao = 'APP',id: number) {
     try {
-      return this.midiaModel.findOne({where:{codMidia: id}});
+      const exclude_attr= (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES: []
+      return this.midiaModel.findOne({attributes:{exclude:[...exclude_attr]},where:{codMidia: id}});
       
     } catch (error) {
       console.error(`Erro ao Buscar Midia #${id}`, error.message);

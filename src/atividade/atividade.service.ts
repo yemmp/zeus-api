@@ -4,6 +4,8 @@ import { CreateAtividadeDto } from './dto/create-atividade.dto';
 import { UpdateAtividadeDto } from './dto/update-atividade.dto';
 import { Atividade } from './entities/atividade.entity';
 
+const EXCLUDED_APP_ATTRIBUTES = ['datCriacao','datAtualizacao','datExclusao','codAtividade','codFase','numSequencia','codTipoAtividade','codConcessionaria','codUsuarioCriacao','codInformacao']
+
 @Injectable()
 export class AtividadeService {
   constructor(@InjectModel(Atividade)private atividadeModel: typeof Atividade){}
@@ -18,20 +20,22 @@ export class AtividadeService {
     }
     return 'Atividade Criada com Sucesso!';
   }
-
-  async findAll() {
+  
+  async findAll(projecao = 'APP') {
     try {
-      return this.atividadeModel.findAll();
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      return this.atividadeModel.findAll({attributes:{exclude:[...exclude_attr]}});
     } catch (error) {
       console.error('Erro ao Procurar Atividades',error.message);
       throw new BadRequestException();
     }
   }
-
-  async findOne(id: number) {
+  
+  async findOne(projecao = 'APP',id: number) {
     try {
       
-      return this.atividadeModel.findOne({where:{codAtividade: id}});
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      return this.atividadeModel.findOne({attributes:{exclude:[...exclude_attr]},where:{codAtividade: id}});
     
     } catch (error) {
     

@@ -1,5 +1,5 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AvaliacaoDispositivoService } from './avaliacao-dispositivo.service';
 import { CreateAvaliacaoDispositivoDto } from './dto/create-avaliacao-dispositivo.dto';
 import { UpdateAvaliacaoDispositivoDto } from './dto/update-avaliacao-dispositivo.dto';
@@ -19,16 +19,18 @@ export class AvaliacaoDispositivoController {
 
   @ApiOperation({summary:'Listar avaliações-dispositivo.'})
   @ApiResponse({status: 200,description:'Ok', type:[AvaliacaoDispositivo]})
+  @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default:'APP'}})
   @Get()
-  findAll() {
-    return this.avaliacaoDispositivoService.findAll();
+  findAll(@Query('projecao') projecao:string='APP') {
+    return this.avaliacaoDispositivoService.findAll(projecao);
   }
-
+  
   @ApiOperation({summary:'Buscar uma avaliação-dispositivo.'})
   @ApiResponse({status: 200,description:'Ok', type:AvaliacaoDispositivo})
+  @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default:'APP'}})
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.avaliacaoDispositivoService.findOne(+id);
+  findOne(@Query('projecao') projecao:string = 'APP',@Param('id') id: string) {
+    return this.avaliacaoDispositivoService.findOne(projecao,+id);
   }
 
   @ApiOperation({summary:'Atualizar uma avaliação-dispositivo.'})

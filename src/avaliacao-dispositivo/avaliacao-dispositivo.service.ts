@@ -4,6 +4,8 @@ import { CreateAvaliacaoDispositivoDto } from './dto/create-avaliacao-dispositiv
 import { UpdateAvaliacaoDispositivoDto } from './dto/update-avaliacao-dispositivo.dto';
 import { AvaliacaoDispositivo } from './entities/avaliacao-dispositivo.entity';
 
+const EXCLUDED_APP_ATTRIBUTES = ['']
+
 @Injectable()
 export class AvaliacaoDispositivoService {
   
@@ -19,9 +21,11 @@ export class AvaliacaoDispositivoService {
     return 'Avaliacao-Dispositivo Criada com Sucesso!';
   }
 
-  async findAll() {
+  async findAll(projecao ='APP') {
     try {
-      return this.avaliacaoDispositivoModule.findAll();
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+
+      return this.avaliacaoDispositivoModule.findAll({attributes:{exclude:[...exclude_attr]}});
       
     } catch (error) {
       console.error('Erro ao Buscar Avaliacoes-Dispositivo', error.message);
@@ -29,9 +33,11 @@ export class AvaliacaoDispositivoService {
     }
   }
 
-  async findOne(id: number) {
+  async findOne(projecao = 'APP',id: number) {
     try {
-      return this.avaliacaoDispositivoModule.findOne({where:{codAvaliacaoDispositivo:id}});
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+
+      return this.avaliacaoDispositivoModule.findOne({attributes:{exclude:[...exclude_attr]},where:{codAvaliacaoDispositivo:id}});
       
     } catch (error) {
       console.error(`Erro ao Buscar Avaliacao-Dispositivo #${id}`,error.message);

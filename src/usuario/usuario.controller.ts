@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Usuario } from './entities/usuario.entity';
 
 @Controller('usuario')
@@ -19,17 +19,19 @@ export class UsuarioController {
 
   @ApiOperation({ summary: 'Listar usuários' })
   @ApiResponse({ status: 200, description: 'Ok', type: [Usuario] })
+  @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default:'APP'}})
   @Get()
-  async findAll() {
-    return this.usuarioService.findAll();
+  async findAll(@Query('projecao') projecao:string= 'APP') {
+    return this.usuarioService.findAll(projecao);
   }
-
-
+  
+  
   @ApiOperation({summary: 'Buscar um usuario'})
   @ApiResponse({status: 200, description: 'Ok', type: Usuario})
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usuarioService.findOne(+id);
+  @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default:'APP'}})
+  findOne(@Query('projecao') projecao:string ='APP',@Param('id') id: string) {
+    return this.usuarioService.findOne(projecao, +id);
   }
 
   @ApiOperation({summary: 'Atualizar dados de um usuário'})

@@ -4,6 +4,8 @@ import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { Usuario } from './entities/usuario.entity';
 
+const EXCLUDE_APP_ATTRIBUTES = ['']
+
 @Injectable()
 export class UsuarioService {
   constructor(
@@ -24,19 +26,21 @@ export class UsuarioService {
     return 'Usuario Criado com Sucesso';
   }
 
-  async findAll() {
+  async findAll(projecao = 'APP') {
     try {
-      return this.usuarioModel.findAll();
+      const exclude_attr = (projecao == 'APP')? EXCLUDE_APP_ATTRIBUTES:[]
+      return this.usuarioModel.findAll({attributes:{exclude:[...exclude_attr]}});
       
     } catch (error) {
       console.error('Erro ao Buscar Usuarios',error.message);
       throw new BadRequestException();
     }
   }
-
-  async findOne(id: number) {
+  
+  async findOne(projecao = 'APP',id: number) {
     try {
-      return this.usuarioModel.findOne({where: {codUsuario: id}});
+      const exclude_attr = (projecao == 'APP')? EXCLUDE_APP_ATTRIBUTES:[]
+      return this.usuarioModel.findOne({attributes:{exclude:[...exclude_attr]},where: {codUsuario: id}});
       
     } catch (error) {
       console.error(`Erro ao Buscar Usuario #${id}`,error.message);

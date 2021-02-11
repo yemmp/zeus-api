@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {Table,Column,Model,PrimaryKey,AutoIncrement,ForeignKey, BelongsTo } from 'sequelize-typescript'
+import {Table,Column,Model,PrimaryKey,AutoIncrement,ForeignKey, BelongsTo, HasMany } from 'sequelize-typescript'
 import { CheckList } from 'src/check-list/entities/check-list.entity';
+import { FaseExperiencia } from 'src/fase-experiencia/entities/fase-experiencia.entity';
 
 @Table({
     underscored:true,
@@ -36,4 +37,7 @@ export class Experiencia extends Model {
     @ApiProperty()
     @Column
     codUsuarioCriacao:number;
+
+    @HasMany(()=>FaseExperiencia)
+    faseExperiencia: FaseExperiencia[];
 }

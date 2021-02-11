@@ -4,6 +4,9 @@ import { CreateExperienciaDto } from './dto/create-experiencia.dto';
 import { UpdateExperienciaDto } from './dto/update-experiencia.dto';
 import { Experiencia } from './entities/experiencia.entity';
 
+const EXCLUDED_APP_ATTRIBUTES = ['datCriacao','datAtualizacao','datExclusao','indAtivo','codConcessionaria','codUsuarioCriacao']
+
+
 @Injectable()
 export class ExperienciaService {
   constructor(@InjectModel(Experiencia)private experienciaModule: typeof Experiencia) {}
@@ -18,19 +21,21 @@ export class ExperienciaService {
     return 'Experiencia Criada com Sucesso';
   }
 
-  async findAll() {
+  async findAll(projecao = 'APP') {
     try {
-      return this.experienciaModule.findAll();
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      return this.experienciaModule.findAll({attributes:{exclude:[...exclude_attr]}});
       
     } catch (error) {
       console.error('Erro ao Buscar Experiencias',error.message);
       throw new BadRequestException();
     }
   }
-
-  async findOne(id: number) {
+  
+  async findOne(projecao = 'APP',id: number) {
     try {
-      return this.experienciaModule.findOne({where:{codExperiencia:id}});
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      return this.experienciaModule.findOne({attributes:{exclude:[...exclude_attr]},where:{codExperiencia:id}});
     } catch (error) {
       console.error(`Erro ao Buscar Experiencia #${id}`,error.message);
     }

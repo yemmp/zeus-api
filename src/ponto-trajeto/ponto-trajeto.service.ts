@@ -4,6 +4,8 @@ import { CreatePontoTrajetoDto } from './dto/create-ponto-trajeto.dto';
 import { UpdatePontoTrajetoDto } from './dto/update-ponto-trajeto.dto';
 import { PontoTrajeto } from './entities/ponto-trajeto.entity';
 
+const EXCLUDED_APP_ATTRIBUTE = ['']
+
 @Injectable()
 export class PontoTrajetoService {
 
@@ -20,9 +22,10 @@ export class PontoTrajetoService {
     return 'Ponto Trajeto Criado com Sucesso!';
   }
 
-  async findAll() {
+  async findAll(projecao = 'APP') {
     try {
-      return this.pontoTrajetoModel.findAll();
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTE:[]
+      return this.pontoTrajetoModel.findAll({attributes:{exclude:[...exclude_attr]}});
       
     } catch (error) {
       
@@ -32,9 +35,10 @@ export class PontoTrajetoService {
     }
   }
 
-  async findOne(id: number) {
+  async findOne(projecao = 'APP',id: number) {
     try {
-      return this.pontoTrajetoModel.findOne({where:{codPontoTrajeto:id}});
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTE:[]
+      return this.pontoTrajetoModel.findOne({attributes:{exclude:[...exclude_attr]},where:{codPontoTrajeto:id}});
     } catch (error) {
       console.error (`Erro ao Buscar Ponto-Trajeto #${id}`, error.message);
       throw new BadRequestException();

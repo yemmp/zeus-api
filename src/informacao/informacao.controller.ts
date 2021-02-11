@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
 import { InformacaoService } from './informacao.service';
 import { CreateInformacaoDto } from './dto/create-informacao.dto';
 import { UpdateInformacaoDto } from './dto/update-informacao.dto';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Informacao } from './entities/informacao.entity';
 
 @Controller('informacao')
@@ -20,15 +20,17 @@ export class InformacaoController {
   @ApiOperation({summary:'Listar informações'})
   @ApiResponse({status: 200,description:'Ok', type: [Informacao]})
   @Get()
-  findAll() {
-    return this.informacaoService.findAll();
+  @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default:'APP'}})
+  findAll(@Query('projecao') projecao:string = 'APP') {
+    return this.informacaoService.findAll(projecao);
   }
-
+  
   @ApiOperation({summary:'Buscar uma informação'})
   @ApiResponse({status: 200,description:'Ok', type: Informacao})
+  @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default:'APP'}})
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.informacaoService.findOne(+id);
+  findOne(@Query('projecao') projecao:string = 'APP',@Param('id') id: string) {
+    return this.informacaoService.findOne(projecao,+id);
   }
 
   @ApiOperation({summary:'Atualizar uma informação'})

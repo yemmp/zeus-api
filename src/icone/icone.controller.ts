@@ -24,12 +24,13 @@ export class IconeController {
   findAll(@Query('projecao') projecao:string = 'APP') {
     return this.iconeService.findAll(projecao);
   }
-
+  
   @ApiOperation({summary:'Buscar um icone'})
   @ApiResponse({status: 200,description:'Ok', type: Icone})
+  @ApiQuery({name:'projecao', allowEmptyValue: true, schema:{ default: 'APP'}})
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.iconeService.findOne(+id);
+  findOne(@Query('projecao')projecao:string = 'APP',@Param('id') id: string) {
+    return this.iconeService.findOne(projecao,+id);
   }
 
   @ApiOperation({summary:'Atualizar um icone'})

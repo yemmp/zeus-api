@@ -4,6 +4,8 @@ import { CreateSessaoDto } from './dto/create-sessao.dto';
 import { UpdateSessaoDto } from './dto/update-sessao.dto';
 import { Sessao } from './entities/sessao.entity';
 
+const EXCLUDED_APP_ATTRIBUTES = ['']
+
 @Injectable()
 export class SessaoService {
   constructor(@InjectModel(Sessao) private sessaoModel: typeof Sessao){}
@@ -19,9 +21,10 @@ export class SessaoService {
     return 'Sessao Criada com Sucesso';
   }
 
-  async findAll() {
+  async findAll(projecao = 'APP') {
     try {
-      return this.sessaoModel.findAll();
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      return this.sessaoModel.findAll({attributes:{exclude:[...exclude_attr]}});
       
     } catch (error) {
       console.error('Erro ao Buscar Sessoes',error.message);
@@ -30,9 +33,10 @@ export class SessaoService {
     }
   }
 
-  async findOne(id: number) {
+  async findOne(projecao = 'APP',id: number) {
     try {
-      return this.sessaoModel.findOne({where:{codSessao:id}});
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      return this.sessaoModel.findOne({attributes:{exclude:[...exclude_attr]},where:{codSessao:id}});
       
     } catch (error) {
       console.error(`Erro ao Buscar Sessao #${id}`,error.message);

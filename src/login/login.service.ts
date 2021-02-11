@@ -4,6 +4,8 @@ import { CreateLoginDto } from './dto/create-login.dto';
 import { UpdateLoginDto } from './dto/update-login.dto';
 import { Login } from './entities/login.entity';
 
+const EXCLUDED_APP_ATTRIBUTES = ['']
+
 @Injectable()
 export class LoginService {
   constructor(@InjectModel(Login)private loginModel: typeof Login){}
@@ -20,19 +22,23 @@ export class LoginService {
     return 'Login Criado com Sucesso!';
   }
 
-  async findAll() {
+  async findAll(projecao = 'APP') {
     try {
-      return this.loginModel.findAll();
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      
+      return this.loginModel.findAll({attributes:{exclude:[...exclude_attr]}});
       
     } catch (error) {
       console.error('Erro ao Buscar Logins', error.message);
       throw new BadRequestException();
     }
   }
-
-  async findOne(id: number) {
+  
+  async findOne(projecao = 'APP',id: number) {
     try {
-      return this.loginModel.findOne({where:{ codLogin:id}});
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+
+      return this.loginModel.findOne({attributes:{exclude:[...exclude_attr]},where:{ codLogin:id}});
       
     } catch (error) {
       console.error(`Erro ao Buscar Login #${id}`, error.message);

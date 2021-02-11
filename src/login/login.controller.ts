@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
 import { LoginService } from './login.service';
 import { CreateLoginDto } from './dto/create-login.dto';
 import { UpdateLoginDto } from './dto/update-login.dto';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Login } from './entities/login.entity';
 
 @Controller('login')
@@ -19,16 +19,18 @@ export class LoginController {
 
   @ApiOperation({summary:'Listar logins'})
   @ApiResponse({status: 200,description:'Ok',type:[Login]})
+  @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default:'APP'}})
   @Get()
-  findAll() {
-    return this.loginService.findAll();
+  findAll(@Query('projecao') projecao:string = 'APP') {
+    return this.loginService.findAll(projecao);
   }
-
+  
   @ApiOperation({summary:'Buscar um login'})
   @ApiResponse({status: 200,description:'Ok',type:Login})
+  @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default:'APP'}})
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.loginService.findOne(+id);
+  findOne(@Query('projecao') projecao:string = 'APP',@Param('id') id: string) {
+    return this.loginService.findOne(projecao,+id);
   }
 
   @ApiOperation({summary:'Atualizar um login'})

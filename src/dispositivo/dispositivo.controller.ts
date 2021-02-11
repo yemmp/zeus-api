@@ -1,5 +1,5 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { DispositivoService } from './dispositivo.service';
 import { CreateDispositivoDto } from './dto/create-dispositivo.dto';
 import { UpdateDispositivoDto } from './dto/update-dispositivo.dto';
@@ -19,16 +19,18 @@ export class DispositivoController {
 
   @ApiOperation({summary:'Listar dispositivos'})
   @ApiResponse({status: 200, description:'Ok', type: [Dispositivo]})
+  @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default:'APP'}})
   @Get()
-  findAll() {
-    return this.dispositivoService.findAll();
+  findAll(@Query('projecao') projecao:string = 'APP') {
+    return this.dispositivoService.findAll(projecao);
   }
-
+  
   @ApiOperation({summary:'Buscar um dispositivo'})
   @ApiResponse({status: 200, description:'Ok', type: Dispositivo})
+  @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default:'APP'}})
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.dispositivoService.findOne(+id);
+  findOne(@Query('projecao') projecao:string = 'APP',@Param('id') id: string) {
+    return this.dispositivoService.findOne(projecao,+id);
   }
 
   @ApiOperation({summary:'Atualizar um dispositivo'})

@@ -4,6 +4,8 @@ import { CreateExperienciaDispositivoDto } from './dto/create-experiencia-dispos
 import { UpdateExperienciaDispositivoDto } from './dto/update-experiencia-dispositivo.dto';
 import { ExperienciaDispositivo } from './entities/experiencia-dispositivo.entity';
 
+const  EXCLUDED_APP_ATTRIBUTES = ['']
+
 @Injectable()
 export class ExperienciaDispositivoService {
 
@@ -19,10 +21,11 @@ export class ExperienciaDispositivoService {
     return 'Experiencia-Dispositivo Criada com Sucesso';
   }
   
-  async findAll() {
+  async findAll(projecao = 'APP') {
     
     try {
-      return this.experienciaDispositivoModel.findAll();
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      return this.experienciaDispositivoModel.findAll({attributes:{exclude:[...exclude_attr]}});
       
     } catch (error) {
       
@@ -31,9 +34,10 @@ export class ExperienciaDispositivoService {
     }
   }
 
-  async findOne(id: number) {
+  async findOne(projecao = 'APP',id: number) {
     try {
-      return this.experienciaDispositivoModel.findOne({where:{codExperienciaDispositivo:id}});
+      const exclude_attr = (projecao =='APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      return this.experienciaDispositivoModel.findOne({attributes:{exclude:[...exclude_attr]},where:{codExperienciaDispositivo:id}});
     } catch (error) {
   
       console.error(`Erro ao Buscar Experiencia-Dispositivo #${id}`, error.message);

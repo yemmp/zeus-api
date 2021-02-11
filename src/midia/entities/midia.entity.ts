@@ -49,9 +49,5 @@ export class Midia extends Model {
     @Exclude({toPlainOnly: true})
     @Column
     codUsuarioCriacao: number;
-
-   // constructor(partial: Partial<Midia>) {
-   //     Object.assign(this, partial);
-    //  }
-    
+ 
 }

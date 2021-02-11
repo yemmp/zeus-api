@@ -4,6 +4,8 @@ import { CreateCheckListDto } from './dto/create-check-list.dto';
 import { UpdateCheckListDto } from './dto/update-check-list.dto';
 import { CheckList } from './entities/check-list.entity';
 
+const EXCLUDED_APP_ATTRIBUTES = ['datCriacao','datAtualizacao','datExclusao','indAtivo','codConcessionaria','codUsuarioCriacao']
+
 @Injectable()
 export class CheckListService {
 
@@ -19,19 +21,22 @@ constructor(@InjectModel(CheckList)private checkListModel: typeof CheckList){}
     return 'Check-List Criado com Sucesso!';
   }
 
-  async findAll() {
+  async findAll(projecao = 'APP') {
     try {
-      return this.checkListModel.findAll();
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      return this.checkListModel.findAll({attributes:{exclude:[...exclude_attr]}});
       
     } catch (error) {
       console.error('Erro ao Buscar Check-Lists', error.message);
       throw new BadRequestException();
     }
   }
-
-  async findOne(id: number) {
+  
+  async findOne(projecao = 'APP',id: number) {
     try {
-      return this.checkListModel.findOne({where:{codCheckList:id}});
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      
+      return this.checkListModel.findOne({attributes:{exclude:[...exclude_attr]},where:{codCheckList:id}});
       
     } catch (error) {
       console.error(`Erro ao Buscar Check-List #${id}`, error.message);

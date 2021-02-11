@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
 import { FormularioService } from './formulario.service';
 import { CreateFormularioDto } from './dto/create-formulario.dto';
 import { UpdateFormularioDto } from './dto/update-formulario.dto';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Formulario } from './entities/formulario.entity';
 
 @Controller('formulario')
@@ -19,16 +19,18 @@ export class FormularioController {
 
   @ApiOperation({summary:'Listar formularios'})
   @ApiResponse({status: 200,description:'Ok', type: [Formulario]})
+  @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default:'APP'}})
   @Get()
-  findAll() {
-    return this.formularioService.findAll();
+  findAll(@Query('projecao') projecao:string = 'APP') {
+    return this.formularioService.findAll(projecao);
   }
-
+  
   @ApiOperation({summary:'Buscar um formulario'})
   @ApiResponse({status: 200,description:'Ok', type: Formulario})
+  @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default:'APP'}})
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.formularioService.findOne(+id);
+  findOne(@Query('projecao') projecao:string = 'APP',@Param('id') id: string) {
+    return this.formularioService.findOne(projecao,+id);
   }
 
   @ApiOperation({summary:'Atualizar um formulario'})

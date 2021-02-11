@@ -4,6 +4,8 @@ import { CreateAvaliacaoDto } from './dto/create-avaliacao.dto';
 import { UpdateAvaliacaoDto } from './dto/update-avaliacao.dto';
 import { Avaliacao } from './entities/avaliacao.entity';
 
+const EXCLUDED_APP_ATTRIBUTES = ['']
+
 @Injectable()
 export class AvaliacaoService {
 
@@ -18,19 +20,22 @@ export class AvaliacaoService {
     return 'Avaliacao Criada com Sucesso!';
   }
 
-  async findAll() {
+  async findAll(projecao = 'APP') {
     try {
-      return this.avaliacaoModel.findAll();
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      return this.avaliacaoModel.findAll({attributes:{exclude:[...exclude_attr]}});
       
     } catch (error) {
       console.error('Erro ao Buscar Avaliacoes');
       throw new BadRequestException();
     }
   }
-
-  async findOne(id: number) {
+  
+  async findOne(projecao = 'APP',id: number) {
     try {
-      return this.avaliacaoModel.findOne({where:{codAvaliacao:id}});
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      
+      return this.avaliacaoModel.findOne({attributes:{exclude:[...exclude_attr]},where:{codAvaliacao:id}});
 
       
     } catch (error) {

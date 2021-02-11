@@ -63,6 +63,7 @@ midia: Midia;
 
 
 @ForeignKey(()=>Informacao)
+@ApiProperty()
 @Column
 codInformacao: number;
 }

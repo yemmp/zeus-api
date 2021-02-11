@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
 import { ExperienciaService } from './experiencia.service';
 import { CreateExperienciaDto } from './dto/create-experiencia.dto';
 import { UpdateExperienciaDto } from './dto/update-experiencia.dto';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Experiencia } from './entities/experiencia.entity';
 
 @Controller('experiencia')
@@ -20,15 +20,17 @@ export class ExperienciaController {
   @ApiOperation({summary:'Listar experiencias'})
   @ApiResponse({status: 200, description:'Ok' , type: [Experiencia]})
   @Get()
-  findAll() {
-    return this.experienciaService.findAll();
+  @ApiQuery({name:'projecao',allowEmptyValue: true, schema:{default:'APP'}})
+  findAll(@Query('projecao') projecao:string = 'APP') {
+    return this.experienciaService.findAll(projecao);
   }
-
+  
   @ApiOperation({summary:'Buscar uma experiencia'})
   @ApiResponse({status: 200, description:'Ok' , type: Experiencia})
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.experienciaService.findOne(+id);
+  @ApiQuery({name:'projecao',allowEmptyValue: true, schema:{default:'APP'}})
+  findOne(@Query('projecao') projecao:string = 'APP',@Param('id') id: string) {
+    return this.experienciaService.findOne(projecao,+id);
   }
 
   @ApiOperation({summary:'Atualizar uma experiencia'})

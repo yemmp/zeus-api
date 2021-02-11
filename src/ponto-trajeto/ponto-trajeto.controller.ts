@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
 import { PontoTrajetoService } from './ponto-trajeto.service';
 import { CreatePontoTrajetoDto } from './dto/create-ponto-trajeto.dto';
 import { UpdatePontoTrajetoDto } from './dto/update-ponto-trajeto.dto';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { PontoTrajeto } from './entities/ponto-trajeto.entity';
 
 @Controller('ponto-trajeto')
@@ -19,16 +19,18 @@ export class PontoTrajetoController {
 
   @ApiOperation({summary:'Listar pontos-trajeto'})
   @ApiResponse({status: 200,description:'Ok',type: [PontoTrajeto]})
+  @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default:'APP'}})
   @Get()
-  findAll() {
-    return this.pontoTrajetoService.findAll();
+  findAll(@Query('projecao') projecao:string = 'APP') {
+    return this.pontoTrajetoService.findAll(projecao);
   }
-
+  
   @ApiOperation({summary:'Buscar um ponto-trajeto'})
   @ApiResponse({status: 200,description:'Ok',type: PontoTrajeto})
+  @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default:'APP'}})
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.pontoTrajetoService.findOne(+id);
+  findOne(@Query('projecao') projecao:string = 'APP',@Param('id') id: string) {
+    return this.pontoTrajetoService.findOne(projecao,+id);
   }
 
   @ApiOperation({summary:'Atualizar um ponto-trajeto'})

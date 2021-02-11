@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
 import { TestDriveService } from './test-drive.service';
 import { CreateTestDriveDto } from './dto/create-test-drive.dto';
 import { UpdateTestDriveDto } from './dto/update-test-drive.dto';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { TestDrive } from './entities/test-drive.entity';
 
 @Controller('test-drive')
@@ -16,19 +16,21 @@ export class TestDriveController {
   create(@Body() createTestDriveDto: CreateTestDriveDto) {
     return this.testDriveService.create(createTestDriveDto);
   }
-
+  
   @ApiOperation({summary:'Listar test-drives'})
   @ApiResponse({status: 200, description:'Ok' , type:[TestDrive] })
+  @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default:'APP'}})
   @Get()
-  findAll() {
-    return this.testDriveService.findAll();
+  findAll(@Query('projecao') projecao:string ='APP') {
+    return this.testDriveService.findAll(projecao);
   }
-
+  
   @ApiOperation({summary:'Buscar um test-drive'})
   @ApiResponse({status: 200, description:'Ok' , type:TestDrive })
+  @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default:'APP'}})
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.testDriveService.findOne(+id);
+  findOne(@Query('projecao') projecao:string ='APP',@Param('id') id: string) {
+    return this.testDriveService.findOne(projecao,+id);
   }
 
   @ApiOperation({summary:'Atualizar um test-drive'})

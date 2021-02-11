@@ -4,6 +4,8 @@ import { CreateTrajetoDto } from './dto/create-trajeto.dto';
 import { UpdateTrajetoDto } from './dto/update-trajeto.dto';
 import { Trajeto } from './entities/trajeto.entity';
 
+const EXCLUDE_APP_ATTRIBUTES = ['']
+
 @Injectable()
 export class TrajetoService {
 
@@ -19,9 +21,10 @@ export class TrajetoService {
     return 'Trajeto Criado com Sucesso';
   }
 
-  async findAll() {
+  async findAll(projecao = 'APP') {
     try {
-      return this.trajetoModel.findAll();
+      const exclude_attr = (projecao == 'APP')? EXCLUDE_APP_ATTRIBUTES:[]
+      return this.trajetoModel.findAll({attributes:{exclude:[...exclude_attr]}});
       
     } catch (error) {
       console.error(`Erro ao Buscar Trajetos`,error.message);
@@ -29,10 +32,11 @@ export class TrajetoService {
     }
   }
   
-  async findOne(id: number) {
+  async findOne(projecao ='APP',id: number) {
     try {
+      const exclude_attr = (projecao == 'APP')? EXCLUDE_APP_ATTRIBUTES:[]
       
-      return this.trajetoModel.findOne({where:{codTrajeto:id}});
+      return this.trajetoModel.findOne({attributes:{exclude:[...exclude_attr]},where:{codTrajeto:id}});
     } catch (error) {
       console.error(`Erro ao Buscar Trajeto #${id}`, error.message);
       throw new BadRequestException();

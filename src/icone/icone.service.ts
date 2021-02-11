@@ -30,10 +30,11 @@ export class IconeService {
       throw new BadRequestException();
     }
   }
-
-  async findOne(id: number) {
+  
+  async findOne(projecao = 'APP', id: number) {
     try {
-      return this.iconeModel.findOne({where:{codIcone:id}});
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES : []
+      return this.iconeModel.findOne({attributes:{exclude:[...exclude_attr]},where:{codIcone:id}});
       
     } catch (error) {
       console.error(`Erro ao Criar Icone`, error.message);

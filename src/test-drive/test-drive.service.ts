@@ -5,6 +5,8 @@ import { CreateTestDriveDto } from './dto/create-test-drive.dto';
 import { UpdateTestDriveDto } from './dto/update-test-drive.dto';
 import { TestDrive } from './entities/test-drive.entity';
 
+const EXCLUDED_APP_ATTRIBUTES = ['']
+
 @Injectable()
 export class TestDriveService {
   constructor(@InjectModel(TestDrive)private testDriveModel: typeof TestDrive){}
@@ -19,19 +21,21 @@ export class TestDriveService {
     return 'Test-Drive Criado com Sucesso!';
   }
 
-  async findAll() {
+  async findAll(projecao = 'APP') {
     try {
-      return this.testDriveModel.findAll();
+      const exclude_attr = (projecao == 'APP')?EXCLUDED_APP_ATTRIBUTES:[]
+      return this.testDriveModel.findAll({attributes:{exclude:[...exclude_attr]}});
       
     } catch (error) {
       console.error('Erro ao Buscar Test-Drive',error.message);
       throw new BadRequestException();
     }
   }
-
-  async findOne(id: number) {
+  
+  async findOne(projecao,id: number) {
     try {
-      this.testDriveModel.findOne({where:{codTestDrive:id}});
+      const exclude_attr = (projecao == 'APP')?EXCLUDED_APP_ATTRIBUTES:[]
+      this.testDriveModel.findOne({attributes:{exclude:[...exclude_attr]},where:{codTestDrive:id}});
     } catch (error) {
       
       console.error(`Erro ao Buscar Test-Drive #${id}`,error.message);

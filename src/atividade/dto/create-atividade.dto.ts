@@ -65,6 +65,10 @@ export class CreateAtividadeDto {
     codUsuarioCriacao: number;
 
 
+    @ApiProperty({
+        example:'1',
+        description:'Número do índice da informação a qual a atividade pertence.'
+    })
     codInformacao: number;
 
 }

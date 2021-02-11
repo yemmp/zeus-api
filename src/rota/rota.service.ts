@@ -4,6 +4,8 @@ import { CreateRotaDto } from './dto/create-rota.dto';
 import { UpdateRotaDto } from './dto/update-rota.dto';
 import { Rota } from './entities/rota.entity';
 
+const EXCLUDED_APP_ATTRIBUTES = ['']
+
 @Injectable()
 export class RotaService {
 
@@ -18,9 +20,10 @@ export class RotaService {
     }
   }
 
-  async findAll() {
+  async findAll(projecao = 'APP') {
     try {
-      return this.rotaModel.findAll();
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      return this.rotaModel.findAll({attributes:{exclude:[...exclude_attr]}});
     } catch (error) {
       console.error('Erro ao Buscar Rotas', error.message);
       throw new BadRequestException();
@@ -28,9 +31,11 @@ export class RotaService {
     
   }
 
-  async findOne(id: number) {
+  async findOne(projecao = 'APP',id: number) {
     try {
-      return this.rotaModel.findOne({where:{codRota:id}});
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+
+      return this.rotaModel.findOne({attributes:{exclude:[...exclude_attr]},where:{codRota:id}});
     } catch (error) {
       console.error(`Erro ao Buscar Rota #${id}`, error.message);
     }

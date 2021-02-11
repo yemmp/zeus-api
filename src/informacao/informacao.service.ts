@@ -5,6 +5,9 @@ import { CreateInformacaoDto } from './dto/create-informacao.dto';
 import { UpdateInformacaoDto } from './dto/update-informacao.dto';
 import { Informacao } from './entities/informacao.entity';
 
+
+const EXCLUDED_APP_ATTRIBUTES = ['datCriacao','datAtualizacao','datExclusao','indAtivo','codConcessionaria','codUsuarioCriacao']
+
 @Injectable()
 export class InformacaoService {
 
@@ -19,24 +22,33 @@ export class InformacaoService {
     return 'Informacao Criada com Sucesso!';
   }
 
-  async findAll() {
+  async findAll(projecao = 'APP') {
     try {
-      return this.informacaoModel.findAll({include:Atividade, order:[
-        [{model:Atividade, 'as':'atividades'}, 'numSequencia', 'ASC']
-      ]});
-      
-    } catch (error) {
-      console.error('Erro ao Buscar Informacoes',error.message);
-      throw new BadRequestException();
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      return this.informacaoModel.findAll({include:Atividade,
+        attributes:{exclude:[...exclude_attr]}
+        , order:[
+          [{model:Atividade, 'as':'atividades'}, 'numSequencia', 'ASC']
+        ]});
+        
+      } catch (error) {
+        console.error('Erro ao Buscar Informacoes',error.message);
+        throw new BadRequestException();
+      }
     }
-  }
-
-  async findOne(id: number) {
-    try {
-      return this.informacaoModel.findOne({where:{codInformacao:id}});
-      
-    } catch (error) {
-      console.error(`Erro ao Buscar Informacao #${id}`,error.message);
+    
+    async findOne(projecao = 'APP',id: number) {
+      try {
+        const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+        
+        return this.informacaoModel.findOne({include:Atividade,
+          attributes:{exclude:[...exclude_attr]}
+          , order:[
+            [{model:Atividade, 'as':'atividades'}, 'numSequencia', 'ASC']
+          ],where:{codInformacao:id}});
+        
+      } catch (error) {
+        console.error(`Erro ao Buscar Informacao #${id}`,error.message);
       throw  new BadRequestException();
     }
   }

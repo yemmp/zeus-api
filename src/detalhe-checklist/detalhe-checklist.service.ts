@@ -4,6 +4,8 @@ import { CreateDetalheChecklistDto } from './dto/create-detalhe-checklist.dto';
 import { UpdateDetalheChecklistDto } from './dto/update-detalhe-checklist.dto';
 import { DetalheChecklist } from './entities/detalhe-checklist.entity';
 
+const EXCLUDED_APP_ATTRIBUTES = []
+
 @Injectable()
 export class DetalheChecklistService {
   constructor(@InjectModel(DetalheChecklist)private detalheCheckListModule: typeof DetalheChecklist){}
@@ -19,9 +21,11 @@ export class DetalheChecklistService {
     return 'Detalhe-CheckList criado com Sucesso!';
   }
 
-  async findAll() {
+  async findAll(projecao = 'APP') {
     try {
-      return this.detalheCheckListModule.findAll();
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+
+      return this.detalheCheckListModule.findAll({attributes:{exclude:[...exclude_attr]}});
     } catch (error) {
       console.error('Erro ao Buscar Detalhe-CheckList',error.message);  
       throw new BadRequestException();
@@ -29,9 +33,10 @@ export class DetalheChecklistService {
     
   }
 
-  async findOne(id: number) {
+  async findOne(projecao = 'APP',id: number) {
     try {
-      return this.detalheCheckListModule.findOne({where:{codDetalheCheckList:id}});
+      const exclude_attr = (projecao =='APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      return this.detalheCheckListModule.findOne({attributes:{exclude:[...exclude_attr]},where:{codDetalheCheckList:id}});
       
     } catch (error) {
       console.error(`Erro ao Buscar Detalhe-CheckList #${id}`,error.message);
