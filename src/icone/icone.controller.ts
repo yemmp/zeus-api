@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
 import { IconeService } from './icone.service';
 import { CreateIconeDto } from './dto/create-icone.dto';
 import { UpdateIconeDto } from './dto/update-icone.dto';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Icone } from './entities/icone.entity';
 
 @Controller('icone')
@@ -19,9 +19,10 @@ export class IconeController {
 
   @ApiOperation({summary:'Listar icones'})
   @ApiResponse({status: 200,description:'Ok', type: [Icone]})
+  @ApiQuery({name:'projecao', allowEmptyValue: true, schema:{ default: 'APP'}})
   @Get()
-  findAll() {
-    return this.iconeService.findAll();
+  findAll(@Query('projecao') projecao:string = 'APP') {
+    return this.iconeService.findAll(projecao);
   }
 
   @ApiOperation({summary:'Buscar um icone'})

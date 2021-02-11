@@ -1,5 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import { Atividade } from 'src/atividade/entities/atividade.entity';
 import { CreateInformacaoDto } from './dto/create-informacao.dto';
 import { UpdateInformacaoDto } from './dto/update-informacao.dto';
 import { Informacao } from './entities/informacao.entity';
@@ -20,7 +21,9 @@ export class InformacaoService {
 
   async findAll() {
     try {
-      return this.informacaoModel.findAll();
+      return this.informacaoModel.findAll({include:Atividade, order:[
+        [{model:Atividade, 'as':'atividades'}, 'numSequencia', 'ASC']
+      ]});
       
     } catch (error) {
       console.error('Erro ao Buscar Informacoes',error.message);

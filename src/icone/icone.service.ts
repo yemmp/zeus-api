@@ -4,6 +4,8 @@ import { CreateIconeDto } from './dto/create-icone.dto';
 import { UpdateIconeDto } from './dto/update-icone.dto';
 import { Icone } from './entities/icone.entity';
 
+const EXCLUDED_APP_ATTRIBUTES = ['nomDiretorio','indAtivo','codUsuarioCriacao','dscIcone','nomIcone','datCriacao','datAtualizacao','datExclusao']
+
 @Injectable()
 export class IconeService {
 
@@ -18,9 +20,10 @@ export class IconeService {
     return 'Icone Criado com Sucesso!';
   }
 
-  async findAll() {
+  async findAll(projecao = 'APP') {
     try {
-      return this.iconeModel.findAll();
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES : []
+      return this.iconeModel.findAll({attributes:{exclude:[...exclude_attr]}});
       
     } catch (error) {
       console.error('Erro ao Buscar Icones',error.message);
