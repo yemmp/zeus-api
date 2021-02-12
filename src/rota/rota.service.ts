@@ -39,22 +39,23 @@ export class RotaService {
               {
                 model: PontoTrajeto,
                 attributes: ['numPosicaoX', 'numPosicaoY'],
+
               },
+
             ],
-            order: [
-              [{ model: PontoTrajeto, 'as': 'pontosTrajeto' }, 'numSequencia', 'ASC']
-            ]
           },
           {
             model: PontoRota,
-            right: true,
+            //right: true,
             attributes: ['numPosicaoX', 'numPosicaoY']
           },
+
 
         ]
         , attributes: { exclude: [...exclude_attr] },
         order: [
-          [{ model: PontoRota, 'as': 'pontosRota' }, 'numSequencia', 'ASC']
+          [{ model: PontoRota, 'as': 'pontosRota' }, 'numSequencia', 'ASC'],
+          [{ model: Trajeto, 'as': 'trajeto' }, { model: PontoTrajeto, 'as': 'pontosTrajeto' }, 'numSequencia', 'ASC']
         ]
       });
     } catch (error) {
@@ -76,12 +77,13 @@ export class RotaService {
           {
             model: Trajeto,
             attributes: ['nomTrajeto', 'qtdPontos'],
-            include: [
-              {
-                model: PontoTrajeto,
-                attributes: ['numPosicaoX', 'numPosicaoY'],
-              },
-            ],
+            include:
+              [
+                {
+                  model: PontoTrajeto,
+                  attributes: ['numPosicaoX', 'numPosicaoY'],
+                },
+              ],
             order: [
               [{ model: PontoTrajeto, 'as': 'pontosTrajeto' }, 'numSequencia', 'ASC']
             ]
