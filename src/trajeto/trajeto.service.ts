@@ -50,23 +50,22 @@ export class TrajetoService {
       Trajeto.update(updateTrajetoDto, { where: { codTrajeto: id } }).then(() => {
         console.log(`Trajeto #${id} Atualizado com Sucesso!`);
       })
+      return `Trajeto #${id} Atualizado com Sucesso!`;
     } catch (error) {
 
       console.error(`Erro ao Atualizar Trajeto #${id}`, error.message);
       throw new BadRequestException();
     }
-    return `Trajeto #${id} Atualizado com Sucesso!`;
   }
 
   async remove(id: number) {
     try {
       const deleteTrajeto = this.trajetoModel.destroy({ where: { codTrajeto: id } });
       console.log(`Trajeto #${id} Deletado! ${deleteTrajeto} Registros Apagados!`);
-
+      return `Trajeto #${id} Deletado!`;
     } catch (error) {
       console.error(`Erro ao Deletar Trajeto #${id}`, error.message);
       throw new BadRequestException();
     }
-    return `Trajeto #${id} Deletado!`;
   }
 }

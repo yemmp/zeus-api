@@ -6,7 +6,7 @@ import { ExperienciaDispositivo } from 'src/experiencia-dispositivo/entities/exp
 
 @Table({
     underscored:true,
-    tableName: 'avaliacao dispositivo',  
+    tableName: 'avaliacao_dispositivo',  
     createdAt: 'datCriacao',
     updatedAt: 'datAtualizacao',
     deletedAt: 'datExclusao'

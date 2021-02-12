@@ -1,5 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import { PontoRota } from 'src/ponto-rota/entities/ponto-rota.entity';
+import { PontoTrajeto } from 'src/ponto-trajeto/entities/ponto-trajeto.entity';
 import { Trajeto } from 'src/trajeto/entities/trajeto.entity';
 import { CreateRotaDto } from './dto/create-rota.dto';
 import { UpdateRotaDto } from './dto/update-rota.dto';
@@ -26,9 +28,34 @@ export class RotaService {
   async findAll(projecao = 'APP') {
     try {
       const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
+      Trajeto.hasMany(PontoTrajeto);
+      PontoTrajeto.belongsTo(Trajeto);
       return this.rotaModel.findAll({
-        include: { model: Trajeto, attributes: ['nomTrajeto', 'qtdPontos'], through: { attributes: ['numPosicaoX', 'numPosicaoY'] } }
-        , attributes: { exclude: [...exclude_attr] }
+        include: [
+          {
+            model: Trajeto,
+            attributes: ['nomTrajeto', 'qtdPontos'],
+            include: [
+              {
+                model: PontoTrajeto,
+                attributes: ['numPosicaoX', 'numPosicaoY'],
+              },
+            ],
+            order: [
+              [{ model: PontoTrajeto, 'as': 'pontosTrajeto' }, 'numSequencia', 'ASC']
+            ]
+          },
+          {
+            model: PontoRota,
+            right: true,
+            attributes: ['numPosicaoX', 'numPosicaoY']
+          },
+
+        ]
+        , attributes: { exclude: [...exclude_attr] },
+        order: [
+          [{ model: PontoRota, 'as': 'pontosRota' }, 'numSequencia', 'ASC']
+        ]
       });
     } catch (error) {
       console.error('Erro ao Buscar Rotas', error.message);
@@ -38,10 +65,40 @@ export class RotaService {
   }
 
   async findOne(projecao = 'APP', id: number) {
+
+    Trajeto.hasMany(PontoTrajeto);
+    PontoTrajeto.belongsTo(Trajeto);
     try {
       const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
 
-      return this.rotaModel.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codRota: id } });
+      return this.rotaModel.findOne({
+        include: [
+          {
+            model: Trajeto,
+            attributes: ['nomTrajeto', 'qtdPontos'],
+            include: [
+              {
+                model: PontoTrajeto,
+                attributes: ['numPosicaoX', 'numPosicaoY'],
+              },
+            ],
+            order: [
+              [{ model: PontoTrajeto, 'as': 'pontosTrajeto' }, 'numSequencia', 'ASC']
+            ]
+          },
+          {
+            model: PontoRota,
+            right: true,
+            attributes: ['numPosicaoX', 'numPosicaoY']
+          },
+
+        ]
+        , attributes: { exclude: [...exclude_attr] },
+        order: [
+          [{ model: PontoRota, 'as': 'pontosRota' }, 'numSequencia', 'ASC']
+        ]
+        , where: { codRota: id }
+      });
     } catch (error) {
       console.error(`Erro ao Buscar Rota #${id}`, error.message);
     }
@@ -51,20 +108,20 @@ export class RotaService {
     try {
       Rota.update(updateRotaDto, { where: { codRota: id } }).then(() =>
         console.log(`Rota #${id} Atualizada com Sucesso!`));
+      return `Rota #${id} Atualizada com Sucesso!`;
     } catch (error) {
       console.error(`Erro ao Atualizar Rota #${id}`, error.message);
       throw new BadRequestException();
     }
-    return `Rota #${id} Atualizada com Sucesso!`;
   }
 
   async remove(id: number) {
     try {
       const deleteRota = this.rotaModel.destroy({ where: { codRota: id } });
       console.log(`Rota #${id} Deletada! ${deleteRota} Registros Apagados!`);
+      return `Rota #${id} Deletada!`;
     } catch (error) {
       console.error(`Erro ao Deletar Rota #${id}`, error.message);
     }
-    return `Rota #${id} Deletada!`;
   }
 }

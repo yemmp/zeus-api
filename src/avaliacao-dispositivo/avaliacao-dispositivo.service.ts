@@ -8,8 +8,8 @@ const EXCLUDED_APP_ATTRIBUTES = ['']
 
 @Injectable()
 export class AvaliacaoDispositivoService {
-  
-  constructor(@InjectModel(AvaliacaoDispositivo)private avaliacaoDispositivoModule: typeof AvaliacaoDispositivo){}
+
+  constructor(@InjectModel(AvaliacaoDispositivo) private avaliacaoDispositivoModule: typeof AvaliacaoDispositivo) { }
 
   async create(createAvaliacaoDispositivoDto: CreateAvaliacaoDispositivoDto) {
     try {
@@ -17,31 +17,31 @@ export class AvaliacaoDispositivoService {
       console.log('Avaliacao-Dispositivo Criada com Sucesso!');
       return 'Avaliacao-Dispositivo Criada com Sucesso!';
     } catch (error) {
-      console.error('Erro ao Criar Avaliacao-Dispositvo',error.message);
+      console.error('Erro ao Criar Avaliacao-Dispositvo', error.message);
       throw new BadRequestException();
     }
   }
 
-  async findAll(projecao ='APP') {
+  async findAll(projecao = 'APP') {
     try {
-      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
 
-      return this.avaliacaoDispositivoModule.findAll({attributes:{exclude:[...exclude_attr]}});
-      
+      return this.avaliacaoDispositivoModule.findAll({ attributes: { exclude: [...exclude_attr] } });
+
     } catch (error) {
       console.error('Erro ao Buscar Avaliacoes-Dispositivo', error.message);
       throw new BadRequestException();
     }
   }
 
-  async findOne(projecao = 'APP',id: number) {
+  async findOne(projecao = 'APP', id: number) {
     try {
-      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
 
-      return this.avaliacaoDispositivoModule.findOne({attributes:{exclude:[...exclude_attr]},where:{codAvaliacaoDispositivo:id}});
-      
+      return this.avaliacaoDispositivoModule.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codAvaliacaoDispositivo: id } });
+
     } catch (error) {
-      console.error(`Erro ao Buscar Avaliacao-Dispositivo #${id}`,error.message);
+      console.error(`Erro ao Buscar Avaliacao-Dispositivo #${id}`, error.message);
       throw new BadRequestException();
 
     }
@@ -49,24 +49,24 @@ export class AvaliacaoDispositivoService {
 
   async update(id: number, updateAvaliacaoDispositivoDto: UpdateAvaliacaoDispositivoDto) {
     try {
-      AvaliacaoDispositivo.update(updateAvaliacaoDispositivoDto,{where:{codAvaliacaoDispositivo:id}}).then(()=>{
+      AvaliacaoDispositivo.update(updateAvaliacaoDispositivoDto, { where: { codAvaliacaoDispositivo: id } }).then(() => {
         console.log(`Avaliacao-Dispositivo #${id} Atualizada com Sucesso!`);
+        return `Atualizacao-Dispositivo #${id} Atualizada com Sucesso!`;
       })
     } catch (error) {
-      console.error(`Erro ao Atualizar Avaliacao-Dispositivo #${id}`,error.message);
+      console.error(`Erro ao Atualizar Avaliacao-Dispositivo #${id}`, error.message);
       throw new BadRequestException();
     }
-    
-    return `Atualizacao-Dispositivo #${id} Atualizada com Sucesso!`;
+
   }
 
   async remove(id: number) {
     try {
-      this.avaliacaoDispositivoModule.destroy({where:{codAvaliacaoDispositivo:id}});
+      this.avaliacaoDispositivoModule.destroy({ where: { codAvaliacaoDispositivo: id } });
+      return `Avaliacao-Dispositivo #${id} Deletada!`;
     } catch (error) {
-      console.error(`Erro ao Deletar Avaliacao-Dispositivo #${id}`,error.messsage);
+      console.error(`Erro ao Deletar Avaliacao-Dispositivo #${id}`, error.messsage);
       throw new BadRequestException();
     }
-    return `Avaliacao-Dispositivo #${id} Deletada!`;
   }
 }

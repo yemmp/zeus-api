@@ -46,20 +46,20 @@ export class PontoRotaService {
     try {
       PontoRota.update(updatePontoRotaDto, { where: { codPontoRota: id } }).then(() => {
         console.log(`Ponto-Rota #${id} Atualizado com Sucesso`);
+        return `Ponto-Rota #${id} Atualizado com Sucesso`;
       })
     } catch (error) {
       console.error(`Erro ao Atualizar Ponto-Rota #${id}`, error.message);
     }
-    return `Ponto-Rota #${id} Atualizado com Sucesso`;
   }
 
   async remove(id: number) {
     try {
       this.pontoRotaModel.destroy({ where: { codPontoRota: id } });
+      return `Ponto-Rota #${id} Deletado!`;
     } catch (error) {
       console.error(`Erro ao Deletar Ponto-Rota #${id}`, error.message);
       throw new BadRequestException();
     }
-    return `Ponto-Rota #${id} Deletado!`;
   }
 }

@@ -8,7 +8,7 @@ const EXCLUDED_APP_ATTRIBUTES = []
 
 @Injectable()
 export class DetalheChecklistService {
-  constructor(@InjectModel(DetalheChecklist)private detalheCheckListModule: typeof DetalheChecklist){}
+  constructor(@InjectModel(DetalheChecklist) private detalheCheckListModule: typeof DetalheChecklist) { }
 
   async create(createDetalheChecklistDto: CreateDetalheChecklistDto) {
     try {
@@ -16,7 +16,7 @@ export class DetalheChecklistService {
       console.log('Detalhe-CheckList criado com Sucesso!');
       return 'Detalhe-CheckList criado com Sucesso!';
     } catch (error) {
-      console.error('Erro ao Criar Detalhe-CheckList',error.message);
+      console.error('Erro ao Criar Detalhe-CheckList', error.message);
       throw new BadRequestException();
     }
 
@@ -24,44 +24,44 @@ export class DetalheChecklistService {
 
   async findAll(projecao = 'APP') {
     try {
-      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
+      const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
 
-      return this.detalheCheckListModule.findAll({attributes:{exclude:[...exclude_attr]}});
+      return this.detalheCheckListModule.findAll({ attributes: { exclude: [...exclude_attr] } });
     } catch (error) {
-      console.error('Erro ao Buscar Detalhe-CheckList',error.message);  
+      console.error('Erro ao Buscar Detalhe-CheckList', error.message);
       throw new BadRequestException();
     }
-    
+
   }
 
-  async findOne(projecao = 'APP',id: number) {
+  async findOne(projecao = 'APP', id: number) {
     try {
-      const exclude_attr = (projecao =='APP')? EXCLUDED_APP_ATTRIBUTES:[]
-      return this.detalheCheckListModule.findOne({attributes:{exclude:[...exclude_attr]},where:{codDetalheCheckList:id}});
-      
+      const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
+      return this.detalheCheckListModule.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codDetalheCheckList: id } });
+
     } catch (error) {
-      console.error(`Erro ao Buscar Detalhe-CheckList #${id}`,error.message);
+      console.error(`Erro ao Buscar Detalhe-CheckList #${id}`, error.message);
     }
   }
 
   async update(id: number, updateDetalheChecklistDto: UpdateDetalheChecklistDto) {
     try {
-      DetalheChecklist.update(updateDetalheChecklistDto,{where:{codDetalheCheckList:id}}).then(()=>{
+      DetalheChecklist.update(updateDetalheChecklistDto, { where: { codDetalheCheckList: id } }).then(() => {
         console.log(`Detalhe-CheckList #${id} Atualizado com Sucesso!`);
+        return `Detalhe-CheckList #${id} Atualizado com Sucesso!`;
       })
     } catch (error) {
-      console.error(`Erro ao Atualizar Detalhe-CheckList #${id}`,error.message);
+      console.error(`Erro ao Atualizar Detalhe-CheckList #${id}`, error.message);
       throw new BadRequestException();
     }
-    return `Detalhe-CheckList #${id} Atualizado com Sucesso!`;
   }
 
   async remove(id: number) {
     try {
-      this.detalheCheckListModule.destroy({where:{codDetalheCheckList:id}});
+      this.detalheCheckListModule.destroy({ where: { codDetalheCheckList: id } });
+      return `Detalhe-CheckList #${id} Deletada!`;
     } catch (error) {
-      console.error(`Erro ao Deletar Detalhe-CheckList #${id}`,error.message);
+      console.error(`Erro ao Deletar Detalhe-CheckList #${id}`, error.message);
     }
-    return `Detalhe-CheckList #${id} Deletada!`;
   }
 }

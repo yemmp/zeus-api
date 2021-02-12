@@ -54,6 +54,7 @@ export class LoginService {
         where: { codLogin: id }
       }).then(() =>
         console.log(`Login #${id} atualizado com sucesso!`));
+      return `Login #${id} Atualizado com Sucesso!`;
 
     } catch (error) {
 
@@ -62,7 +63,6 @@ export class LoginService {
 
     }
 
-    return `Login #${id} Atualizado com Sucesso!`;
 
   }
 
@@ -74,6 +74,7 @@ export class LoginService {
       });
 
       console.log(`Login #${id} Deletado! ${deleteLogin} Registros Apagados`);
+      return `Login #${id} Deletado! `
 
     } catch (error) {
 

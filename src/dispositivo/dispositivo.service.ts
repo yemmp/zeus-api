@@ -9,62 +9,62 @@ const EXCLUDED_APP_ATTRIBUTES = ['']
 @Injectable()
 export class DispositivoService {
 
-  constructor(@InjectModel(Dispositivo)private dispositivoModel: typeof Dispositivo){}
+  constructor(@InjectModel(Dispositivo) private dispositivoModel: typeof Dispositivo) { }
 
 
   async create(createDispositivoDto: CreateDispositivoDto) {
     try {
-    await this.dispositivoModel.create(createDispositivoDto);
-    console.log('Dispositivo Criado com Sucesso!');
-    return 'Dispositivo Criado com Sucesso!';
+      await this.dispositivoModel.create(createDispositivoDto);
+      console.log('Dispositivo Criado com Sucesso!');
+      return 'Dispositivo Criado com Sucesso!';
     } catch (error) {
-      console.error('Erro ao Criar Dispositivo',error.message);
+      console.error('Erro ao Criar Dispositivo', error.message);
       throw new BadRequestException();
     }
   }
 
   async findAll(projecao = 'APP') {
     try {
-      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
-      return this.dispositivoModel.findAll({attributes:{exclude:[...exclude_attr]}});
-      
+      const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
+      return this.dispositivoModel.findAll({ attributes: { exclude: [...exclude_attr] } });
+
     } catch (error) {
-      console.error('Erro ao Buscar Dispositivos',error.message);
+      console.error('Erro ao Buscar Dispositivos', error.message);
       throw new BadRequestException();
     }
   }
 
-  async findOne(projecao = 'APP',id: number) {
+  async findOne(projecao = 'APP', id: number) {
     try {
-      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
-      return this.dispositivoModel.findOne({attributes:{exclude:[...exclude_attr]},where:{codDispositivo:id}});
-      
+      const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
+      return this.dispositivoModel.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codDispositivo: id } });
+
     } catch (error) {
-      console.error(`Erro ao Buscar Dispositivo #${id}`,error.message);
+      console.error(`Erro ao Buscar Dispositivo #${id}`, error.message);
       throw new BadRequestException();
     }
   }
 
   async update(id: number, updateDispositivoDto: UpdateDispositivoDto) {
     try {
-      Dispositivo.update(updateDispositivoDto,{where:{codDispositivo:id}}).then(()=>{
+      Dispositivo.update(updateDispositivoDto, { where: { codDispositivo: id } }).then(() => {
         console.log(`Dispositivo #${id} Atualizado com Sucesso!`);
+        return `Dispositivo #${id} Atualizado com Sucesso`;
       });
     } catch (error) {
-      console.error(`Erro ao Atualizar Dispositivo #${id}`,error.message);
+      console.error(`Erro ao Atualizar Dispositivo #${id}`, error.message);
       throw new BadRequestException();
-      
+
     }
-    return `Dispositivo #${id} Atualizado com Sucesso`;
   }
 
   async remove(id: number) {
     try {
-      this.dispositivoModel.destroy({where:{codDispositivo:id}})
+      this.dispositivoModel.destroy({ where: { codDispositivo: id } })
+      return `Dispositivo #${id} Deletado!`;
     } catch (error) {
-      console.error(`Erro ao Deletar Dispositivo #${id}`,error.message);
+      console.error(`Erro ao Deletar Dispositivo #${id}`, error.message);
       throw new BadRequestException();
     }
-    return `Dispositivo #${id} Deletado!`;
   }
 }

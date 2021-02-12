@@ -4,12 +4,12 @@ import { CreateCheckListDto } from './dto/create-check-list.dto';
 import { UpdateCheckListDto } from './dto/update-check-list.dto';
 import { CheckList } from './entities/check-list.entity';
 
-const EXCLUDED_APP_ATTRIBUTES = ['datCriacao','datAtualizacao','datExclusao','indAtivo','codConcessionaria','codUsuarioCriacao']
+const EXCLUDED_APP_ATTRIBUTES = ['datCriacao', 'datAtualizacao', 'datExclusao', 'indAtivo', 'codConcessionaria', 'codUsuarioCriacao']
 
 @Injectable()
 export class CheckListService {
 
-constructor(@InjectModel(CheckList)private checkListModel: typeof CheckList){}
+  constructor(@InjectModel(CheckList) private checkListModel: typeof CheckList) { }
 
   async create(createCheckListDto: CreateCheckListDto) {
     try {
@@ -17,55 +17,55 @@ constructor(@InjectModel(CheckList)private checkListModel: typeof CheckList){}
       console.log('Check-List Criado com Sucesso!');
       return 'Check-List Criado com Sucesso!';
     } catch (error) {
-      console.error('Erro ao Criar Check-List',error.message);
+      console.error('Erro ao Criar Check-List', error.message);
       throw new BadRequestException();
     }
   }
 
   async findAll(projecao = 'APP') {
     try {
-      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
-      return this.checkListModel.findAll({attributes:{exclude:[...exclude_attr]}});
-      
+      const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
+      return this.checkListModel.findAll({ attributes: { exclude: [...exclude_attr] } });
+
     } catch (error) {
       console.error('Erro ao Buscar Check-Lists', error.message);
       throw new BadRequestException();
     }
   }
-  
-  async findOne(projecao = 'APP',id: number) {
+
+  async findOne(projecao = 'APP', id: number) {
     try {
-      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
-      
-      return this.checkListModel.findOne({attributes:{exclude:[...exclude_attr]},where:{codCheckList:id}});
-      
+      const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
+
+      return this.checkListModel.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codCheckList: id } });
+
     } catch (error) {
       console.error(`Erro ao Buscar Check-List #${id}`, error.message);
       throw new BadRequestException();
-      
+
     }
   }
 
   async update(id: number, updateCheckListDto: UpdateCheckListDto) {
     try {
-      CheckList.update(updateCheckListDto,{where:{codCheckList:id}}).then(()=>{
+      CheckList.update(updateCheckListDto, { where: { codCheckList: id } }).then(() => {
         console.log(`Check-List #${id} Atualizado com Sucesso`);
+        return `Check-List #${id} Atualizada com Sucesso`;
       })
     } catch (error) {
-      console.error(`Erro ao Atualizar Check-List #${id}`,error.message);
+      console.error(`Erro ao Atualizar Check-List #${id}`, error.message);
       throw new BadRequestException();
     }
-    
-    return `Check-List #${id} Atualizada com Sucesso`;
+
   }
 
   remove(id: number) {
     try {
-      this.checkListModel.destroy({where:{codCheckList:id}});
+      this.checkListModel.destroy({ where: { codCheckList: id } });
+      return `Check-List #${id} Deletada!`;
     } catch (error) {
-      console.error(`Erro ao Deletar Check-List #${id}`,error.message);
+      console.error(`Erro ao Deletar Check-List #${id}`, error.message);
       throw new BadRequestException();
     }
-    return `Check-List #${id} Deletada!`;
   }
 }

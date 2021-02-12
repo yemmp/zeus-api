@@ -51,23 +51,23 @@ export class ExperienciaDispositivoService {
     try {
       ExperienciaDispositivo.update(updateExperienciaDispositivoDto, { where: { codExperienciaDispositivo: id } }).then(() => {
         console.log(`Experiencia-Dispositivo #${id} Atualizada`);
+        return `Experiencia-Dispositivo #${id} Atualizada`;
       })
     } catch (error) {
 
       console.error(`Erro ao Atualizar Experiencia-Dispositivo #${id}`, error.message);
       throw new BadRequestException()
     }
-    return `Experiencia-Dispositivo #${id} Atualizada`;
   }
 
   async remove(id: number) {
     try {
       this.experienciaDispositivoModel.destroy({ where: { codExperienciaDispositivo: id } });
+      return `Experiencia-Dispositivo #${id} Deletada`;
     } catch (error) {
       console.error(`Erro ao Buscar Experiencia-Dispositivo #${id}`, error.message);
       throw new BadRequestException()
 
     }
-    return `Experiencia-Dispositivo #${id} Deletada`;
   }
 }

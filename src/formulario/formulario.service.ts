@@ -49,21 +49,21 @@ export class FormularioService {
     try {
       Formulario.update(updateFormularioDto, { where: { codFormulario: id } }).then(() => {
         console.log(`Formulario #${id} Atualizado com Sucesso!`);
+        return `Formulario #${id} Atualizado com Sucesso!`;
       });
     } catch (error) {
       console.error(`Erro ao Atualizar Formulario #${id}`, error.message);
       throw new BadRequestException();
     }
-    return `Formulario #${id} Atualizado com Sucesso!`;
   }
 
   remove(id: number) {
     try {
       this.formularioModel.destroy({ where: { codFormulario: id } });
+      return `Formulario #${id} Deletado`;
     } catch (error) {
       console.error(`Erro ao Deletar Formulario #${id}`, error.message);
       throw new BadRequestException();
     }
-    return `Formulario #${id} Deletado`;
   }
 }

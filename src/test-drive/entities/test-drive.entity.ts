@@ -1,11 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {Table,Model,Column,PrimaryKey,AutoIncrement} from 'sequelize-typescript'
+import { Table, Model, Column, PrimaryKey, AutoIncrement } from 'sequelize-typescript'
 import { Col } from 'sequelize/types/lib/utils';
 
 
 @Table({
-    underscored:true,
-    tableName:'test drive',  
+    underscored: true,
+    tableName: 'test_drive',
     createdAt: 'datCriacao',
     updatedAt: 'datAtualizacao',
     deletedAt: 'datExclusao'
@@ -37,7 +37,7 @@ export class TestDrive extends Model {
     @ApiProperty()
     @Column
     datRetorno: Date;
- 
+
     @ApiProperty()
     @Column
     codConcessionaria: number;

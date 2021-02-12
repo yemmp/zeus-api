@@ -1,5 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import sequelize from 'sequelize';
 import { Atividade } from 'src/atividade/entities/atividade.entity';
 import { Midia } from 'src/midia/entities/midia.entity';
 import { CreateInformacaoDto } from './dto/create-informacao.dto';
@@ -28,7 +29,19 @@ export class InformacaoService {
     try {
       const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
       return this.informacaoModel.findAll({
-        include: [{ model: Atividade, attributes: ['nomAtividade'] }, { model: Midia }],
+        include: [
+          {
+            model: Atividade, 'as': 'atividades',
+            attributes: ['nomAtividade'],
+            include: [
+              {
+                model: Midia,
+                attributes: ['codTipoMidia', 'nomMidia', 'nomArquivo']
+              }
+            ]
+
+          }
+        ],
         attributes: { exclude: [...exclude_attr] }
         , order: [
           [{ model: Atividade, 'as': 'atividades' }, 'numSequencia', 'ASC']
@@ -46,7 +59,19 @@ export class InformacaoService {
       const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
 
       return this.informacaoModel.findOne({
-        include: { model: Atividade, attributes: ['nomAtividade', 'codMidia'] },
+        include: [
+          {
+            model: Atividade, 'as': 'atividades',
+            attributes: ['nomAtividade'],
+            include: [
+              {
+                model: Midia,
+                attributes: ['codTipoMidia', 'nomMidia', 'nomArquivo']
+              }
+            ]
+
+          }
+        ],
         attributes: { exclude: [...exclude_attr] }
         , order: [
           [{ model: Atividade, 'as': 'atividades' }, 'numSequencia', 'ASC']
@@ -63,21 +88,20 @@ export class InformacaoService {
     try {
       Informacao.update(updateInformacaoDto, { where: { codInformacao: id } }).then(() => {
         console.log(`Informacao #${id} Atualizado com Sucesso!`);
-
+        return `Informacao #${id} Atualizada`;
       })
     } catch (error) {
       console.error(`Erro ao Atualizar Informacao #${id}`, error.message);
       throw new BadRequestException();
     }
-    return `Informacao #${id} Atualizada`;
   }
 
   async remove(id: number) {
     try {
       this.informacaoModel.destroy({ where: { codInformacao: id } });
+      return `Informacao #${id} Deletada `;
     } catch (error) {
       console.error(`Erro ao Deletar Informacao #${id}`, error.message);
     }
-    return `Informacao #${id} Deletada `;
   }
 }

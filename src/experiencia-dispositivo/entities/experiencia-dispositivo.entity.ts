@@ -1,44 +1,44 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {Table,Model,Column,PrimaryKey,ForeignKey,BelongsTo,AutoIncrement} from 'sequelize-typescript'
+import { Table, Model, Column, PrimaryKey, ForeignKey, BelongsTo, AutoIncrement } from 'sequelize-typescript'
 import { Dispositivo } from 'src/dispositivo/entities/dispositivo.entity';
 import { Experiencia } from 'src/experiencia/entities/experiencia.entity';
 
 @Table({
     underscored: true,
-    tableName:'experiencia dispositivo',  
+    tableName: 'experiencia_dispositivo',
     createdAt: 'datCriacao',
     updatedAt: 'datAtualizacao',
     deletedAt: 'datExclusao'
 })
-export class ExperienciaDispositivo extends Model{
+export class ExperienciaDispositivo extends Model {
 
     @ApiProperty()
     @PrimaryKey
     @AutoIncrement
     @Column
     codExperienciaDispositivo: number;
-    
+
     @ApiProperty()
-    @ForeignKey(()=>Dispositivo)
+    @ForeignKey(() => Dispositivo)
     @Column
     codDispositivo: number;
-    
-    @BelongsTo(()=>Dispositivo)
+
+    @BelongsTo(() => Dispositivo)
     dispositivo: Dispositivo;
-    
+
     @ApiProperty()
-    @ForeignKey(()=>Experiencia)
+    @ForeignKey(() => Experiencia)
     @Column
-    codExperiencia:number;
-    
-    @BelongsTo(()=>Experiencia)
+    codExperiencia: number;
+
+    @BelongsTo(() => Experiencia)
     experiencia: Experiencia;
-    
+
     @ApiProperty()
     @Column
-    codConcessionaria:number;
-    
+    codConcessionaria: number;
+
     @ApiProperty()
     @Column
-    codUsuarioCriacao:number;
+    codUsuarioCriacao: number;
 }

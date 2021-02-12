@@ -48,13 +48,12 @@ export class MidiaService {
     try {
       Midia.update(updateMidiaDto, { where: { codMidia: id } }).then(() => {
         console.log(`Midia #${id} Atualizada com Sucesso!`);
-
+        return `Midia #${id} Atualizada com Sucesso!`;
       })
     } catch (error) {
       console.error(`Erro ao Atualizar Midia #${id}`, error.message);
       throw new BadRequestException();
     }
-    return `Midia #${id} Atualizada com Sucesso!`;
   }
 
   async remove(id: number) {
@@ -62,11 +61,10 @@ export class MidiaService {
 
       const deleteMidia = this.midiaModel.destroy({ where: { codMidia: id } });
       console.log(`Midia #${id} Deletada! ${deleteMidia} Registros Apagados!`);
-
+      return `Midia #${id} Deletada! `;
     } catch (error) {
       console.error(`Erro ao Remover Midia #${id}`, error.message);
       throw new BadRequestException();
     }
-    return `Midia #${id} Deletada! `;
   }
 }

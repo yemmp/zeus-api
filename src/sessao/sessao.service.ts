@@ -51,13 +51,13 @@ export class SessaoService {
         where: { codSessao: id }
       }).then(() => {
         console.log(`Sessão nº=${id}atualizada com sucesso `);
+        return `Sessao nº=${id} Atualizada com Sucesso`;
       });
 
     } catch (error) {
       console.error(`Erro ao Atualizar Sessao nº=${id}`, error.message);
       throw new BadRequestException();
     }
-    return `Sessao nº=${id} Atualizada com Sucesso`;
   }
 
   async remove(id: number) {
@@ -66,11 +66,11 @@ export class SessaoService {
         where: { codSessao: id }
       });
       console.log`Registros da sessão #${id} removidos!`
+      return `Sessao nº=${id} Deletada!`;
 
     } catch (error) {
       console.error(`Erro ao Remover Sessao nº=${id}`);
       throw new BadRequestException();
     }
-    return `Sessao nº=${id} Deletada!`;
   }
 }

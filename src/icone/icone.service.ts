@@ -47,20 +47,20 @@ export class IconeService {
     try {
       Icone.update(updateIconeDto, { where: { codIcone: id } }).then(() => {
         console.log(`Icone #${id} Atualizado com Sucesso!`);
+        return `Icone #${id} Atualizado com Sucesso!`;
       })
     } catch (error) {
       console.error(`Erro ao Atualizar Icone #${id}`, error.message);
       throw new BadRequestException();
     }
-    return `Icone #${id} Atualizado com Sucesso!`;
   }
 
   async remove(id: number) {
     try {
       this.iconeModel.destroy({ where: { codIcone: id } });
+      return `Icone #${id} Deletado!`;
     } catch (error) {
       console.error(`Erro ao Deletar Icone #${id}`, error.message);
     }
-    return `Icone #${id} Deletado!`;
   }
 }

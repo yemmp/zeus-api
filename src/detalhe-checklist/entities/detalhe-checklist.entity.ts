@@ -4,7 +4,7 @@ import { CheckList } from 'src/check-list/entities/check-list.entity';
 
 @Table({
     underscored:true,
-    tableName: 'detalhe checklist',  
+    tableName: 'detalhe_checklist',  
     createdAt: 'datCriacao',
     updatedAt: 'datAtualizacao',
     deletedAt: 'datExclusao'

@@ -55,6 +55,7 @@ export class UsuarioService {
         where: { codUsuario: id }
       }).then(() => {
         console.log(`Usuario #${id} atualizado com sucesso`)
+        return `Usuario #${id} Atualizado com Sucesso!`;
       });
 
     } catch (error) {
@@ -62,7 +63,6 @@ export class UsuarioService {
       console.error(`Erro ao Atualizar Usuario #${id}`, error.message);
       throw new BadRequestException();
     }
-    return `Usuario #${id} Atualizado com Sucesso!`;
 
   }
 
@@ -72,12 +72,12 @@ export class UsuarioService {
         where: { codUsuario: id }
       });
       console.log(`Usuario #${id} deletado! ${deleteCount} registros apagados!`);
+      return `Usuario #${id} Deletado!`;
 
     } catch (error) {
       console.error(`Erro ao Deletar Usuario #${id}`, error.message);
       throw new BadRequestException();
 
     }
-    return `Usuario #${id} Deletado!`;
   }
 }

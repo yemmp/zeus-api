@@ -49,21 +49,23 @@ export class PontoTrajetoService {
   async update(id: number, updatePontoTrajetoDto: UpdatePontoTrajetoDto) {
     try {
       PontoTrajeto.update(updatePontoTrajetoDto, { where: { codPontoTrajeto: id } })
-        .then(() => { console.log(`Ponto-Trajeto #${id} Atualizado com Sucesso!`) });
+        .then(() => {
+          console.log(`Ponto-Trajeto #${id} Atualizado com Sucesso!`)
+        });
+      return `Ponto-Trajeto #${id} Atualizado com Sucesso!`;
     } catch (error) {
       console.error(`Erro ao Atualizar Ponto-Trajeto #${id}`, error.message);
       throw new BadRequestException();
     }
-    return `Ponto-Trajeto #${id} Atualizado com Sucesso!`;
   }
 
   async remove(id: number) {
     try {
       const deletePontoTrajeto = this.pontoTrajetoModel.destroy({ where: { codPontoTrajeto: id } });
       console.log(`Ponto-Trajeto #${id} Deletado! ${deletePontoTrajeto} Registros Apagados!`);
+      return `Ponto-Trajeto #${id} Deletado!`;
     } catch (error) {
       console.error(`Erro ao Deletar Ponto-Trajeto #${id}`, error.message);
     }
-    return `Ponto-Trajeto #${id} Deletado!`;
   }
 }

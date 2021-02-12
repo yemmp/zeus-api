@@ -50,21 +50,21 @@ export class TestDriveService {
       TestDrive.update(updateTestDriveDto, { where: { codTestDrive: id } }).then(() => {
         console.log(`Test-Drive #${id} Atualizado com Sucesso!`);
       })
+      return `Test-Drive #${id} Atualizada com Sucesso!`;
     } catch (error) {
       console.error(`Erro ao Atualizar Test-Drive #${id}`, error.message);
       throw new BadRequestException();
 
     }
-    return `Test-Drive #${id} Atualizada com Sucesso!`;
   }
 
   async remove(id: number) {
     try {
       this.testDriveModel.destroy({ where: { codTestDrive: id } });
+      return `Test-Drive #${id} Deletado!`;
     } catch (error) {
       console.error(`Erro ao Deletar Test-Drive #${id}`, error.message);
       throw new BadRequestException();
     }
-    return `Test-Drive #${id} Deletado!`;
   }
 }

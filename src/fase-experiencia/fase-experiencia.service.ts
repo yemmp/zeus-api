@@ -53,21 +53,21 @@ export class FaseExperienciaService {
     try {
       FaseExperiencia.update(updateFaseExperienciaDto, { where: { codFaseExperiencia: id } }).then(() => {
         console.log(`Fase-Experiencia  Atualizada com Sucesso`);
+        return `Fase-Experiencia #${id} Atualizada com Sucesso!`;
       })
     } catch (error) {
       console.error(`Erro ao Aualizar Fase-Experiencia #${id}`)
       throw new BadRequestException();
     }
-    return `Fase-Experiencia #${id} Atualizada com Sucesso!`;
   }
 
   async remove(id: number) {
     try {
       this.faseExperienciaModel.destroy({ where: { codFaseExperiencia: id } });
+      return `Fase-Experiencia #${id} Deletada`;
     } catch (error) {
       console.error(`Erro ao Deleter Fase-Experiencia #${id}`, error.message);
       throw new BadRequestException();
     }
-    return `Fase-Experiencia #${id} Deletada`;
   }
 }
