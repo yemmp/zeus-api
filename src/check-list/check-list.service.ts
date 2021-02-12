@@ -13,12 +13,13 @@ constructor(@InjectModel(CheckList)private checkListModel: typeof CheckList){}
 
   async create(createCheckListDto: CreateCheckListDto) {
     try {
-      this.checkListModel.create(createCheckListDto);
+      await this.checkListModel.create(createCheckListDto);
+      console.log('Check-List Criado com Sucesso!');
+      return 'Check-List Criado com Sucesso!';
     } catch (error) {
       console.error('Erro ao Criar Check-List',error.message);
       throw new BadRequestException();
     }
-    return 'Check-List Criado com Sucesso!';
   }
 
   async findAll(projecao = 'APP') {

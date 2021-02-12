@@ -12,18 +12,15 @@ export class ConcessionariaService {
 
   async create(createConcessionariaDto: CreateConcessionariaDto) {
    try {
-     
-     this.concessionariaModel.create(createConcessionariaDto);
+    await this.concessionariaModel.create(createConcessionariaDto);
+    console.log('Concessionaria Criada com Sucesso!'); 
+    return 'Concessionaria Criada com Sucesso!';
 
    } catch (error) {
      
     console.error('Erro ao Criar Concessionaria',error.message);
     throw new BadRequestException();
    }
-   
-   
-    console.log ('Concessionaria criada com sucesso');
-    return 'Concessionaria Criada com Sucesso!';
   }
 
   async findAll(projecao = 'APP') {

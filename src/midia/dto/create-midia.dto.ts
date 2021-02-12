@@ -14,6 +14,15 @@ export class CreateMidiaDto {
     nomMidia: string;
     
     @ApiProperty({
+        example:'2',
+        description:'Número do índice do tipo de mídia.',
+    })
+    @IsNotEmpty()
+    @IsString()
+    @IsByteLength(1,5)
+    codTipoMidia: string;
+    
+    @ApiProperty({
         example:'Curva_Direita.mp3',
         description:'Nome do arquivo de mídia.',
     })
@@ -30,15 +39,6 @@ export class CreateMidiaDto {
     @IsString()
     @IsByteLength(1,500)
     nomDiretorio: string;
-    
-    @ApiProperty({
-        example:'2',
-        description:'Número do índice do tipo de mídia.',
-    })
-    @IsNotEmpty()
-    @IsString()
-    @IsByteLength(1,5)
-    codTipoMidia: string;
     
     @ApiProperty({
         example:'S',

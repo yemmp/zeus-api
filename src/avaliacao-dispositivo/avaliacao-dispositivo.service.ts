@@ -13,12 +13,13 @@ export class AvaliacaoDispositivoService {
 
   async create(createAvaliacaoDispositivoDto: CreateAvaliacaoDispositivoDto) {
     try {
-      this.avaliacaoDispositivoModule.create(createAvaliacaoDispositivoDto);
+      await this.avaliacaoDispositivoModule.create(createAvaliacaoDispositivoDto);
+      console.log('Avaliacao-Dispositivo Criada com Sucesso!');
+      return 'Avaliacao-Dispositivo Criada com Sucesso!';
     } catch (error) {
       console.error('Erro ao Criar Avaliacao-Dispositvo',error.message);
       throw new BadRequestException();
     }
-    return 'Avaliacao-Dispositivo Criada com Sucesso!';
   }
 
   async findAll(projecao ='APP') {

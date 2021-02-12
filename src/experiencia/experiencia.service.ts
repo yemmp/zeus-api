@@ -15,12 +15,13 @@ export class ExperienciaService {
 
   async create(createExperienciaDto: CreateExperienciaDto) {
     try {
-      this.experienciaModule.create(createExperienciaDto);
+    await this.experienciaModule.create(createExperienciaDto);
+    console.log('Experiencia Criada com Sucesso');
+    return 'Experiencia Criada com Sucesso';
     } catch (error) {
       console.error('Erro ao Criar Experiencia',error.message);
       throw new BadRequestException();
     }
-    return 'Experiencia Criada com Sucesso';
   }
 
   async findAll(projecao = 'APP') {

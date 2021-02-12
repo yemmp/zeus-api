@@ -9,46 +9,47 @@ const EXCLUDED_APP_ATTRIBUTE = ['']
 @Injectable()
 export class PontoTrajetoService {
 
-  constructor(@InjectModel(PontoTrajeto)private pontoTrajetoModel: typeof PontoTrajeto){}
+  constructor(@InjectModel(PontoTrajeto) private pontoTrajetoModel: typeof PontoTrajeto) { }
 
   async create(createPontoTrajetoDto: CreatePontoTrajetoDto) {
     try {
-     
-      this.pontoTrajetoModel.create(createPontoTrajetoDto);
+
+      await this.pontoTrajetoModel.create(createPontoTrajetoDto);
+      console.log('Ponto-Trajeto Criado com Sucesso!');
+      return 'Ponto-Trajeto Criado com Sucesso!';
     } catch (error) {
-      console.error('Erro ao Criar Ponto-Trajeto',error.message);
+      console.error('Erro ao Criar Ponto-Trajeto', error.message);
       throw new BadRequestException();
     }
-    return 'Ponto Trajeto Criado com Sucesso!';
   }
 
   async findAll(projecao = 'APP') {
     try {
-      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTE:[]
-      return this.pontoTrajetoModel.findAll({attributes:{exclude:[...exclude_attr]}});
-      
+      const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTE : []
+      return this.pontoTrajetoModel.findAll({ attributes: { exclude: [...exclude_attr] } });
+
     } catch (error) {
-      
-      console.error('Erro ao Buscar Pontos-Trajeto',error.message);
+
+      console.error('Erro ao Buscar Pontos-Trajeto', error.message);
       throw new BadRequestException();
 
     }
   }
 
-  async findOne(projecao = 'APP',id: number) {
+  async findOne(projecao = 'APP', id: number) {
     try {
-      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTE:[]
-      return this.pontoTrajetoModel.findOne({attributes:{exclude:[...exclude_attr]},where:{codPontoTrajeto:id}});
+      const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTE : []
+      return this.pontoTrajetoModel.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codPontoTrajeto: id } });
     } catch (error) {
-      console.error (`Erro ao Buscar Ponto-Trajeto #${id}`, error.message);
+      console.error(`Erro ao Buscar Ponto-Trajeto #${id}`, error.message);
       throw new BadRequestException();
     }
   }
 
   async update(id: number, updatePontoTrajetoDto: UpdatePontoTrajetoDto) {
     try {
-      PontoTrajeto.update(updatePontoTrajetoDto,{where:{codPontoTrajeto:id}})
-      .then(()=>{console.log(`Ponto-Trajeto #${id} Atualizado com Sucesso!`)});
+      PontoTrajeto.update(updatePontoTrajetoDto, { where: { codPontoTrajeto: id } })
+        .then(() => { console.log(`Ponto-Trajeto #${id} Atualizado com Sucesso!`) });
     } catch (error) {
       console.error(`Erro ao Atualizar Ponto-Trajeto #${id}`, error.message);
       throw new BadRequestException();
@@ -58,7 +59,7 @@ export class PontoTrajetoService {
 
   async remove(id: number) {
     try {
-      const deletePontoTrajeto = this.pontoTrajetoModel.destroy({where:{codPontoTrajeto:id}});
+      const deletePontoTrajeto = this.pontoTrajetoModel.destroy({ where: { codPontoTrajeto: id } });
       console.log(`Ponto-Trajeto #${id} Deletado! ${deletePontoTrajeto} Registros Apagados!`);
     } catch (error) {
       console.error(`Erro ao Deletar Ponto-Trajeto #${id}`, error.message);

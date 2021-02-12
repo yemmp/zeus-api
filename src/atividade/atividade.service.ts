@@ -1,5 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import { Midia } from 'src/midia/entities/midia.entity';
 import { CreateAtividadeDto } from './dto/create-atividade.dto';
 import { UpdateAtividadeDto } from './dto/update-atividade.dto';
 import { Atividade } from './entities/atividade.entity';
@@ -13,18 +14,20 @@ export class AtividadeService {
 
   async create(createAtividadeDto: CreateAtividadeDto) {
     try {
-      this.atividadeModel.create(createAtividadeDto);
+      await this.atividadeModel.create(createAtividadeDto);
+      console.log('Atividade Criada com Sucesso!');
+      return 'Atividade Criada com Sucesso!';
     } catch (error) {
       console.error('Erro ao Criar a Atividade',error.message);
       throw new BadRequestException();
     }
-    return 'Atividade Criada com Sucesso!';
   }
   
   async findAll(projecao = 'APP') {
     try {
       const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
-      return this.atividadeModel.findAll({attributes:{exclude:[...exclude_attr]}});
+      return this.atividadeModel.findAll({include:{model:Midia,attributes:['codTipoMidia','nomMidia']},
+        attributes:{exclude:[...exclude_attr]}});
     } catch (error) {
       console.error('Erro ao Procurar Atividades',error.message);
       throw new BadRequestException();

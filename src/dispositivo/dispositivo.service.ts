@@ -14,12 +14,13 @@ export class DispositivoService {
 
   async create(createDispositivoDto: CreateDispositivoDto) {
     try {
-      this.dispositivoModel.create(createDispositivoDto);
+    await this.dispositivoModel.create(createDispositivoDto);
+    console.log('Dispositivo Criado com Sucesso!');
+    return 'Dispositivo Criado com Sucesso!';
     } catch (error) {
       console.error('Erro ao Criar Dispositivo',error.message);
       throw new BadRequestException();
     }
-    return 'Dispositivo Criado com Sucesso!';
   }
 
   async findAll(projecao = 'APP') {

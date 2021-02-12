@@ -13,12 +13,13 @@ export class DetalheChecklistService {
   async create(createDetalheChecklistDto: CreateDetalheChecklistDto) {
     try {
       this.detalheCheckListModule.create(createDetalheChecklistDto);
+      console.log('Detalhe-CheckList criado com Sucesso!');
+      return 'Detalhe-CheckList criado com Sucesso!';
     } catch (error) {
       console.error('Erro ao Criar Detalhe-CheckList',error.message);
       throw new BadRequestException();
     }
 
-    return 'Detalhe-CheckList criado com Sucesso!';
   }
 
   async findAll(projecao = 'APP') {

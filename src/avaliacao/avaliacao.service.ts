@@ -12,12 +12,13 @@ export class AvaliacaoService {
   constructor(@InjectModel(Avaliacao)private avaliacaoModel: typeof Avaliacao){}
   async create(createAvaliacaoDto: CreateAvaliacaoDto) {
     try {
-     this.avaliacaoModel.create(createAvaliacaoDto);
+     await this.avaliacaoModel.create(createAvaliacaoDto);
+     console.log('Avaliacao Criada com Sucesso!');
+     return 'Avaliacao Criada com Sucesso!';
     } catch (error) {
       console.error('Erro ao Criar Avaliacao',error.message);
       throw new BadRequestException();
     }
-    return 'Avaliacao Criada com Sucesso!';
   }
 
   async findAll(projecao = 'APP') {

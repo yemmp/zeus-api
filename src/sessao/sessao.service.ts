@@ -8,50 +8,51 @@ const EXCLUDED_APP_ATTRIBUTES = ['']
 
 @Injectable()
 export class SessaoService {
-  constructor(@InjectModel(Sessao) private sessaoModel: typeof Sessao){}
+  constructor(@InjectModel(Sessao) private sessaoModel: typeof Sessao) { }
   async create(createSessaoDto: CreateSessaoDto) {
     try {
-      this.sessaoModel.create(createSessaoDto);
-      
+      await this.sessaoModel.create(createSessaoDto);
+      console.log('Sessao Criada com Sucesso');
+      return 'Sessao Criada com Sucesso';
+
     } catch (error) {
       console.error('Erro ao Criar Sessao');
       throw new BadRequestException();
     }
-    console.log('Sessao criada com sucesso');
-    return 'Sessao Criada com Sucesso';
   }
 
   async findAll(projecao = 'APP') {
     try {
-      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
-      return this.sessaoModel.findAll({attributes:{exclude:[...exclude_attr]}});
-      
+      const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
+      return this.sessaoModel.findAll({ attributes: { exclude: [...exclude_attr] } });
+
     } catch (error) {
-      console.error('Erro ao Buscar Sessoes',error.message);
+      console.error('Erro ao Buscar Sessoes', error.message);
       throw new BadRequestException();
 
     }
   }
 
-  async findOne(projecao = 'APP',id: number) {
+  async findOne(projecao = 'APP', id: number) {
     try {
-      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
-      return this.sessaoModel.findOne({attributes:{exclude:[...exclude_attr]},where:{codSessao:id}});
-      
+      const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
+      return this.sessaoModel.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codSessao: id } });
+
     } catch (error) {
-      console.error(`Erro ao Buscar Sessao #${id}`,error.message);
+      console.error(`Erro ao Buscar Sessao #${id}`, error.message);
       throw new BadRequestException();
-      
+
     }
   }
 
   async update(id: number, updateSessaoDto: UpdateSessaoDto) {
     try {
-      Sessao.update(updateSessaoDto,{
-        where: { codSessao: id }}).then(()=>{
-          console.log(`Sessão nº=${id}atualizada com sucesso `);
-        });
-      
+      Sessao.update(updateSessaoDto, {
+        where: { codSessao: id }
+      }).then(() => {
+        console.log(`Sessão nº=${id}atualizada com sucesso `);
+      });
+
     } catch (error) {
       console.error(`Erro ao Atualizar Sessao nº=${id}`, error.message);
       throw new BadRequestException();
@@ -62,9 +63,10 @@ export class SessaoService {
   async remove(id: number) {
     try {
       const deleteSession = this.sessaoModel.destroy({
-        where: {codSessao:id}});
-        console.log  `Registros da sessão #${id} removidos!`
-      
+        where: { codSessao: id }
+      });
+      console.log`Registros da sessão #${id} removidos!`
+
     } catch (error) {
       console.error(`Erro ao Remover Sessao nº=${id}`);
       throw new BadRequestException();

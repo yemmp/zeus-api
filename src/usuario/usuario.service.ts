@@ -11,72 +11,73 @@ export class UsuarioService {
   constructor(
     @InjectModel(Usuario)
     private usuarioModel: typeof Usuario,
-  ) {}
-  
+  ) { }
+
   async create(createUsuarioDto: CreateUsuarioDto) {
-    
+
     try {
-      this.usuarioModel.create(createUsuarioDto);
-      
+      await this.usuarioModel.create(createUsuarioDto);
+      console.log('Usuario Criado com Sucesso')
+      return 'Usuario Criado com Sucesso';
+
     } catch (error) {
-      console.error('Erro ao Criar Usuario',error.message);
+      console.error('Erro ao Criar Usuario', error.message);
       throw new BadRequestException();
     }
-    console.log('Usuário criado com sucesso!');
-    return 'Usuario Criado com Sucesso';
   }
 
   async findAll(projecao = 'APP') {
     try {
-      const exclude_attr = (projecao == 'APP')? EXCLUDE_APP_ATTRIBUTES:[]
-      return this.usuarioModel.findAll({attributes:{exclude:[...exclude_attr]}});
-      
+      const exclude_attr = (projecao == 'APP') ? EXCLUDE_APP_ATTRIBUTES : []
+      return this.usuarioModel.findAll({ attributes: { exclude: [...exclude_attr] } });
+
     } catch (error) {
-      console.error('Erro ao Buscar Usuarios',error.message);
+      console.error('Erro ao Buscar Usuarios', error.message);
       throw new BadRequestException();
     }
   }
-  
-  async findOne(projecao = 'APP',id: number) {
+
+  async findOne(projecao = 'APP', id: number) {
     try {
-      const exclude_attr = (projecao == 'APP')? EXCLUDE_APP_ATTRIBUTES:[]
-      return this.usuarioModel.findOne({attributes:{exclude:[...exclude_attr]},where: {codUsuario: id}});
-      
+      const exclude_attr = (projecao == 'APP') ? EXCLUDE_APP_ATTRIBUTES : []
+      return this.usuarioModel.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codUsuario: id } });
+
     } catch (error) {
-      console.error(`Erro ao Buscar Usuario #${id}`,error.message);
+      console.error(`Erro ao Buscar Usuario #${id}`, error.message);
       throw new BadRequestException();
     }
   }
-  
+
   async update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
     try {
       Usuario.update(
-        updateUsuarioDto,{
-          where: {codUsuario: id}}).then(()=> {
-            console.log(`Usuario #${id} atualizado com sucesso`)
-          });
-          
-        } catch (error) {
-          
-          console.error(`Erro ao Atualizar Usuario #${id}`,error.message);
-          throw new BadRequestException();
-        }
-        return `Usuario #${id} Atualizado com Sucesso!`;
-        
-      }
-      
-      async remove(id: number) {
-        try {
-          const deleteCount = this.usuarioModel.destroy({
-            where:{codUsuario: id}
-          });
-          console.log(`Usuario #${id} deletado! ${deleteCount} registros apagados!`);
-          
-        } catch (error) {
-          console.error(`Erro ao Deletar Usuario #${id}`,error.message);
-          throw new BadRequestException();
-          
+        updateUsuarioDto, {
+        where: { codUsuario: id }
+      }).then(() => {
+        console.log(`Usuario #${id} atualizado com sucesso`)
+      });
+
+    } catch (error) {
+
+      console.error(`Erro ao Atualizar Usuario #${id}`, error.message);
+      throw new BadRequestException();
     }
-    return `Usuario #${id} Deletado!`;    
+    return `Usuario #${id} Atualizado com Sucesso!`;
+
+  }
+
+  async remove(id: number) {
+    try {
+      const deleteCount = this.usuarioModel.destroy({
+        where: { codUsuario: id }
+      });
+      console.log(`Usuario #${id} deletado! ${deleteCount} registros apagados!`);
+
+    } catch (error) {
+      console.error(`Erro ao Deletar Usuario #${id}`, error.message);
+      throw new BadRequestException();
+
+    }
+    return `Usuario #${id} Deletado!`;
   }
 }
