@@ -9,6 +9,7 @@ import { Rota } from './entities/rota.entity';
 
 const EXCLUDED_APP_ATTRIBUTES = ['codTrajeto', 'indAtivo', 'codConcessionaria', 'codUsuarioCriacao', 'datCriacao', 'datAtualizacao', 'datExclusao']
 
+
 @Injectable()
 export class RotaService {
 
@@ -84,9 +85,6 @@ export class RotaService {
                   attributes: ['numPosicaoX', 'numPosicaoY'],
                 },
               ],
-            order: [
-              [{ model: PontoTrajeto, 'as': 'pontosTrajeto' }, 'numSequencia', 'ASC']
-            ]
           },
           {
             model: PontoRota,
@@ -97,7 +95,9 @@ export class RotaService {
         ]
         , attributes: { exclude: [...exclude_attr] },
         order: [
-          [{ model: PontoRota, 'as': 'pontosRota' }, 'numSequencia', 'ASC']
+          [{ model: PontoRota, 'as': 'pontosRota' }, 'numSequencia', 'ASC'],
+          [{ model: Trajeto, 'as': 'trajeto' }, { model: PontoTrajeto, 'as': 'pontosTrajeto' }, 'numSequencia', 'ASC']
+
         ]
         , where: { codRota: id }
       });
