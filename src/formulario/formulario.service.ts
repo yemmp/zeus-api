@@ -9,60 +9,61 @@ const EXCLUDED_APP_ATTRIBUTES = ['']
 @Injectable()
 export class FormularioService {
 
-  constructor(@InjectModel(Formulario)private formularioModel: typeof Formulario){}
+  constructor(@InjectModel(Formulario) private formularioModel: typeof Formulario) { }
 
 
   async create(createFormularioDto: CreateFormularioDto) {
     try {
-      this.formularioModel.create(createFormularioDto);
+      await this.formularioModel.create(createFormularioDto);
+      console.log('Formulario Criado com Sucesso!');
+      return 'Formulario Criado com Sucesso!';
     } catch (error) {
-      console.error('Erro ao Criar Formulario',error.message);
+      console.error('Erro ao Criar Formulario', error.message);
       throw new BadRequestException();
     }
-    return 'Formulario Criado com Sucesso!';
   }
 
   async findAll(projecao = 'APP') {
     try {
-      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
-      return this.formularioModel.findAll({attributes:{exclude:[...exclude_attr]}});
-      
+      const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
+      return this.formularioModel.findAll({ attributes: { exclude: [...exclude_attr] } });
+
     } catch (error) {
-      console.error('Erro ao Buscar Formularios',error.message);
+      console.error('Erro ao Buscar Formularios', error.message);
       throw new BadRequestException();
     }
   }
-  
-  async findOne(projecao = 'APP',id: number) {
+
+  async findOne(projecao = 'APP', id: number) {
     try {
-      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[]
-      return this.formularioModel.findOne({attributes:{exclude:[...exclude_attr]},where:{codFormulario:id}});
-      
+      const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
+      return this.formularioModel.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codFormulario: id } });
+
     } catch (error) {
-      console.error(`Erro ao Buscar Formulario #${id}`,error.message);
+      console.error(`Erro ao Buscar Formulario #${id}`, error.message);
       throw new BadRequestException();
     }
   }
 
   async update(id: number, updateFormularioDto: UpdateFormularioDto) {
     try {
-      Formulario.update(updateFormularioDto,{where:{codFormulario:id}}).then(()=>{
+      Formulario.update(updateFormularioDto, { where: { codFormulario: id } }).then(() => {
         console.log(`Formulario #${id} Atualizado com Sucesso!`);
+        return `Formulario #${id} Atualizado com Sucesso!`;
       });
     } catch (error) {
-      console.error(`Erro ao Atualizar Formulario #${id}`,error.message);
+      console.error(`Erro ao Atualizar Formulario #${id}`, error.message);
       throw new BadRequestException();
     }
-    return `Formulario #${id} Atualizado com Sucesso!`;
   }
 
   remove(id: number) {
     try {
-      this.formularioModel.destroy({where:{codFormulario:id}});
+      this.formularioModel.destroy({ where: { codFormulario: id } });
+      return `Formulario #${id} Deletado`;
     } catch (error) {
-      console.error(`Erro ao Deletar Formulario #${id}`,error.message);
+      console.error(`Erro ao Deletar Formulario #${id}`, error.message);
       throw new BadRequestException();
     }
-    return `Formulario #${id} Deletado`;
   }
 }

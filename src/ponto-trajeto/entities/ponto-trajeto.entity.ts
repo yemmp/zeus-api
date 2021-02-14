@@ -1,10 +1,10 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Table,Column,Model,PrimaryKey,AutoIncrement,ForeignKey, BelongsTo} from "sequelize-typescript";
+import { Table, Column, Model, PrimaryKey, AutoIncrement, ForeignKey, BelongsTo } from "sequelize-typescript";
 import { Trajeto } from "src/trajeto/entities/trajeto.entity";
 
 @Table({
-    underscored:true,
-    tableName: 'ponto trajeto',  
+    underscored: true,
+    tableName: 'ponto_trajeto',
     createdAt: 'datCriacao',
     updatedAt: 'datAtualizacao',
     deletedAt: 'datExclusao'
@@ -18,11 +18,11 @@ export class PontoTrajeto extends Model {
     codPontoTrajeto: number;
 
     @ApiProperty()
-    @ForeignKey(()=>Trajeto)
+    @ForeignKey(() => Trajeto)
     @Column
     codTrajeto: number;
 
-    @BelongsTo(()=>Trajeto)
+    @BelongsTo(() => Trajeto)
     trajeto: Trajeto;
 
     @ApiProperty()

@@ -1,29 +1,29 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {Table,Model,Column,PrimaryKey,ForeignKey,AutoIncrement, BelongsTo } from 'sequelize-typescript'
+import { Table, Model, Column, PrimaryKey, ForeignKey, AutoIncrement, BelongsTo } from 'sequelize-typescript'
 import { Experiencia } from 'src/experiencia/entities/experiencia.entity';
 
 
 @Table({
-    underscored:true,
-    tableName: 'fase experiencia',  
+    underscored: true,
+    tableName: 'fase_experiencia',
     createdAt: 'datCriacao',
     updatedAt: 'datAtualizacao',
     deletedAt: 'datExclusao'
 })
-export class FaseExperiencia  extends Model{
+export class FaseExperiencia extends Model {
 
     @ApiProperty()
     @PrimaryKey
     @AutoIncrement
     @Column
     codFaseExperiencia: number;
-    
+
     @ApiProperty()
-    @ForeignKey(()=>Experiencia)
+    @ForeignKey(() => Experiencia)
     @Column
     codExperiencia: number;
 
-    @BelongsTo(()=>Experiencia)
+    @BelongsTo(() => Experiencia)
     experiencia: Experiencia;
 
     @ApiProperty()
@@ -47,7 +47,7 @@ export class FaseExperiencia  extends Model{
     @ApiProperty()
     @Column
     codUsuarioCriacao: number;
-    
-  
+
+
 
 }

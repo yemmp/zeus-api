@@ -9,63 +9,63 @@ const EXCLUDE_APP_ATTRIBUTES = ['']
 @Injectable()
 export class TrajetoService {
 
-  constructor(@InjectModel(Trajeto)private trajetoModel: typeof Trajeto){}
+  constructor(@InjectModel(Trajeto) private trajetoModel: typeof Trajeto) { }
 
   async create(createTrajetoDto: CreateTrajetoDto) {
     try {
-      this.trajetoModel.create(createTrajetoDto);
+      await this.trajetoModel.create(createTrajetoDto);
+      console.log('Trajeto Criado com Sucesso');
+      return 'Trajeto Criado com Sucesso';
     } catch (error) {
-      console.error('Erro ao Criar Trajeto',error.message);
+      console.error('Erro ao Criar Trajeto', error.message);
       throw new BadRequestException();
     }
-    return 'Trajeto Criado com Sucesso';
   }
 
   async findAll(projecao = 'APP') {
     try {
-      const exclude_attr = (projecao == 'APP')? EXCLUDE_APP_ATTRIBUTES:[]
-      return this.trajetoModel.findAll({attributes:{exclude:[...exclude_attr]}});
-      
+      const exclude_attr = (projecao == 'APP') ? EXCLUDE_APP_ATTRIBUTES : []
+      return this.trajetoModel.findAll({ attributes: { exclude: [...exclude_attr] } });
+
     } catch (error) {
-      console.error(`Erro ao Buscar Trajetos`,error.message);
+      console.error(`Erro ao Buscar Trajetos`, error.message);
       throw new BadRequestException();
     }
   }
-  
-  async findOne(projecao ='APP',id: number) {
+
+  async findOne(projecao = 'APP', id: number) {
     try {
-      const exclude_attr = (projecao == 'APP')? EXCLUDE_APP_ATTRIBUTES:[]
-      
-      return this.trajetoModel.findOne({attributes:{exclude:[...exclude_attr]},where:{codTrajeto:id}});
+      const exclude_attr = (projecao == 'APP') ? EXCLUDE_APP_ATTRIBUTES : []
+
+      return this.trajetoModel.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codTrajeto: id } });
     } catch (error) {
       console.error(`Erro ao Buscar Trajeto #${id}`, error.message);
       throw new BadRequestException();
     }
-    
+
   }
-  
+
   async update(id: number, updateTrajetoDto: UpdateTrajetoDto) {
     try {
-      Trajeto.update(updateTrajetoDto,{where:{codTrajeto:id}}).then(()=>{
+      Trajeto.update(updateTrajetoDto, { where: { codTrajeto: id } }).then(() => {
         console.log(`Trajeto #${id} Atualizado com Sucesso!`);
       })
+      return `Trajeto #${id} Atualizado com Sucesso!`;
     } catch (error) {
-      
+
       console.error(`Erro ao Atualizar Trajeto #${id}`, error.message);
       throw new BadRequestException();
     }
-    return `Trajeto #${id} Atualizado com Sucesso!`;
   }
-  
+
   async remove(id: number) {
     try {
-      const deleteTrajeto = this.trajetoModel.destroy({where:{codTrajeto:id}});
+      const deleteTrajeto = this.trajetoModel.destroy({ where: { codTrajeto: id } });
       console.log(`Trajeto #${id} Deletado! ${deleteTrajeto} Registros Apagados!`);
-      
+      return `Trajeto #${id} Deletado!`;
     } catch (error) {
       console.error(`Erro ao Deletar Trajeto #${id}`, error.message);
       throw new BadRequestException();
     }
-    return `Trajeto #${id} Deletado!`;
   }
 }

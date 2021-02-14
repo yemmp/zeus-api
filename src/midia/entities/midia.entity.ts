@@ -1,7 +1,8 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Exclude } from "class-transformer";
 import { BLOB } from "sequelize";
-import {Table,Model,Column,PrimaryKey,AutoIncrement} from "sequelize-typescript"
+import {Table,Model,Column,PrimaryKey,AutoIncrement, HasMany} from "sequelize-typescript"
+import { Atividade } from "src/atividade/entities/atividade.entity";
 
 @Table({
     underscored:true,
@@ -25,16 +26,16 @@ export class Midia extends Model {
     
     @ApiProperty()
     @Column
+    codTipoMidia: string;
+    
+    @ApiProperty()
+    @Column
     nomArquivo: string;
     
     @ApiProperty()
     @Exclude({toPlainOnly: true})
     @Column
     nomDiretorio: string;
-    
-    @ApiProperty()
-    @Column
-    codTipoMidia: string;
     
     @ApiProperty()
     @Exclude({toPlainOnly: true})
@@ -62,5 +63,8 @@ export class Midia extends Model {
     @ApiProperty()
     @Column(BLOB("long"))
     file: any
+
+    @HasMany(()=>Atividade)
+    atividade: Atividade[];
  
 }
