@@ -33,21 +33,12 @@ dscSenha: string;
 
 @ApiProperty({
   example:'3',
-  description:'Número que indica o tipo de perfil do usuário. (1-Master, 2-Admin, 3-Config, 4-Analist)',
+  description:'Número que indica o tipo de perfil do usuário. (MA-Master, AD-Admin, CO-Config, AN-Analist)',
 })
 @IsNotEmpty()
 @IsString()
 @IsByteLength(1,5)
 codTipoPerfil: string
-
-@ApiProperty({
-  example:'S',
-  description:'Indica se o usuário está ativo ou não, sendo utilzado "S" para Ativo e "N" para Inativo.',
-})
-@IsNotEmpty()
-@IsString()
-@IsByteLength(1,1)
-indAtivo:string;
 
 @ApiProperty({
   example:'1',
