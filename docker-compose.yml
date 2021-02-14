@@ -38,6 +38,6 @@ services:
       - PMA_ARBITRARY=1
     restart: always
     ports:
-      - 8081:80
+      - 8888:80
 volumes:
   dbdata:
