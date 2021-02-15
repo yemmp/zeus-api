@@ -3,14 +3,6 @@ import { IsByteLength, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateAtividadeDto {
 
-    // @ApiProperty({
-    //     example:'2',
-    //     description:'Número do índice da fase a qual a atividade está atrelada.',
-    // })
-    // @IsNotEmpty()
-    // @IsNumber()
-    // codFase: number;
-
     @ApiProperty({
         example:'2',
         description:'Número do índice da mídia a qual a atividade está atrelada.',
@@ -47,6 +39,18 @@ export class CreateAtividadeDto {
     @IsString()
     @IsByteLength(1,40)
     codTipoAtividade: String;
+
+    @ApiProperty({
+        example:'Vire a direita',
+        description:'Texto Visual',
+    })
+    dscTextoVisual: string;
+
+    @ApiProperty({
+        example:'Cuidado com o quebra mola',
+        description:'Texto do Narrador',
+    })
+    dscTextoNarrador: string;
 
     @ApiProperty({
         example:'3',
