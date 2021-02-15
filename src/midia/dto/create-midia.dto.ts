@@ -8,61 +8,49 @@ export class CreateMidiaDto {
         example:'Áudio',
         description:'Nome da mídia reproduzida.',
     })
-    @IsNotEmpty()
-    @IsString()
-    @IsByteLength(1,100)
     nomMidia: string;
     
     @ApiProperty({
-        example:'2',
-        description:'Número do índice do tipo de mídia.',
+        example:'image/jpeg',
+        description:'Mime type do tipo de mída.',
     })
     @IsNotEmpty()
     @IsString()
-    @IsByteLength(1,5)
     codTipoMidia: string;
     
     @ApiProperty({
         example:'Curva_Direita.mp3',
         description:'Nome do arquivo de mídia.',
     })
-    @IsNotEmpty()
-    @IsString()
-    @IsByteLength(1,500)
     nomArquivo: string;
     
-    @ApiProperty({
-        example:'../Midia/Audios',
-        description:'Nome do diretório ao qual a mídia pertence.',
-    })
-    @IsNotEmpty()
-    @IsString()
-    @IsByteLength(1,500)
-    nomDiretorio: string;
-    
-    @ApiProperty({
-        example:'S',
-        description:'Indica se a mídia está ativo ou não, sendo utilzado "S" para Ativo e "N" para Inativo.',
-    })
-    @IsString()
-    @IsByteLength(1,1)
-    indAtivo: string;
-    
+    // @ApiProperty({
+    //     example:'../Midia/Audios',
+    //     description:'Nome do diretório ao qual a mídia pertence.',
+    // })
+    // @IsNotEmpty()
+    // @IsString()
+    // @IsByteLength(1,500)
+    // nomDiretorio: string;  
 
     @ApiProperty({
         example:'3',
         description:'Número do índice da concessionaria a qual a mídia está atrelada.',
     })
-    @IsNotEmpty()
-    @IsNumber()
-    codConcessionaria: number;
+    codConcessionaria: string;
 
     @ApiProperty({
         example:'4',
         description:'Número do índice do usuário que criou a mídia.',
     })
-    @IsNotEmpty()
-    @IsNumber()
-    codUsuarioCriacao: number;
+    codUsuarioCriacao: string;
+
+    @ApiProperty()
+    dscEncoding: string
+
+    @ApiProperty()
+    dscSize: string
+
+    file: any
     
 }

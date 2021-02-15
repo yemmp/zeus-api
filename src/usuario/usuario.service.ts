@@ -1,10 +1,11 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import { DatabaseError } from 'sequelize';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { Usuario } from './entities/usuario.entity';
 
-const EXCLUDE_APP_ATTRIBUTES = ['']
+const EXCLUDE_APP_ATTRIBUTES = ['dscSenha', 'indAtivo']
 
 @Injectable()
 export class UsuarioService {
@@ -14,23 +15,24 @@ export class UsuarioService {
   ) { }
 
   async create(createUsuarioDto: CreateUsuarioDto) {
-
     try {
       await this.usuarioModel.create(createUsuarioDto);
-      console.log('Usuario Criado com Sucesso')
+      console.log('Usuário criado com sucesso!');
       return 'Usuario Criado com Sucesso';
-
     } catch (error) {
-      console.error('Erro ao Criar Usuario', error.message);
-      throw new BadRequestException();
+      console.error('Erro ao Criar Usuario',error.message);
+      if(error instanceof DatabaseError){
+        throw new BadRequestException(error.original.message);
+      }else{
+        throw new BadRequestException("Database error");
+      }
     }
   }
 
   async findAll(projecao = 'APP') {
     try {
-      const exclude_attr = (projecao == 'APP') ? EXCLUDE_APP_ATTRIBUTES : []
-      return this.usuarioModel.findAll({ attributes: { exclude: [...exclude_attr] } });
-
+      const exclude_attr = (projecao == 'APP')? EXCLUDE_APP_ATTRIBUTES:['dscSenha']
+      return this.usuarioModel.findAll({attributes:{exclude:[...exclude_attr]}});
     } catch (error) {
       console.error('Erro ao Buscar Usuarios', error.message);
       throw new BadRequestException();
@@ -39,9 +41,15 @@ export class UsuarioService {
 
   async findOne(projecao = 'APP', id: number) {
     try {
-      const exclude_attr = (projecao == 'APP') ? EXCLUDE_APP_ATTRIBUTES : []
-      return this.usuarioModel.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codUsuario: id } });
-
+      const exclude_attr = (projecao == 'APP')? EXCLUDE_APP_ATTRIBUTES:['dscSenha', 'indAtivo']
+      return this.usuarioModel.findOne({
+        attributes: {
+          exclude:[...exclude_attr]
+        },
+        where: {
+          codUsuario: id
+        }
+      });
     } catch (error) {
       console.error(`Erro ao Buscar Usuario #${id}`, error.message);
       throw new BadRequestException();

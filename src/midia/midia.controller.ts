@@ -1,9 +1,10 @@
-import { Controller, Get, Post, Body, Put, Param, Delete, UseInterceptors, ClassSerializerInterceptor, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, UseInterceptors, Query, UploadedFile } from '@nestjs/common';
 import { MidiaService } from './midia.service';
 import { CreateMidiaDto } from './dto/create-midia.dto';
 import { UpdateMidiaDto } from './dto/update-midia.dto';
 import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Midia } from './entities/midia.entity';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 
 @Controller('midia')
@@ -14,8 +15,13 @@ export class MidiaController {
   @ApiOperation({summary:'Criar uma nova midia'})
   @ApiResponse({status: 200,description:'Midia criada com sucesso.', type: Midia})
   @Post()
-  create(@Body() createMidiaDto: CreateMidiaDto) {
-    return this.midiaService.create(createMidiaDto);
+  @UseInterceptors(FileInterceptor('file'))
+  create(@Body() data: CreateMidiaDto, @UploadedFile() file) {
+    console.log(file)
+    data.file = file.buffer
+    data.dscEncoding = file.encoding
+    data.dscSize = file.buffer.length
+    return this.midiaService.create(data);
   }
 
   @ApiOperation({summary:'Listar midias'})
@@ -46,5 +52,11 @@ export class MidiaController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.midiaService.remove(+id);
+  }
+
+  @Post('upload')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadFile(@UploadedFile() file) {
+    console.log(file);
   }
 }
