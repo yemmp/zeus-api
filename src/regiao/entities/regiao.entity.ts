@@ -5,33 +5,29 @@ import {
   Column,
   PrimaryKey,
   AutoIncrement,
-  HasMany,
-  ForeignKey,
-  BelongsTo
 } from 'sequelize-typescript';
-import { Experiencia } from 'src/experiencia/entities/experiencia.entity';
 
 @Table({
   underscored: true,
-  tableName: 'check list',
+  tableName: '',
   createdAt: 'datCriacao',
   updatedAt: 'datAtualizacao',
   deletedAt: 'datExclusao',
 })
-export class CheckList extends Model {
-  @ApiProperty()
+export class Regiao extends Model {
   @PrimaryKey
   @AutoIncrement
-  @Column
-  codCheckList: number;
-
-  @ForeignKey(() => Regiao)
   @ApiProperty()
   @Column
   codRegiao: number;
 
-  @BelongsTo(() => Regiao)
-  regiao: Regiao;
+  @ApiProperty()
+  @Column
+  nomRegiao: string;
+
+  @ApiProperty()
+  @Column
+  dscRegiao: string;
 
   @ApiProperty()
   @Column
@@ -39,12 +35,5 @@ export class CheckList extends Model {
 
   @ApiProperty()
   @Column
-  codConcessionaria: number;
-
-  @ApiProperty()
-  @Column
   codUsuarioCriacao: number;
-
-  @HasMany(() => Experiencia)
-  experiencia: Experiencia[];
 }

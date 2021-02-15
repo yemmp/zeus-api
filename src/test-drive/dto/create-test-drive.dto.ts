@@ -27,6 +27,7 @@ export class CreateTestDriveDto {
     @IsNumber()
     numKmFinal: number;
     
+    codVoucher:string;
     
     @ApiProperty({
         example:'09-02-2021',
@@ -42,6 +43,8 @@ export class CreateTestDriveDto {
     })
     @IsDateString()
     datRetorno: Date;
+
+    indTestDriveExecutado: number;
     
     @ApiProperty({
         example:'1',
