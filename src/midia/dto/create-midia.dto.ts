@@ -11,12 +11,11 @@ export class CreateMidiaDto {
     nomMidia: string;
     
     @ApiProperty({
-        example:'2',
-        description:'Número do índice do tipo de mídia.',
+        example:'image/jpeg',
+        description:'Mime type do tipo de mída.',
     })
     @IsNotEmpty()
     @IsString()
-    @IsByteLength(1,5)
     codTipoMidia: string;
     
     @ApiProperty({
