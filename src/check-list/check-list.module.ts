@@ -3,6 +3,7 @@ import { CheckListService } from './check-list.service';
 import { CheckListController } from './check-list.controller';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { CheckList } from './entities/check-list.entity';
+import { Regiao } from 'src/regiao/entities/regiao.entity';
 
 @Module({
   controllers: [CheckListController],

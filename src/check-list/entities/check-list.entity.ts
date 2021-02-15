@@ -10,6 +10,7 @@ import {
   BelongsTo
 } from 'sequelize-typescript';
 import { Experiencia } from 'src/experiencia/entities/experiencia.entity';
+import { Regiao } from 'src/regiao/entities/regiao.entity';
 
 @Table({
   underscored: true,
@@ -24,14 +25,6 @@ export class CheckList extends Model {
   @AutoIncrement
   @Column
   codCheckList: number;
-
-  @ForeignKey(() => Regiao)
-  @ApiProperty()
-  @Column
-  codRegiao: number;
-
-  @BelongsTo(() => Regiao)
-  regiao: Regiao;
 
   @ApiProperty()
   @Column

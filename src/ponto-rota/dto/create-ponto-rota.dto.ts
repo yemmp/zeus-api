@@ -44,13 +44,21 @@ export class CreatePontoRotaDto {
     nomPontoRota: string;
     
     @ApiProperty({
-        example:'Ponto-rota que passa em frente ao Palácio da Liberdade...',
-        description:'Descrição do ponto-rota.',
+        example:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        description:'Texto a ser exibido na tela.'
     })
     @IsString()
-    @IsByteLength(1,300)
-    dscTextoPontoRota: string;
-    
+    @IsByteLength(300)
+    dscTextoVisual: string;
+  
+    @ApiProperty({
+        example:'Nulla dictum congue tellus eget placerat. Donec ultrices tempor eros, eget malesuada arcu congue et.',
+        description:'Texto a ser narrado para o motorista.'
+    })
+    @IsString()
+    @IsByteLength(500)
+    dscTextoNarrado: string;
+  
     @ApiProperty({
         example:'-30.00000',
         description:'Latitude do ponto-rota.',

@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Table,Model,PrimaryKey,Column,AutoIncrement} from 'sequelize-typescript'
+import { Table,Model,PrimaryKey,Column,AutoIncrement, ForeignKey, BelongsTo} from 'sequelize-typescript'
+import { Regiao } from 'src/regiao/entities/regiao.entity';
 
 
 @Table({
@@ -20,6 +21,15 @@ export class Concessionaria extends Model{
   @ApiProperty()
   @Column
     nomConcessionaria: string;
+
+  @ApiProperty()
+  @ForeignKey(()=> Regiao)
+  @Column
+  codRegiao: number;
+
+  @BelongsTo(()=>Regiao)
+  regiao:Regiao;
+
 
   @ApiProperty()
   @Column

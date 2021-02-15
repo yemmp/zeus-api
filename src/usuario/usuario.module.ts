@@ -10,6 +10,7 @@ import { ConcessionariaModule } from 'src/concessionaria/concessionaria.module';
   controllers: [UsuarioController],
   providers: [UsuarioService],
   imports: [SequelizeModule.forFeature([Usuario]),
-ConcessionariaModule]
+ConcessionariaModule],
+exports:[UsuarioService],
 })
 export class UsuarioModule {}

@@ -48,7 +48,7 @@ export class TestDrive extends Model {
 
   @ApiProperty()
   @Column
-  indTestDriveExecutado: number;
+  indTestDriveExecutado: string;
 
   @ApiProperty()
   @Column

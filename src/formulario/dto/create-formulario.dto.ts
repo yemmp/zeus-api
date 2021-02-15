@@ -87,6 +87,7 @@ export class CreateFormularioDto {
     description: 'Indica o sexo do cliente',
   })
   @IsString()
+  @IsByteLength(20)
   codSexo: string;
 
   @ApiProperty({
@@ -94,8 +95,9 @@ export class CreateFormularioDto {
     description: 'Data de nascimento do cliente',
   })
   @IsDateString()
+  @IsNotEmpty()
   datNascimento: Date;
-
+  
   @ApiProperty({
     example: '21-12-2024',
     description: 'Data de validade da CNH do cliente.',

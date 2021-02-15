@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate,  IsDateString,  IsNotEmpty, IsNumber,  } from "class-validator";
+import { IsByteLength, IsDate,  IsDateString,  IsNotEmpty, IsNumber, IsString,  } from "class-validator";
 
 export class CreateTestDriveDto {
 
@@ -27,6 +27,12 @@ export class CreateTestDriveDto {
     @IsNumber()
     numKmFinal: number;
     
+    @ApiProperty({
+        example:'yIRK29C',
+        description:'Código do Voucher'
+    })
+    @IsString()
+    @IsByteLength(4)
     codVoucher:string;
     
     @ApiProperty({
@@ -44,7 +50,13 @@ export class CreateTestDriveDto {
     @IsDateString()
     datRetorno: Date;
 
-    indTestDriveExecutado: number;
+    @ApiProperty({
+        example:'S',
+        description:'Indica se o test-drive foi executado.'
+    })
+    @IsString()
+    @IsByteLength(1)
+    indTestDriveExecutado: string;
     
     @ApiProperty({
         example:'1',

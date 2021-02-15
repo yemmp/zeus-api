@@ -30,7 +30,7 @@ export class CreateSessaoDto {
 
     @ApiProperty({
         example:'',
-        description:'',
+        description:'dscTokenAcesso',
     })
     @IsNotEmpty()
     @IsString()
@@ -49,7 +49,7 @@ export class CreateSessaoDto {
     
     @ApiProperty({
         example:'',
-        description:'',
+        description:'dscSoAcesso',
     })
     @IsNotEmpty()
     @IsString()

@@ -4,7 +4,7 @@ import { CreateConcessionariaDto } from './dto/create-concessionaria.dto';
 import { UpdateConcessionariaDto } from './dto/update-concessionaria.dto';
 import { Concessionaria } from './entities/concessionaria.entity';
 
-const EXCLUDED_APP_ATTRIBUTES = ['']
+const EXCLUDED_APP_ATTRIBUTES = ['datExclusao','datAtualizacao','datCriacao',]
 
 @Injectable()
 export class ConcessionariaService {

@@ -63,10 +63,6 @@ export class PontoRota extends Model {
 
   @ApiProperty()
   @Column
-  dscTextoPontoRota: string;
-
-  @ApiProperty()
-  @Column
   numPosicaoX: number;
 
   @ApiProperty()

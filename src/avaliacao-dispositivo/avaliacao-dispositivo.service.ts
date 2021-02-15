@@ -4,7 +4,7 @@ import { CreateAvaliacaoDispositivoDto } from './dto/create-avaliacao-dispositiv
 import { UpdateAvaliacaoDispositivoDto } from './dto/update-avaliacao-dispositivo.dto';
 import { AvaliacaoDispositivo } from './entities/avaliacao-dispositivo.entity';
 
-const EXCLUDED_APP_ATTRIBUTES = ['']
+const EXCLUDED_APP_ATTRIBUTES = ['datCriacao','datAtualizacao','datExclusao']
 
 @Injectable()
 export class AvaliacaoDispositivoService {

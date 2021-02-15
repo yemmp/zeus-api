@@ -19,5 +19,11 @@ export class CreateConcessionariaDto {
     @IsNotEmpty()
     @IsNumber() 
     codUsuarioCriacao: number;
+
+    nomUsuarioMAster: string;
+
+    dscEmailUsuarioMaster: string;
+
+    dscSenhaUsuarioMaster: string;
     
 }

@@ -23,8 +23,8 @@ export class CreateExperienciaDto {
   })
   
   @ApiProperty({
-    example: '',
-    description: '',
+    example: '2',
+    description: 'codFaseAvancada',
   })
   @IsNumber()
   codFaseAvancada: number;
