@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
-  IsBoolean,
   IsByteLength,
   IsNotEmpty,
   IsNumber,
@@ -8,6 +7,14 @@ import {
 } from 'class-validator';
 
 export class CreateExperienciaDto {
+  @ApiProperty({
+    example:'Experiencia Fulano',
+    description:'Nome da Experiencia.'
+  })
+  @IsNotEmpty()
+  @IsString()
+  nomExperiencia: string;
+
   @ApiProperty({
     example: '3',
     description:

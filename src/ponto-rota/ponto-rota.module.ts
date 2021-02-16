@@ -4,11 +4,12 @@ import { PontoRotaController } from './ponto-rota.controller';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { PontoRota } from './entities/ponto-rota.entity';
 import { Rota } from 'src/rota/entities/rota.entity';
-import { Icone } from 'src/icone/entities/icone.entity';
+import { Midia } from 'src/midia/entities/midia.entity';
+
 
 @Module({
   controllers: [PontoRotaController],
   providers: [PontoRotaService],
-  imports: [SequelizeModule.forFeature([PontoRota]),Rota,Icone]
+  imports: [SequelizeModule.forFeature([PontoRota]),Rota,Midia]
 })
 export class PontoRotaModule {}

@@ -9,7 +9,7 @@ import {
 
 @Table({
   underscored: true,
-  tableName: '',
+  tableName: 'regiao',
   createdAt: 'datCriacao',
   updatedAt: 'datAtualizacao',
   deletedAt: 'datExclusao',

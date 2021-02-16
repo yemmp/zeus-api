@@ -6,7 +6,7 @@ import { CreateExperienciaDto } from './dto/create-experiencia.dto';
 import { UpdateExperienciaDto } from './dto/update-experiencia.dto';
 import { Experiencia } from './entities/experiencia.entity';
 
-const EXCLUDED_APP_ATTRIBUTES = ['datCriacao', 'datAtualizacao', 'datExclusao', 'indAtivo', 'codConcessionaria', 'codUsuarioCriacao']
+const EXCLUDED_APP_ATTRIBUTES = ['datCriacao', 'datAtualizacao', 'datExclusao', 'indAtivo', 'codConcessionaria', 'codUsuarioCriacao','codFaseAvancada']
 
 
 @Injectable()

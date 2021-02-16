@@ -1,7 +1,13 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsNumber } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreatePontoTrajetoDto {
+    @ApiProperty({
+        example:'Fulano Trjeot',
+        description:'Nome ponto trajeto'
+    })
+    @IsString()
+    nomPontoTrajeto: string;
 
     @ApiProperty({
         example:'2',

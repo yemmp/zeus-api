@@ -27,6 +27,10 @@ export class Experiencia extends Model {
   codExperiencia: number;
 
   @ApiProperty()
+  @Column
+  nomExperiencia: string;
+
+  @ApiProperty()
   @ForeignKey(() => CheckList)
   @Column
   codCheckList: number;

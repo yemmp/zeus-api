@@ -8,7 +8,7 @@ export class CreateRegiaoDto {
   })
   @IsNotEmpty()
   @IsString()
-  @IsByteLength(50)
+  @IsByteLength(1,50)
   nomRegiao: string;
 
   @ApiProperty({
@@ -17,7 +17,7 @@ export class CreateRegiaoDto {
   })
   @IsNotEmpty()
   @IsString()
-  @IsByteLength(300)
+  @IsByteLength(1,300)
   dscRegiao: string;
 
   @ApiProperty({
@@ -26,7 +26,7 @@ export class CreateRegiaoDto {
   })
   @IsNotEmpty()
   @IsString()
-  @IsByteLength(1)
+  @IsByteLength(1,1)
   indAtivo: string;
 
   @ApiProperty({

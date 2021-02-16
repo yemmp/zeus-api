@@ -12,19 +12,19 @@ export class CreatePontoRotaDto {
  
     @ApiProperty({
         example:'2',
-        description:'Número do índice do icone da mídia que será reproduzida neste ponto-rota.',
+        description:'Número do índice  da mídia que será reproduzida neste ponto-rota.',
     })
     @IsNumber()
-    codIconeMidia: number;
+    codMidia: number;
 
     @ApiProperty({
-        example:'',
-        description:'',
+        example:'Audio',
+        description:'Tipo da midia em ponto-rota',
     })
     @IsNotEmpty()
     @IsString()
-    @IsByteLength(1,1)
-    indIconeMidia: string;
+    @IsByteLength(1,10)
+    codTipoMidia: string;
     
     @ApiProperty({
         example:'2',
@@ -48,7 +48,7 @@ export class CreatePontoRotaDto {
         description:'Texto a ser exibido na tela.'
     })
     @IsString()
-    @IsByteLength(300)
+    @IsByteLength(1,300)
     dscTextoVisual: string;
   
     @ApiProperty({
@@ -56,7 +56,7 @@ export class CreatePontoRotaDto {
         description:'Texto a ser narrado para o motorista.'
     })
     @IsString()
-    @IsByteLength(500)
+    @IsByteLength(1,500)
     dscTextoNarrado: string;
   
     @ApiProperty({

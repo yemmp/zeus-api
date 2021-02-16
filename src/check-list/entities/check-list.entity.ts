@@ -14,7 +14,7 @@ import { Regiao } from 'src/regiao/entities/regiao.entity';
 
 @Table({
   underscored: true,
-  tableName: 'check list',
+  tableName: 'check_list',
   createdAt: 'datCriacao',
   updatedAt: 'datAtualizacao',
   deletedAt: 'datExclusao',
@@ -25,6 +25,10 @@ export class CheckList extends Model {
   @AutoIncrement
   @Column
   codCheckList: number;
+
+  @ApiProperty()
+  @Column
+  nomCheckList: string;
 
   @ApiProperty()
   @Column

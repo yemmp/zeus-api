@@ -51,6 +51,6 @@ export class CreateMidiaDto {
     @ApiProperty()
     dscSize: string
 
-    file: any
+    file: any 
     
 }
