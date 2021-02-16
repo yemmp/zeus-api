@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import Query from 'mysql2/typings/mysql/lib/protocol/sequences/Query';
 import { DatabaseError, WhereAttributeHash } from 'sequelize';
+import { createQueryObject } from 'src/common/utils';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { QueryUsuarioDTO } from './dto/query-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
@@ -99,15 +100,5 @@ export class UsuarioService {
     }
   }
 }
-function createQueryObject(usuarioFiltro: QueryUsuarioDTO) {
-  if(!usuarioFiltro) return {}
-  let query = {};
-  for (const [key, value] of Object.entries(usuarioFiltro)) {
-    if (value) {
-      query[key] = value;
-    }
-  }
-  delete query['projecao']
-  return query
-}
+
 
