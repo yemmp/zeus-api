@@ -49,7 +49,7 @@ export class CreateAtividadeDto {
     description: 'Texto a ser exibido na tela.',
   })
   @IsString()
-  @IsByteLength(300)
+  @IsByteLength(1,300)
   dscTextoVisual: string;
 
   @ApiProperty({
@@ -57,7 +57,7 @@ export class CreateAtividadeDto {
     description: 'Texto a ser narrado ao motorista.',
   })
   @IsString()
-  @IsByteLength(500)
+  @IsByteLength(1,500)
   dscTextoNarrado: string;
 
   @ApiProperty({

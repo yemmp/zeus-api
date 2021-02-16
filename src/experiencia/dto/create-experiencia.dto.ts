@@ -9,6 +9,14 @@ import {
 
 export class CreateExperienciaDto {
   @ApiProperty({
+    example:'Experiencia Fulano',
+    description:'Nome da Experiencia.'
+  })
+  @IsNotEmpty()
+  @IsString()
+  nomExperiencia: string;
+
+  @ApiProperty({
     example: '3',
     description:
       'Número do índice do check-list ao qual experiência está atrelada.',

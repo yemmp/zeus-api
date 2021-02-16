@@ -18,6 +18,10 @@ export class PontoTrajeto extends Model {
     codPontoTrajeto: number;
 
     @ApiProperty()
+    @Column
+    nomPontoTrajeto: string;
+
+    @ApiProperty()
     @ForeignKey(() => Trajeto)
     @Column
     codTrajeto: number;

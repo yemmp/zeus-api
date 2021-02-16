@@ -2,6 +2,13 @@ import { ApiProperty } from "@nestjs/swagger";
 import { IsByteLength, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateCheckListDto {
+    @ApiProperty({
+        example:'Checklist Fulano',
+        description:'Nome CheckList'
+    })
+    @IsNotEmpty()
+    @IsString()
+    nomChecklist: string;
 
     @ApiProperty({
         example:'2',

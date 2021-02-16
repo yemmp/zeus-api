@@ -8,7 +8,7 @@ import {
   AutoIncrement,
   BelongsTo,
 } from 'sequelize-typescript';
-import { Icone } from 'src/icone/entities/icone.entity';
+import { Midia } from 'src/Midia/entities/Midia.entity';
 import { Rota } from 'src/rota/entities/rota.entity';
 
 @Table({
@@ -34,16 +34,16 @@ export class PontoRota extends Model {
   rota: Rota;
 
   @ApiProperty()
-  @ForeignKey(() => Icone)
+  @ForeignKey(() => Midia)
   @Column
-  codIconeMidia: number;
+  codMidia: number;
 
-  @BelongsTo(() => Icone)
-  icone: Icone;
+  @BelongsTo(() => Midia)
+  Midia: Midia;
 
   @ApiProperty()
   @Column
-  indIconeMidia: string;
+  codTipoMidia: string;
 
   @ApiProperty()
   @Column
