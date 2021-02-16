@@ -5,7 +5,7 @@ import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { Usuario } from './entities/usuario.entity';
 
-const EXCLUDE_APP_ATTRIBUTES = ['dscSenha', 'indAtivo']
+const EXCLUDE_APP_ATTRIBUTES = ['dscSenha', 'indAtivo','codUsuarioCriacao','datCriacao','datAtualizacao','datExclusao',]
 
 @Injectable()
 export class UsuarioService {

@@ -48,7 +48,7 @@ export class RotaService {
           {
             model: PontoRota,
             //right: true,
-            attributes: ['numPosicaoX', 'numPosicaoY']
+            attributes: ['numPosicaoX', 'numPosicaoY','dscTextoVisual','dscTextoNarrado']
           },
 
 
@@ -89,7 +89,7 @@ export class RotaService {
           {
             model: PontoRota,
             right: true,
-            attributes: ['numPosicaoX', 'numPosicaoY']
+            attributes: ['numPosicaoX', 'numPosicaoY','dscTextoVisual','dscTextoNarrado']
           },
 
         ]

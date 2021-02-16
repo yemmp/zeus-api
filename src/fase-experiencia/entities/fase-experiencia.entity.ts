@@ -25,15 +25,16 @@ export class FaseExperiencia extends Model {
 
     @BelongsTo(() => Experiencia)
     experiencia: Experiencia;
+    
+    @ApiProperty()
+    @Column
+    codTipoFase: string;
 
     @ApiProperty()
     //@ForeignKey() codFase é um codObj, podendo ser uma key vinda de avaliacao, rota, informacao etc...
     @Column
     codFase: number;
 
-    @ApiProperty()
-    @Column
-    codTipoFase: string;
 
 
     @ApiProperty()

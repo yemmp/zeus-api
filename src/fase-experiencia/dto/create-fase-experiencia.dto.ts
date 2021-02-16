@@ -9,15 +9,7 @@ export class CreateFaseExperienciaDto {
     })
     @IsNumber()
     codExperiencia: number;
-
-    @ApiProperty({
-        example:'4',
-        description:'Número do índice da fase atrelada a fase-experiência.',
-    })
-    @IsNotEmpty()
-    @IsNumber()
-    codFase: number;
-
+   
     @ApiProperty({
         example:'3',
         description:'Número do índice do tipo-fase da fase-experiência.',
@@ -26,6 +18,15 @@ export class CreateFaseExperienciaDto {
     @IsString()
     @IsByteLength(1,5)
     codTipoFase: string;
+    
+    @ApiProperty({
+        example:'4',
+        description:'Número do índice da fase atrelada a fase-experiência.',
+    })
+    @IsNotEmpty()
+    @IsNumber()
+    codFase: number;
+
 
     @ApiProperty({
         example:'2',
