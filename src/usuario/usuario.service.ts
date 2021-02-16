@@ -1,7 +1,10 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { DatabaseError } from 'sequelize';
+import Query from 'mysql2/typings/mysql/lib/protocol/sequences/Query';
+import { DatabaseError, WhereAttributeHash } from 'sequelize';
+import { createQueryObject } from 'src/common/utils';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
+import { QueryUsuarioDTO } from './dto/query-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { Usuario } from './entities/usuario.entity';
 
@@ -29,13 +32,21 @@ export class UsuarioService {
     }
   }
 
-  async findAll(projecao = 'APP') {
+  async findAll(filtro: QueryUsuarioDTO) {
     try {
+      let projecao = filtro.projecao
+      let query = createQueryObject(filtro);
+      console.log("Aplicando clausula where: ", query)
       const exclude_attr = (projecao == 'APP')? EXCLUDE_APP_ATTRIBUTES:['dscSenha']
-      return this.usuarioModel.findAll({attributes:{exclude:[...exclude_attr]}});
+      return this.usuarioModel.findAll({
+        attributes:{
+          exclude:[...exclude_attr]
+        },
+        where: query
+      })
     } catch (error) {
-      console.error('Erro ao Buscar Usuarios', error.message);
-      throw new BadRequestException();
+      console.error('Erro ao Buscar Usuarios:', error.message);
+      throw new BadRequestException(error, "error.findAll");
     }
   }
 
@@ -89,3 +100,5 @@ export class UsuarioService {
     }
   }
 }
+
+

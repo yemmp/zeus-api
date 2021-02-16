@@ -1,9 +1,26 @@
-import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, Query, ClassSerializerInterceptor, UseInterceptors, PipeTransform, ArgumentMetadata } from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Usuario } from './entities/usuario.entity';
+import { QueryUsuarioDTO } from './dto/query-usuario.dto';
+import { WhereAttributeHash } from 'sequelize/types';
+
+class JSONPipe implements PipeTransform {
+  transform(value: any, metadata: ArgumentMetadata) {
+    if(value){
+      try{
+        return JSON.parse(value)
+      }catch(error){
+        console.log("JSONPipe: Invalid JSON value: ", value)
+        console.error(error)
+        throw error
+      }
+    }
+  }
+  
+}
 
 @Controller('usuario')
 @ApiTags('usuario')
@@ -21,8 +38,8 @@ export class UsuarioController {
   @ApiResponse({ status: 200, description: 'Ok', type: [Usuario] })
   @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default:'APP'}})
   @Get()
-  async findAll(@Query('projecao') projecao:string= 'APP') {
-    return this.usuarioService.findAll(projecao);
+  async findAll(@Query() usuarioQuery: QueryUsuarioDTO) {
+    return this.usuarioService.findAll(usuarioQuery);
   }
   
   

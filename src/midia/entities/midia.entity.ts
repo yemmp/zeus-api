@@ -58,11 +58,11 @@ export class Midia extends Model {
 
     @ApiProperty()
     @Column
-    dscSize: string
+    numTamanhoArquivo: string
 
     @ApiProperty()
     @Column(BLOB("long"))
-    file: any
+    dscConteudoArquivo: any
 
     @HasMany(()=>Atividade)
     atividade: Atividade[];

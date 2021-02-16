@@ -26,9 +26,13 @@ import { PontoRotaModule } from './ponto-rota/ponto-rota.module';
 import { ExperienciaDispositivoModule } from './experiencia-dispositivo/experiencia-dispositivo.module';
 import { ConfigModule } from '@nestjs/config';
 import { RegiaoModule } from './regiao/regiao.module';
+<<<<<<< HEAD
 import { VeiculoModule } from './veiculo/veiculo.module';
 import { ModeloModule } from './modelo/modelo.module';
 import { RelatorioModule } from './relatorio/relatorio.module';
+=======
+import { CommonModule } from './common/common.module';
+>>>>>>> 743176bc46203d9a459094c4bf4e65dd57ec5c71
 
 @Module({
   imports: [
@@ -44,6 +48,7 @@ import { RelatorioModule } from './relatorio/relatorio.module';
       synchronize: true,
       models: [],
     }),
+    CommonModule,
     UsuarioModule,
     LoginModule,
     SessaoModule,
@@ -67,9 +72,13 @@ import { RelatorioModule } from './relatorio/relatorio.module';
     PontoRotaModule,
     ExperienciaDispositivoModule,
     RegiaoModule,
+<<<<<<< HEAD
     VeiculoModule,
     ModeloModule,
     RelatorioModule,
+=======
+    CommonModule
+>>>>>>> 743176bc46203d9a459094c4bf4e65dd57ec5c71
   ],
   controllers: [AppController],
   providers: [AppService],
