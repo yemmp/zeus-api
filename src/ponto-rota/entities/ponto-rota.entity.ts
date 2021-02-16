@@ -8,7 +8,7 @@ import {
   AutoIncrement,
   BelongsTo,
 } from 'sequelize-typescript';
-import { Midia } from 'src/Midia/entities/Midia.entity';
+import { Midia } from 'src/midia/entities/midia.entity';
 import { Rota } from 'src/rota/entities/rota.entity';
 
 @Table({
