@@ -26,6 +26,9 @@ import { PontoRotaModule } from './ponto-rota/ponto-rota.module';
 import { ExperienciaDispositivoModule } from './experiencia-dispositivo/experiencia-dispositivo.module';
 import { ConfigModule } from '@nestjs/config';
 import { RegiaoModule } from './regiao/regiao.module';
+import { VeiculoModule } from './veiculo/veiculo.module';
+import { ModeloModule } from './modelo/modelo.module';
+import { RelatorioModule } from './relatorio/relatorio.module';
 
 @Module({
   imports: [
@@ -64,6 +67,9 @@ import { RegiaoModule } from './regiao/regiao.module';
     PontoRotaModule,
     ExperienciaDispositivoModule,
     RegiaoModule,
+    VeiculoModule,
+    ModeloModule,
+    RelatorioModule,
   ],
   controllers: [AppController],
   providers: [AppService],

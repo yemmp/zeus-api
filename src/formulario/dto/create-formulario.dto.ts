@@ -25,7 +25,7 @@ export class CreateFormularioDto {
   @IsNotEmpty()
   @IsString()
   @IsByteLength(1, 300)
-  nomCliente: string;
+  nomCliente: string[1];
 
   @ApiProperty({
     example: '(31) 3252-9525',
