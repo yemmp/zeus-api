@@ -1,74 +1,109 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsByteLength, IsDate,  IsDateString,  IsNotEmpty, IsNumber, IsString,  } from "class-validator";
+import { IsByteLength, IsDate, IsDateString, IsNotEmpty, IsNumber, IsString, } from "class-validator";
+import { Is } from "sequelize-typescript";
 
 export class CreateTestDriveDto {
 
-    
     @ApiProperty({
-        example:'09-02-2021',
-        description:'Data do test-drive.',
+        example:'',
+        description:''
+    })
+    @IsNotEmpty()
+    @IsNumber()
+    codFormulario: number;
+
+
+    @ApiProperty({
+        example:'',
+        description:''
+    })
+    @IsNumber()
+    codDispositivo: number;
+
+
+    @ApiProperty({
+        example:'',
+        description:''
     })
     @IsNotEmpty()
     @IsDateString()
-    dataTestDrive: Date;
-    
+    datAgendamento: Date;
+
+
     @ApiProperty({
-        example:'5',
-        description:'Número do Km inicial.',
+        example:'',
+        description:''
+    })
+    @IsString()
+    codStatusTestDrive: string;
+
+    @ApiProperty({
+        example: '5',
+        description: 'Número do Km inicial.',
     })
     @IsNotEmpty()
     @IsNumber()
-    numKmInicial:number;
-    
+    numKmInicial: number;
+
     @ApiProperty({
-        example:'35',
-        description:'Número do Km final.',
+        example: '35',
+        description: 'Número do Km final.',
     })
     @IsNumber()
     numKmFinal: number;
-    
+
     @ApiProperty({
-        example:'yIRK29C',
-        description:'Código do Voucher'
+        example: 'yIRK29C',
+        description: 'Código do Voucher'
     })
     @IsString()
     @IsByteLength(4)
-    codVoucher:string;
-    
+    codVoucher: string;
+
     @ApiProperty({
-        example:'09-02-2021',
-        description:'Data de saída da concessionaria.',
+        example: '09-02-2021',
+        description: 'Data de saída da concessionaria.',
     })
     @IsNotEmpty()
     @IsDateString()
     datSaida: Date;
-    
+
     @ApiProperty({
-        example:'09-02-2021',
-        description:'Data de retorno à concessionaria.',
+        example: '09-02-2021',
+        description: 'Data de retorno à concessionaria.',
     })
     @IsDateString()
     datRetorno: Date;
-
     @ApiProperty({
-        example:'S',
-        description:'Indica se o test-drive foi executado.'
+        example:'',
+        description:''
     })
     @IsString()
-    @IsByteLength(1)
-    indTestDriveExecutado: string;
+    dscResposta1: string;
+    @ApiProperty({
+        example:'',
+        description:''
+    })
+    @IsString()
+    dscResposta2: string;
+
+    @ApiProperty({
+        example:'',
+        description:''
+    })
+    codRegião: number;
     
     @ApiProperty({
-        example:'1',
-        description:'Número do índice da concessionaria ao qual o test-drive está atrelado.',
+        example: '1',
+        description: 'Número do índice da concessionaria ao qual o test-drive está atrelado.',
     })
     @IsNotEmpty()
     @IsNumber()
     codConcessionaria: number;
-    
+
     @ApiProperty({
-        example:'4',
-        description:'Número do índice do usuário que criou o test-drive.',
+        example: '4',
+        description: 'Número do índice do usuário que criou o test-drive.',
     })
     @IsNotEmpty()
     @IsNumber()

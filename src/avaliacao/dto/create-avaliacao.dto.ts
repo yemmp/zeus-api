@@ -4,29 +4,41 @@ import { IsByteLength, IsNotEmpty, IsString } from "class-validator";
 export class CreateAvaliacaoDto {
 
     @ApiProperty({
-        example:'Avaliação 2319',
-        description:'Nome da avaliação',
+        example: 'Avaliação 2319',
+        description: 'Nome da avaliação',
     })
     @IsNotEmpty()
     @IsString()
-    @IsByteLength(1,100)
+    @IsByteLength(1, 100)
     nomAvaliacao: string;
-    
-   
+
+
     @ApiProperty({
-        example:'Avaliacao_2319.arq',
-        description:'Nome do arquivo de avaliação.',
+        example: 'Avaliacao_2319.arq',
+        description: 'Nome do arquivo de avaliação.',
     })
     @IsString()
-    @IsByteLength(1,300)
+    @IsByteLength(1, 300)
     nomArquivo: string;
-    
+
     @ApiProperty({
-        example:'../Avaliacoes',
-        description:'Nome da pasta onde estão os arquivos de avaliação.',
+        example: '',
+        description: ''
     })
-    @IsNotEmpty()
     @IsString()
-    @IsByteLength(1,300)
-    nomDiretorio: string;
+    dscIdioma: string;
+
+    @ApiProperty({
+        example: '',
+        description: ''
+    })
+    @IsString()
+    dscPergunta1: string;
+
+    @ApiProperty({
+        example: '',
+        description: ''
+    })
+    @IsString()
+    dscPergunta2: string;
 }

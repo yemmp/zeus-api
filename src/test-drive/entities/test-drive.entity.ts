@@ -5,8 +5,12 @@ import {
   Column,
   PrimaryKey,
   AutoIncrement,
+  ForeignKey,
+  HasOne,
+  BelongsTo,
 } from 'sequelize-typescript';
-import { Col } from 'sequelize/types/lib/utils';
+import { Dispositivo } from 'src/dispositivo/entities/dispositivo.entity';
+import { Formulario } from 'src/formulario/entities/formulario.entity';
 
 @Table({
   underscored: true,
@@ -22,22 +26,38 @@ export class TestDrive extends Model {
   @Column
   codTestDrive: number;
 
+  @ForeignKey(()=>Formulario)
+  @Column
+  codFormulario: number;
+  @BelongsTo(()=>Formulario)
+  formulario:Formulario;
+
+  @ForeignKey(()=>Dispositivo)
+  @Column
+  codDispositivo: number;
+  @BelongsTo(()=>Dispositivo)
+  dispositivo: Dispositivo;
+
   @ApiProperty()
   @Column
-  dataTestDrive: Date;
-
+  datAgendamento: Date;
+  
+  @ApiProperty()
+  @Column
+  codStatusTestDrive: string;
+  @ApiProperty()
+  @Column
+  numKmInicial: number;
+  
+  @ApiProperty()
+  @Column
+  numKmFinal: number;
+  
   @ApiProperty()
   @Column
   codVoucher: string;
 
-  @ApiProperty()
-  @Column
-  numKmInicial: number;
-
-  @ApiProperty()
-  @Column
-  numKmFinal: number;
-
+  
   @ApiProperty()
   @Column
   datSaida: Date;
@@ -48,7 +68,15 @@ export class TestDrive extends Model {
 
   @ApiProperty()
   @Column
-  indTestDriveExecutado: string;
+  dscResposta1: string
+  
+  @ApiProperty()
+  @Column
+  dscResposta2: string
+
+  @ApiProperty()
+  @Column
+  codRegiao:number;
 
   @ApiProperty()
   @Column

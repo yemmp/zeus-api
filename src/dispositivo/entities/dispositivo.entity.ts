@@ -1,42 +1,50 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {Table,Model,Column,PrimaryKey,AutoIncrement} from 'sequelize-typescript'
+import { Table, Model, Column, PrimaryKey, AutoIncrement, ForeignKey, BelongsTo } from 'sequelize-typescript'
+import { Veiculo } from 'src/veiculo/entities/veiculo.entity';
 
 @Table({
-    underscored:true,
-    tableName: 'dispositivo',  
+    underscored: true,
+    tableName: 'dispositivo',
     createdAt: 'datCriacao',
     updatedAt: 'datAtualizacao',
     deletedAt: 'datExclusao'
 })
-export class Dispositivo extends Model{
+export class Dispositivo extends Model {
 
-
-    @ApiProperty()
     @PrimaryKey
     @AutoIncrement
+    @ApiProperty()
     @Column
-    codDispositivo:number;
+    codDispositivo: number;
 
+    @ApiProperty()
+    @Column
+    @ForeignKey(() => Veiculo)
+    codVeiculo: number;
+    
+    @BelongsTo(() => Veiculo)
+    veiculo: Veiculo;
+    
+    @ApiProperty()
+    @Column
+    codUsuarioSistema: string;
+    
     @ApiProperty()
     @Column
     nomDispositivo: string;
-
+    
     @ApiProperty()
     @Column
-    numSerial: string;
-
-    @ApiProperty()
-    @Column
-    nomModelo: string;
+    dscIdioma: string;
     
     @ApiProperty()
     @Column
     indAtivo: string;
-
+    
     @ApiProperty()
     @Column
     codConcessionaria: number;
-
+    
     @ApiProperty()
     @Column
     codUsuarioCriacao: number;

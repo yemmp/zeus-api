@@ -3,55 +3,55 @@ import { IsBoolean, IsByteLength, IsNotEmpty, IsNumber, IsString } from "class-v
 
 export class CreateDispositivoDto {
 
-    
     @ApiProperty({
-        example:'Zeus-C320',
-        description:'Nome do dispositivo.',
+        example:'',
+        description:''
+    })
+    @IsNumber()
+    codVeiculo: number;
+
+    @ApiProperty({
+        example:'',
+        description:''
     })
     @IsString()
-    @IsByteLength(1,100)
+    codUsuarioSistema: string;
+
+    @ApiProperty({
+        example:'',
+        description:''
+    })
+    @IsString()
     nomDispositivo: string;
-    
-    
+
     @ApiProperty({
-        example:'ZC320-TMZ2301',
-        description:'Número serial do dispositivo.',
+        example:'',
+        description:''
     })
     @IsString()
-    @IsByteLength(1,100)
-    numSerial: string;
-    
-    
+    dscIdioma: string;
+
     @ApiProperty({
-        example:'L220',
-        description:'Nome do modelo do dispositivo.',
-    })
-    @IsString()
-    @IsByteLength(1,100)
-    nomModelo: string;
-    
-    @ApiProperty({
-        example:'S',
-        description:'Indica se o dispositivo está ativo ou não, sendo utilzado "S" para Ativo e "N" para Inativo.',
+        example:'',
+        description:''
     })
     @IsNotEmpty()
     @IsString()
-    @IsByteLength(1,1)
     indAtivo: string;
-    
+
     @ApiProperty({
-        example:'4',
-        description:'Número do índice da concessionaria a qual o dispositivo está atrelado.',
+        example:'',
+        description:''
     })
     @IsNotEmpty()
     @IsNumber()
-    codConcessionaria: number;
-    
+    codConcessionaria:number;
+
     @ApiProperty({
-        example:'3',
-        description:'Número do índice do usuário que criou o dispositivo.',
+        example:'',
+        description:''
     })
     @IsNotEmpty()
     @IsNumber()
-    codUsuarioCriacao: number
+    codUsuarioCriacao:number;
 }

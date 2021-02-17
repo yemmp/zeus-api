@@ -10,21 +10,12 @@ import {
 } from 'class-validator';
 
 export class CreateFormularioDto {
-  @ApiProperty({
-    example: '2',
-    description:
-      'Número do índice do test-drive ao qual o formulário está atrelado.',
-  })
-  @IsNumber()
-  codTestDrive: number;
-
-  @ApiProperty({
+   @ApiProperty({
     example: 'Cláudio Fonseca da Silva',
     description: 'Nome do Cliente.',
   })
   @IsNotEmpty()
   @IsString()
-  @IsByteLength(1, 300)
   nomCliente: string[1];
 
   @ApiProperty({
@@ -33,7 +24,6 @@ export class CreateFormularioDto {
   })
   @IsNotEmpty()
   @IsString()
-  @IsByteLength(1, 40)
   numTelefone: string;
 
   @ApiProperty({
@@ -43,7 +33,6 @@ export class CreateFormularioDto {
   @IsNotEmpty()
   @IsString()
   @IsEmail()
-  @IsByteLength(1, 300)
   dscEmail: string;
 
   @ApiProperty({
@@ -52,7 +41,6 @@ export class CreateFormularioDto {
   })
   @IsNotEmpty()
   @IsString()
-  @IsByteLength(1, 40)
   dscRG: string;
 
   @ApiProperty({
@@ -61,7 +49,6 @@ export class CreateFormularioDto {
   })
   @IsNotEmpty()
   @IsString()
-  @IsByteLength(1, 40)
   numCelular: string;
 
   @ApiProperty({
@@ -70,7 +57,6 @@ export class CreateFormularioDto {
   })
   @IsNotEmpty()
   @IsString()
-  @IsByteLength(1, 20)
   numCPF: string;
 
   @ApiProperty({
@@ -79,15 +65,16 @@ export class CreateFormularioDto {
   })
   @IsNotEmpty()
   @IsString()
-  @IsByteLength(1, 40)
   numCNH: string;
+
+
+  file: any;
 
   @ApiProperty({
     example: 'Masc',
     description: 'Indica o sexo do cliente',
   })
   @IsString()
-  @IsByteLength(20)
   codSexo: string;
 
   @ApiProperty({
@@ -97,7 +84,7 @@ export class CreateFormularioDto {
   @IsDateString()
   @IsNotEmpty()
   datNascimento: Date;
-  
+
   @ApiProperty({
     example: '21-12-2024',
     description: 'Data de validade da CNH do cliente.',
@@ -105,6 +92,14 @@ export class CreateFormularioDto {
   @IsNotEmpty()
   @IsDateString()
   datValidadeCNH: Date;
+
+  @ApiProperty({
+    example:'21-02-2020',
+    description: 'Data do último acesso do cliente.'
+  })
+  @IsNotEmpty()
+  @IsDateString()
+  datUltimoAcesso:Date;
 
   @ApiProperty({
     example: '4',

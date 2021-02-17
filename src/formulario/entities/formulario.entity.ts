@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { BLOB, DataTypes } from 'sequelize';
 import {
   Model,
   Table,
@@ -25,43 +26,39 @@ export class Formulario extends Model {
   codFormulario: number;
 
   @ApiProperty()
-  @ForeignKey(() => TestDrive)
-  @Column
-  codTestDrive: number;
-
-  @BelongsTo(() => TestDrive)
-  testDrive: TestDrive;
-
-  @ApiProperty()
-  @Column
+  @Column(DataTypes.STRING(300))
   nomCliente: string;
 
   @ApiProperty()
-  @Column
+  @Column(DataTypes.STRING(40))
   numTelefone: string;
 
   @ApiProperty()
-  @Column
+  @Column(DataTypes.STRING(300))
   dscEmail: string;
 
   @ApiProperty()
-  @Column
-  dscRG: string;
+  @Column(DataTypes.STRING(40))
+  dscRg: string;
 
   @ApiProperty()
-  @Column
+  @Column(DataTypes.STRING(40))
   numCelular: string;
 
   @ApiProperty()
-  @Column
-  numCPF: string;
+  @Column(DataTypes.STRING(20))
+  numCpf: string;
 
   @ApiProperty()
-  @Column
-  numCNH: string;
+  @Column(DataTypes.STRING(40))
+  numCnh: string;
 
   @ApiProperty()
-  @Column
+  @Column(BLOB("long"))
+  dscFotoCnh: any;
+
+  @ApiProperty()
+  @Column(DataTypes.STRING(20))
   codSexo: string;
 
   @ApiProperty()
@@ -70,7 +67,11 @@ export class Formulario extends Model {
 
   @ApiProperty()
   @Column
-  datValidadeCNH: Date;
+  datValidadeCnh: Date;
+
+  @ApiProperty()
+  @Column
+  datUltimoAcesso: Date;
 
   @ApiProperty()
   @Column
