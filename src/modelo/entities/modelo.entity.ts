@@ -1,6 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {Table,Model,Column,PrimaryKey,AutoIncrement} from 'sequelize-typescript';
 
+const { DataTypes } = require("sequelize");
+
 @Table({
     underscored: true,
     tableName: 'Modelo',
@@ -17,15 +19,15 @@ export class Modelo extends Model{
     codModelo: number;
     
     @ApiProperty()
-    @Column
+    @Column({type: DataTypes.STRING(20)})
     nomModelo: string;
     
     @ApiProperty()
-    @Column
+    @Column({type: DataTypes.STRING(100)})
     dscModelo: string;
     
     @ApiProperty()
-    @Column
+    @Column({type: DataTypes.STRING(1)})
     indAtivo:string;
     
     @ApiProperty()

@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {Table,Model,Column,PrimaryKey,AutoIncrement,ForeignKey, BelongsTo} from 'sequelize-typescript';
 import { Usuario } from 'src/usuario/entities/usuario.entity';
+const { DataTypes } = require("sequelize");
 
 @Table({
     underscored:true,
@@ -18,7 +19,7 @@ export class Relatorio extends Model{
     codRelatorio:number;
     
     @ApiProperty()
-    @Column
+    @Column( {type: DataTypes.STRING(20)})
     indTipoRelatorio: string;
     
     @ApiProperty()

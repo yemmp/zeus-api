@@ -27,7 +27,7 @@
     "@nestjs/mapped-types": "^0.2.0",
     "@nestjs/platform-express": "^7.5.1",
     "@nestjs/sequelize": "^0.2.0",
-    "@nestjs/swagger": "^4.7.12",
+    "@nestjs/swagger": "^4.7.13",
     "class-transformer": "^0.3.2",
     "class-validator": "^0.13.1",
     "mariadb": "^2.5.2",
@@ -36,7 +36,7 @@
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3",
     "sequelize": "^6.5.0",
-    "sequelize-typescript": "^2.0.0",
+    "sequelize-typescript": "^2.1.0",
     "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
