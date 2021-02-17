@@ -1,12 +1,13 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Exclude } from "class-transformer";
 import { BLOB } from "sequelize";
-import {Table,Model,Column,PrimaryKey,AutoIncrement, HasMany} from "sequelize-typescript"
+import { Table, Model, Column, PrimaryKey, AutoIncrement, HasMany } from "sequelize-typescript"
 import { Atividade } from "src/atividade/entities/atividade.entity";
 
+const { DataTypes } = require("sequelize");
+
 @Table({
-    underscored:true,
-    tableName:'midia',  
+    underscored: true,
+    tableName: 'midia',
     createdAt: 'datCriacao',
     updatedAt: 'datAtualizacao',
     deletedAt: 'datExclusao'
@@ -20,35 +21,30 @@ export class Midia extends Model {
     codMidia: number;
 
     @ApiProperty()
-    @Exclude({toPlainOnly: true})
-    @Column
+    @Column({type:DataTypes.STRING(100)})
     nomMidia: string;
-    
+
     @ApiProperty()
-    @Column
+    @Column({type: DataTypes.STRING(500)})
     codTipoMidia: string;
-    
+
     @ApiProperty()
-    @Column
+    @Column({type: DataTypes.STRING(5)})
     nomArquivo: string;
-    
+
     @ApiProperty()
-    @Exclude({toPlainOnly: true})
-    @Column
+    @Column({type: DataTypes.STRING(20)})
     nomDiretorio: string;
-    
+
     @ApiProperty()
-    @Exclude({toPlainOnly: true})
-    @Column
+    @Column({type: DataTypes.STRING(1)})
     indAtivo: string;
-    
+
     @ApiProperty()
-    @Exclude({toPlainOnly: true})
     @Column
     codConcessionaria: number;
-    
+
     @ApiProperty()
-    @Exclude({toPlainOnly: true})
     @Column
     codUsuarioCriacao: number;
 
@@ -64,7 +60,7 @@ export class Midia extends Model {
     @Column(BLOB("long"))
     dscConteudoArquivo: any
 
-    @HasMany(()=>Atividade)
+    @HasMany(() => Atividade)
     atividade: Atividade[];
- 
+
 }

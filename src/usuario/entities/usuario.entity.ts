@@ -11,6 +11,8 @@ import {
 } from 'sequelize-typescript';
 import { Concessionaria } from 'src/concessionaria/entities/concessionaria.entity';
 
+const { DataTypes } = require("sequelize");
+
 @Table({
   underscored: true,
   tableName: 'usuario',
@@ -27,24 +29,25 @@ export class Usuario extends Model {
   codUsuario: number;
 
   @ApiProperty()
-  @Column
+  @Column({type: DataTypes.STRING(100)})
   nomUsuario: string;
 
   @ApiProperty()
-  @Column
+  @Column({type: DataTypes.STRING(50)})
   dscLogin: string;
 
   @ApiProperty()
-  @Column
+  @Column({type: DataTypes.STRING(40)})
   dscSenha: string;
 
   //Perfis: MASTER, ADMINISTRADOR, CONFIGURADOR, ANALISTA
   @ApiProperty()
+  @Column({type: DataTypes.STRING(5)})
   @Column({validate: {isIn: [["MA","AD","CO","AN"]]}})
   codTipoPerfil: string;
   
   @ApiProperty()
-  @Column
+  @Column({type: DataTypes.STRING(1)})
   indAtivo: string;
   
   @ApiProperty()

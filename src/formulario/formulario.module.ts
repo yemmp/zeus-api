@@ -8,6 +8,7 @@ import { TestDrive } from 'src/test-drive/entities/test-drive.entity';
 @Module({
   controllers: [FormularioController],
   providers: [FormularioService],
-  imports: [SequelizeModule.forFeature([Formulario]),TestDrive]
+  imports: [SequelizeModule.forFeature([Formulario]),TestDrive],
+  exports: [FormularioService]
 })
 export class FormularioModule {}

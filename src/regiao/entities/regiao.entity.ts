@@ -7,6 +7,8 @@ import {
   AutoIncrement,
 } from 'sequelize-typescript';
 
+const { DataTypes } = require("sequelize");
+
 @Table({
   underscored: true,
   tableName: 'regiao',
@@ -22,15 +24,15 @@ export class Regiao extends Model {
   codRegiao: number;
 
   @ApiProperty()
-  @Column
+  @Column({type:DataTypes.STRING(50)})
   nomRegiao: string;
 
   @ApiProperty()
-  @Column
+  @Column({type:DataTypes.STRING(300)})
   dscRegiao: string;
 
   @ApiProperty()
-  @Column
+  @Column({type:DataTypes.STRING(1)})
   indAtivo: string;
 
   @ApiProperty()

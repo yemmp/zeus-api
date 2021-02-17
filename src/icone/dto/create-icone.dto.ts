@@ -39,15 +39,6 @@ export class CreateIconeDto {
     nomArquivoAudio: string;
     
     @ApiProperty({
-        example:'../Icone',
-        description:'Nome da pasta do icone.',
-    })
-    @IsNotEmpty()
-    @IsString()
-    @IsByteLength(1,300)
-    nomDiretorio: string;
-    
-    @ApiProperty({
         example:'S',
         description:'Indica se o icone está ativo ou não, sendo utilzado "S" para Ativo e "N" para Inativo.',
     })

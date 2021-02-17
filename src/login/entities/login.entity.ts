@@ -1,7 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Table, Model, PrimaryKey, Column, AutoIncrement, ForeignKey,BelongsTo} from 'sequelize-typescript'
-
 import { Usuario } from 'src/usuario/entities/usuario.entity';
+
+const { DataTypes } = require("sequelize");
 
 @Table({
     underscored: true,
@@ -28,7 +29,7 @@ export class Login extends Model{
   
   
   @ApiProperty()
-  @Column
+  @Column({type: DataTypes.STRING(50)})
     codIpOrigem: string;
 
     

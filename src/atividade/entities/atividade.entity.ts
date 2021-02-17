@@ -9,8 +9,9 @@ import {
   BelongsTo,
 } from 'sequelize-typescript';
 import { Informacao } from 'src/informacao/entities/informacao.entity';
-//import { FaseExperiencia } from 'src/fase-experiencia/entities/fase-experiencia.entity';
 import { Midia } from 'src/midia/entities/midia.entity';
+
+const { DataTypes } = require("sequelize");
 
 @Table({
   underscored: true,
@@ -50,19 +51,19 @@ faseExperiencia: FaseExperiencia;
   numSequencia: number;
 
   @ApiProperty()
-  @Column
+  @Column({type: DataTypes.STRING(100)})
   nomAtividade: string;
 
   @ApiProperty()
-  @Column
+  @Column({type: DataTypes.STRING(40)})
   codTipoAtividade: string;
 
   @ApiProperty()
-  @Column
+  @Column({type:DataTypes.STRING(300)})
   dscTextoVisual: string;
 
   @ApiProperty()
-  @Column
+  @Column({type: DataTypes.STRING(500)})
   dscTextoNarrado: string;
 
   @ApiProperty()

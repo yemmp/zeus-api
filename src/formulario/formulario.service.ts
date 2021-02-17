@@ -1,6 +1,8 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import { createQueryObject } from 'src/common/utils';
 import { CreateFormularioDto } from './dto/create-formulario.dto';
+import { QueryFormularioDTO } from './dto/query-formulario.dto';
 import { UpdateFormularioDto } from './dto/update-formulario.dto';
 import { Formulario } from './entities/formulario.entity';
 
@@ -43,6 +45,22 @@ export class FormularioService {
       console.error(`Erro ao Buscar Formulario #${id}`, error.message);
       throw new BadRequestException();
     }
+  }
+
+  async findByCPF_Nascimento(filtro: QueryFormularioDTO){
+    try {
+      let projecao = filtro.projecao;
+      let query = createQueryObject(filtro);
+      console.log('where: ', query);
+      
+      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[];
+      return this.formularioModel.findByCPF_Nascimento({attributes:{exclude:[...exclude_attr]},
+      where:query
+      })
+    } catch (error) {
+      
+    }
+
   }
 
   async update(id: number, updateFormularioDto: UpdateFormularioDto) {

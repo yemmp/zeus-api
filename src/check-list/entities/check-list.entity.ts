@@ -10,7 +10,8 @@ import {
   BelongsTo
 } from 'sequelize-typescript';
 import { Experiencia } from 'src/experiencia/entities/experiencia.entity';
-import { Regiao } from 'src/regiao/entities/regiao.entity';
+
+const { DataTypes } = require("sequelize");
 
 @Table({
   underscored: true,
@@ -27,11 +28,11 @@ export class CheckList extends Model {
   codCheckList: number;
 
   @ApiProperty()
-  @Column
+  @Column({type:DataTypes.STRING(50)})
   nomCheckList: string;
 
   @ApiProperty()
-  @Column
+  @Column({type:DataTypes.STRING(1)})
   indAtivo: string;
 
   @ApiProperty()

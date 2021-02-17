@@ -12,15 +12,6 @@ export class CreateAvaliacaoDto {
     @IsByteLength(1, 100)
     nomAvaliacao: string;
 
-
-    @ApiProperty({
-        example: 'Avaliacao_2319.arq',
-        description: 'Nome do arquivo de avaliação.',
-    })
-    @IsString()
-    @IsByteLength(1, 300)
-    nomArquivo: string;
-
     @ApiProperty({
         example: '',
         description: ''

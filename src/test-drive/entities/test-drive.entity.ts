@@ -12,6 +12,8 @@ import {
 import { Dispositivo } from 'src/dispositivo/entities/dispositivo.entity';
 import { Formulario } from 'src/formulario/entities/formulario.entity';
 
+const { DataTypes } = require("sequelize");
+
 @Table({
   underscored: true,
   tableName: 'test_drive',
@@ -43,7 +45,7 @@ export class TestDrive extends Model {
   datAgendamento: Date;
   
   @ApiProperty()
-  @Column
+  @Column({type:DataTypes.STRING(10)})
   codStatusTestDrive: string;
   @ApiProperty()
   @Column
@@ -54,7 +56,7 @@ export class TestDrive extends Model {
   numKmFinal: number;
   
   @ApiProperty()
-  @Column
+  @Column({type:DataTypes.STRING(4)})
   codVoucher: string;
 
   
@@ -67,11 +69,11 @@ export class TestDrive extends Model {
   datRetorno: Date;
 
   @ApiProperty()
-  @Column
+  @Column({type:DataTypes.STRING(10)})
   dscResposta1: string
   
   @ApiProperty()
-  @Column
+  @Column({type:DataTypes.STRING(10)})
   dscResposta2: string
 
   @ApiProperty()
