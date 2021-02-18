@@ -28,7 +28,7 @@ export class ExperienciaService {
     try {
       const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
       return this.experienciaModule.findAll({
-        include: [CheckList, { model: FaseExperiencia, attributes: ['codFase', 'codTipoFase'] }],
+        include: [CheckList, { model: FaseExperiencia, attributes: ['codFase', 'codTipoFase','datAtualizacao'] }],
         attributes: { exclude: [...exclude_attr] },
         order: [
           [{ model: FaseExperiencia, 'as': 'faseExperiencia' }, 'numSequencia', 'ASC']
