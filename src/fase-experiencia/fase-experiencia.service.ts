@@ -5,7 +5,7 @@ import { CreateFaseExperienciaDto } from './dto/create-fase-experiencia.dto';
 import { UpdateFaseExperienciaDto } from './dto/update-fase-experiencia.dto';
 import { FaseExperiencia } from './entities/fase-experiencia.entity';
 
-const EXCLUDED_APP_ATTRIBUTES = ['datCriacao', 'datAtualizacao', 'datExclusao', 'codFaseExperiencia', 'codExperiencia', 'numSequencia', 'codConcessionaria', 'codUsuarioCriacao']
+const EXCLUDED_APP_ATTRIBUTES = ['datCriacao', 'datExclusao', 'codFaseExperiencia', 'codExperiencia', 'numSequencia', 'codConcessionaria', 'codUsuarioCriacao']
 
 @Injectable()
 export class FaseExperienciaService {

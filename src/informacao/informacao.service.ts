@@ -8,7 +8,7 @@ import { UpdateInformacaoDto } from './dto/update-informacao.dto';
 import { Informacao } from './entities/informacao.entity';
 
 
-const EXCLUDED_APP_ATTRIBUTES = ['datCriacao', 'datAtualizacao', 'datExclusao', 'indAtivo', 'codConcessionaria', 'codUsuarioCriacao']
+const EXCLUDED_APP_ATTRIBUTES = ['datCriacao',  'datExclusao', 'indAtivo', 'codConcessionaria', 'codUsuarioCriacao']
 
 @Injectable()
 export class InformacaoService {

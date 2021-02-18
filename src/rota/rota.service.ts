@@ -7,7 +7,7 @@ import { CreateRotaDto } from './dto/create-rota.dto';
 import { UpdateRotaDto } from './dto/update-rota.dto';
 import { Rota } from './entities/rota.entity';
 
-const EXCLUDED_APP_ATTRIBUTES = ['codTrajeto', 'indAtivo', 'codConcessionaria', 'codUsuarioCriacao', 'datCriacao', 'datAtualizacao', 'datExclusao']
+const EXCLUDED_APP_ATTRIBUTES = ['codTrajeto', 'indAtivo', 'codConcessionaria', 'codUsuarioCriacao', 'datCriacao',  'datExclusao']
 
 
 @Injectable()

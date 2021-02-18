@@ -20,6 +20,10 @@ const { DataTypes } = require("sequelize");
   deletedAt: 'datExclusao',
 })
 export class Formulario extends Model {
+  static findByQuery(arg0: { attributes: { exclude: string[]; }; where: {}; }) {
+    throw new Error('Method not implemented.');
+  }
+  
  
   @ApiProperty()
   @PrimaryKey
@@ -82,5 +86,5 @@ export class Formulario extends Model {
   @ApiProperty()
   @Column
   codUsuarioCriacao: number;
-  static findByCPF_Nascimento: any;
+  
 }

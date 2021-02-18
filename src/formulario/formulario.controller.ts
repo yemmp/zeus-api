@@ -34,12 +34,11 @@ export class FormularioController {
     return this.formularioService.findOne(projecao, +id);
   }
 
-  @ApiOperation({ summary: 'Busca um Formulário atráves do CPF ou Data de Nascimento' })
-  @ApiResponse({ status: 200, description: 'Ok', type: Formulario })
+ 
   @ApiQuery({ name: 'projecao', allowEmptyValue: true, schema: { default: 'APP' } })
   @Get()
-  findByCPF_Nascimento(@Query() formularioQuery: QueryFormularioDTO) {
-    return this.formularioService.findByCPF_Nascimento(formularioQuery);
+  findByQuery(@Query() formularioQuery: QueryFormularioDTO) {
+    return this.formularioService.findByQuery(formularioQuery);
   }
 
   @ApiOperation({ summary: 'Atualizar um formulario' })
