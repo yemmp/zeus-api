@@ -108,4 +108,12 @@ export class CreateTestDriveDto {
     @IsNotEmpty()
     @IsNumber()
     codUsuarioCriacao: number;
+
+    @IsNotEmpty()
+    @IsDateString()
+    datNascimento: Date;
+
+    @IsNotEmpty()
+    @IsString()
+    numCpf:string;
 }
