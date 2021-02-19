@@ -1,8 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { createQueryObject } from 'src/common/utils';
+import sequelize from 'sequelize';
 import { CreateFormularioDto } from './dto/create-formulario.dto';
-import { QueryFormularioDTO } from './dto/query-formulario.dto';
 import { UpdateFormularioDto } from './dto/update-formulario.dto';
 import { Formulario } from './entities/formulario.entity';
 
@@ -47,19 +46,23 @@ export class FormularioService {
     }
   }
 
-  async findByQuery(filtro: QueryFormularioDTO){
-    try {
-      let projecao = filtro.projecao;
-      let query = createQueryObject(filtro);
-      console.log('where: ', query);
+  async findByQuery(projecao = 'APP', cpf: string, datNascimento: string){
+  try {
+    const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES: [];
+    let [results, metadata] = await this.formularioModel.sequelize.query({
+      query: "SELECT * from formulario where num_cpf = ? and date_format(dat_nascimento, \'%d%m\' ) like ? ",
+      values: [cpf, datNascimento]
+    },{
+      type: sequelize.QueryTypes.SELECT
       
-      const exclude_attr = (projecao == 'APP')? EXCLUDED_APP_ATTRIBUTES:[];
-      return this.formularioModel.findByQuery({attributes:{exclude:[...exclude_attr]},
-      where:query
-      })
-    } catch (error) {
-      
-    }
+    })
+    return results;
+    
+  } catch (error) {
+    console.error('Erro ao buscar cliente', error.message);
+    throw new BadRequestException();
+    
+  }
 
   }
 
