@@ -45,7 +45,7 @@ export class Trajeto  extends Model{
     @Column
     codUsuarioCriacao: number;
     
-    @HasMany(()=>PontoTrajeto)
+    @HasMany(()=>PontoTrajeto, {onDelete: 'cascade'})
     pontosTrajeto: PontoTrajeto[];
 
     @HasMany(()=>Rota)

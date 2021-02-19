@@ -17,6 +17,13 @@ export class PontoTrajetoController {
     return this.pontoTrajetoService.create(createPontoTrajetoDto);
   }
 
+  @ApiOperation({summary:'Criar uma lista de ponto-trajeto'})
+  @ApiResponse({status: 200,description:'Ponto-trajeto criado com sucesso.',type: PontoTrajeto})
+  @Post("_bulk")
+  bulkCreate(@Body() createPontoTrajetoDto: [CreatePontoTrajetoDto]) {
+    return this.pontoTrajetoService.bulkCreate(createPontoTrajetoDto);
+  }
+
   @ApiOperation({summary:'Listar pontos-trajeto'})
   @ApiResponse({status: 200,description:'Ok',type: [PontoTrajeto]})
   @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default:'APP'}})
@@ -45,5 +52,12 @@ export class PontoTrajetoController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.pontoTrajetoService.remove(+id);
+  }
+
+  @ApiOperation({summary:'Apagar todos os ponto-trajetos associados a um trajeto'})
+  @ApiResponse({status: 200,description:'Dados apagados com sucesso.',type: PontoTrajeto})
+  @Delete('trajeto/:id')
+  removeByCodTrajeto(@Param('id') id: string) {
+    return this.pontoTrajetoService.removeByCodTrajeto(+id);
   }
 }

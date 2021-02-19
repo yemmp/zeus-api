@@ -23,6 +23,18 @@ export class PontoTrajetoService {
     }
   }
 
+  async bulkCreate(createPontoTrajetoDto: [CreatePontoTrajetoDto]) {
+    try {
+
+      await this.pontoTrajetoModel.bulkCreate(createPontoTrajetoDto);
+      console.log('Ponto-Trajeto Criado com Sucesso!');
+      return 'Ponto-Trajeto Criado com Sucesso!';
+    } catch (error) {
+      console.error('Erro ao Criar Ponto-Trajeto', error.message);
+      throw new BadRequestException();
+    }
+  }
+
   async findAll(projecao = 'APP') {
     try {
       const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTE : []
@@ -68,4 +80,15 @@ export class PontoTrajetoService {
       console.error(`Erro ao Deletar Ponto-Trajeto #${id}`, error.message);
     }
   }
+
+  async removeByCodTrajeto(id: number) {
+    try {
+      const deletePontoTrajeto = this.pontoTrajetoModel.destroy({ where: { codTrajeto: id } });
+      console.log(`Ponto-Trajeto relacionados ao trajeto #${id} foram deletados Deletado! ${deletePontoTrajeto} Registros Apagados!`);
+      return `Ponto-Trajetos do trajecto #${id} foram Deletados!`;
+    } catch (error) {
+      console.error(`Erro ao Deletar Ponto-Trajeto by codTrajeto #${id}`, error.message);
+    }
+  }
+
 }

@@ -1,5 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import { PontoTrajeto } from 'src/ponto-trajeto/entities/ponto-trajeto.entity';
 import { CreateTrajetoDto } from './dto/create-trajeto.dto';
 import { UpdateTrajetoDto } from './dto/update-trajeto.dto';
 import { Trajeto } from './entities/trajeto.entity';
@@ -13,9 +14,9 @@ export class TrajetoService {
 
   async create(createTrajetoDto: CreateTrajetoDto) {
     try {
-      await this.trajetoModel.create(createTrajetoDto);
+      let trajetoCriado = await this.trajetoModel.create(createTrajetoDto);
       console.log('Trajeto Criado com Sucesso');
-      return 'Trajeto Criado com Sucesso';
+      return {codTrajeto: trajetoCriado.codTrajeto};
     } catch (error) {
       console.error('Erro ao Criar Trajeto', error.message);
       throw new BadRequestException();
@@ -25,7 +26,15 @@ export class TrajetoService {
   async findAll(projecao = 'APP') {
     try {
       const exclude_attr = (projecao == 'APP') ? EXCLUDE_APP_ATTRIBUTES : []
-      return this.trajetoModel.findAll({ attributes: { exclude: [...exclude_attr] } });
+      return this.trajetoModel.findAll({ 
+        include: [{
+          model: PontoTrajeto,
+          attributes: ['nomPontoTrajeto', 'numSequencia', 'numPosicaoX', 'numPosicaoY']
+        }],
+        attributes: { 
+          exclude: [...exclude_attr] 
+        } 
+      });
 
     } catch (error) {
       console.error(`Erro ao Buscar Trajetos`, error.message);
@@ -37,7 +46,15 @@ export class TrajetoService {
     try {
       const exclude_attr = (projecao == 'APP') ? EXCLUDE_APP_ATTRIBUTES : []
 
-      return this.trajetoModel.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codTrajeto: id } });
+      return this.trajetoModel.findOne({ 
+        include: [{
+          model: PontoTrajeto,
+          attributes: ['nomPontoTrajeto', 'numSequencia', 'numPosicaoX', 'numPosicaoY']
+        }],
+        attributes: { 
+          exclude: [...exclude_attr] 
+        }, 
+        where: { codTrajeto: id } });
     } catch (error) {
       console.error(`Erro ao Buscar Trajeto #${id}`, error.message);
       throw new BadRequestException();

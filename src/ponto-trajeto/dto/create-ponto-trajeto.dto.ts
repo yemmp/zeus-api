@@ -40,22 +40,5 @@ export class CreatePontoTrajetoDto {
     @IsNotEmpty()
     @IsNumber()
     numPosicaoY: number;
-    
-    @ApiProperty({
-        example:'2',
-        description:'Número do índice da concessionaria a qual o ponto-trajeto está atrelado.',
-    })
-    @IsNotEmpty()
-    @IsNumber()
-    codConcessionaria: number;
-    
-    @ApiProperty({
-        example:'3',
-        description:'Número do índice do usuário que criou o ponto-trajeto.',
-    })
-    @IsNotEmpty()
-    @IsNumber()
-    codUsuarioCriacao: number;
-
-    
+      
 }
