@@ -1,6 +1,7 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { Test } from '@nestjs/testing';
+import { QueryFormularioDTO } from 'src/formulario/dto/query-formulario.dto';
+import { FormularioService } from 'src/formulario/formulario.service';
 import { CreateTestDriveDto } from './dto/create-test-drive.dto';
 import { UpdateTestDriveDto } from './dto/update-test-drive.dto';
 import { TestDrive } from './entities/test-drive.entity';
@@ -9,16 +10,18 @@ const EXCLUDED_APP_ATTRIBUTES = ['']
 
 @Injectable()
 export class TestDriveService {
-  constructor(@InjectModel(TestDrive) private testDriveModel: typeof TestDrive) { }
+  constructor(@InjectModel(TestDrive) private testDriveModel: typeof TestDrive,
+    private formularioService: FormularioService) { }
 
-  async create(createTestDriveDto: CreateTestDriveDto) {
+  async create(createTestDriveDto: CreateTestDriveDto, formularioQueryDto: QueryFormularioDTO) {
     try {
+      await this.formularioService.findByQuery(formularioQueryDto)
       await this.testDriveModel.create(createTestDriveDto);
       console.log('Test-Drive Criado com Sucesso!');
       return 'Test-Drive Criado com Sucesso!';
     } catch (error) {
       console.error('Erro ao Criar Test-Drive', error.message);
-      throw new BadRequestException();
+      throw new BadRequestException(error, 'Cliente não encontrado.\nVerifique os dados inseridos.');
     }
   }
 

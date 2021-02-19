@@ -1,6 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {Table,Column,Model,PrimaryKey,AutoIncrement} from 'sequelize-typescript'
 
+const { DataTypes } = require("sequelize");
+
 @Table({
     underscored:true,
     tableName: 'icone',  
@@ -19,30 +21,26 @@ export class Icone extends Model{
 
     
     @ApiProperty()
-    @Column
+    @Column({type:DataTypes.STRING(100)})
     nomIcone: string;
 
     
     @ApiProperty()
-    @Column
+    @Column({type:DataTypes.STRING(500)})
     dscIcone: string;
 
     
     @ApiProperty()
-    @Column
+    @Column({type:DataTypes.STRING(300)})
     nomArquivoImagem: string;
     
     @ApiProperty()
-    @Column
+    @Column({type:DataTypes.STRING(300)})
     nomArquivoAudio: string;
 
-    
+        
     @ApiProperty()
-    @Column
-    nomDiretorio: string;
-    
-    @ApiProperty()
-    @Column
+    @Column({type:DataTypes.STRING(1)})
     indAtivo: string;
 
     

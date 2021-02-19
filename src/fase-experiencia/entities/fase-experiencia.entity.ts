@@ -2,6 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Table, Model, Column, PrimaryKey, ForeignKey, AutoIncrement, BelongsTo } from 'sequelize-typescript'
 import { Experiencia } from 'src/experiencia/entities/experiencia.entity';
 
+const { DataTypes } = require("sequelize");
 
 @Table({
     underscored: true,
@@ -27,7 +28,7 @@ export class FaseExperiencia extends Model {
     experiencia: Experiencia;
     
     @ApiProperty()
-    @Column
+    @Column({type:DataTypes.STRING(5)})
     codTipoFase: string;
 
     @ApiProperty()

@@ -2,6 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import {Table,Column,Model,PrimaryKey,ForeignKey,AutoIncrement, BelongsTo } from 'sequelize-typescript'
 import { CheckList } from 'src/check-list/entities/check-list.entity';
 
+const { DataTypes } = require("sequelize");
 @Table({
     underscored:true,
     tableName: 'detalhe_checklist',  
@@ -33,7 +34,7 @@ export class DetalheChecklist extends Model{
     numSequencia: number;
     
     @ApiProperty()
-    @Column
+    @Column({type:DataTypes.STRING(100)})
     dscTextoCheckList: string;
 
     

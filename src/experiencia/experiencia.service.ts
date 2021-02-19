@@ -6,7 +6,7 @@ import { CreateExperienciaDto } from './dto/create-experiencia.dto';
 import { UpdateExperienciaDto } from './dto/update-experiencia.dto';
 import { Experiencia } from './entities/experiencia.entity';
 
-const EXCLUDED_APP_ATTRIBUTES = ['datCriacao', 'datAtualizacao', 'datExclusao', 'indAtivo', 'codConcessionaria', 'codUsuarioCriacao','codFaseAvancada']
+const EXCLUDED_APP_ATTRIBUTES = ['datCriacao', 'datExclusao', 'indAtivo', 'codConcessionaria', 'codUsuarioCriacao','codFaseAvancada']
 
 
 @Injectable()
@@ -28,7 +28,7 @@ export class ExperienciaService {
     try {
       const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
       return this.experienciaModule.findAll({
-        include: [CheckList, { model: FaseExperiencia, attributes: ['codFase', 'codTipoFase'] }],
+        include: [CheckList, { model: FaseExperiencia, attributes: ['codFase', 'codTipoFase','datAtualizacao'] }],
         attributes: { exclude: [...exclude_attr] },
         order: [
           [{ model: FaseExperiencia, 'as': 'faseExperiencia' }, 'numSequencia', 'ASC']

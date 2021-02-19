@@ -11,6 +11,8 @@ import {
 import { Midia } from 'src/midia/entities/midia.entity';
 import { Rota } from 'src/rota/entities/rota.entity';
 
+const { DataTypes } = require("sequelize");
+
 @Table({
   underscored: true,
   tableName: 'ponto_rota',
@@ -42,7 +44,7 @@ export class PontoRota extends Model {
   Midia: Midia;
 
   @ApiProperty()
-  @Column
+  @Column({type:DataTypes.STRING(1)})
   codTipoMidia: string;
 
   @ApiProperty()
@@ -50,15 +52,15 @@ export class PontoRota extends Model {
   numSequencia: number;
 
   @ApiProperty()
-  @Column
+  @Column({type:DataTypes.STRING(100)})
   nomPontoRota: string;
 
   @ApiProperty()
-  @Column
+  @Column({type:DataTypes.STRING(300)})
   dscTextoVisual: string;
 
   @ApiProperty()
-  @Column
+  @Column({type:DataTypes.STRING(500)})
   dscTextoNarrado: string;
 
   @ApiProperty()

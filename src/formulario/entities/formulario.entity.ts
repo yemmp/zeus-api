@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { BLOB, DataTypes } from 'sequelize';
+import { BLOB } from 'sequelize';
 import {
   Model,
   Table,
@@ -9,7 +9,8 @@ import {
   AutoIncrement,
   BelongsTo,
 } from 'sequelize-typescript';
-import { TestDrive } from 'src/test-drive/entities/test-drive.entity';
+
+const { DataTypes } = require("sequelize");
 
 @Table({
   underscored: true,
@@ -19,6 +20,11 @@ import { TestDrive } from 'src/test-drive/entities/test-drive.entity';
   deletedAt: 'datExclusao',
 })
 export class Formulario extends Model {
+  static findByQuery(arg0: { attributes: { exclude: string[]; }; where: {}; }) {
+    throw new Error('Method not implemented.');
+  }
+  
+ 
   @ApiProperty()
   @PrimaryKey
   @AutoIncrement
@@ -80,4 +86,5 @@ export class Formulario extends Model {
   @ApiProperty()
   @Column
   codUsuarioCriacao: number;
+  
 }

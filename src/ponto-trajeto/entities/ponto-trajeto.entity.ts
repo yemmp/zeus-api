@@ -2,6 +2,8 @@ import { ApiProperty } from "@nestjs/swagger";
 import { Table, Column, Model, PrimaryKey, AutoIncrement, ForeignKey, BelongsTo, DataType } from "sequelize-typescript";
 import { Trajeto } from "src/trajeto/entities/trajeto.entity";
 
+const { DataTypes } = require("sequelize");
+
 @Table({
     underscored: true,
     tableName: 'ponto_trajeto',
@@ -18,7 +20,7 @@ export class PontoTrajeto extends Model {
     codPontoTrajeto: number;
 
     @ApiProperty()
-    @Column
+    @Column({type:DataTypes.STRING(50)})
     nomPontoTrajeto: string;
 
     @ApiProperty()

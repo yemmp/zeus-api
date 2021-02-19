@@ -12,6 +12,8 @@ import {
 import { CheckList } from 'src/check-list/entities/check-list.entity';
 import { FaseExperiencia } from 'src/fase-experiencia/entities/fase-experiencia.entity';
 
+const { DataTypes } = require("sequelize");
+
 @Table({
   underscored: true,
   tableName: 'experiencia',
@@ -27,7 +29,7 @@ export class Experiencia extends Model {
   codExperiencia: number;
 
   @ApiProperty()
-  @Column
+  @Column({type: DataTypes.STRING(50)})
   nomExperiencia: string;
 
   @ApiProperty()
@@ -43,7 +45,7 @@ export class Experiencia extends Model {
   codFaseAvancada: number;
 
   @ApiProperty()
-  @Column
+  @Column({type:DataTypes.STRING(1)})
   indAtivo: string;
 
   @ApiProperty()

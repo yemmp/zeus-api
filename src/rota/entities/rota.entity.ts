@@ -3,6 +3,7 @@ import {Table,Model,Column,PrimaryKey,AutoIncrement,ForeignKey, BelongsTo, HasMa
 import { PontoRota } from 'src/ponto-rota/entities/ponto-rota.entity';
 import { Trajeto } from 'src/trajeto/entities/trajeto.entity';
 
+const { DataTypes } = require("sequelize");
 
 @Table({
     underscored:true,
@@ -29,11 +30,11 @@ export class Rota extends Model {
 
     
     @ApiProperty()
-    @Column
+    @Column({type: DataTypes.STRING(100)})
     nomRota: string;
     
     @ApiProperty()
-    @Column
+    @Column({type: DataTypes.STRING(1)})
     indAtivo: string;
     
     @ApiProperty()

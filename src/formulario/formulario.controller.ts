@@ -4,44 +4,52 @@ import { CreateFormularioDto } from './dto/create-formulario.dto';
 import { UpdateFormularioDto } from './dto/update-formulario.dto';
 import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Formulario } from './entities/formulario.entity';
+import { QueryFormularioDTO } from './dto/query-formulario.dto';
 
 @Controller('formulario')
 @ApiTags('formulario')
 export class FormularioController {
-  constructor(private readonly formularioService: FormularioService) {}
+  constructor(private readonly formularioService: FormularioService) { }
 
-  @ApiOperation({summary:'Criar um novo formulario'})
-  @ApiResponse({status: 200,description:'Formulario criado com sucesso.', type: Formulario})
+  @ApiOperation({ summary: 'Criar um novo formulario' })
+  @ApiResponse({ status: 200, description: 'Formulario criado com sucesso.', type: Formulario })
   @Post()
   create(@Body() createFormularioDto: CreateFormularioDto) {
     return this.formularioService.create(createFormularioDto);
   }
 
-  @ApiOperation({summary:'Listar formularios'})
-  @ApiResponse({status: 200,description:'Ok', type: [Formulario]})
-  @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default:'APP'}})
+  @ApiOperation({ summary: 'Listar formularios' })
+  @ApiResponse({ status: 200, description: 'Ok', type: [Formulario] })
+  @ApiQuery({ name: 'projecao', allowEmptyValue: true, schema: { default: 'APP' } })
   @Get()
-  findAll(@Query('projecao') projecao:string = 'APP') {
+  findAll(@Query('projecao') projecao: string = 'APP') {
     return this.formularioService.findAll(projecao);
   }
-  
-  @ApiOperation({summary:'Buscar um formulario'})
-  @ApiResponse({status: 200,description:'Ok', type: Formulario})
-  @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default:'APP'}})
+
+  @ApiOperation({ summary: 'Buscar um formulario' })
+  @ApiResponse({ status: 200, description: 'Ok', type: Formulario })
+  @ApiQuery({ name: 'projecao', allowEmptyValue: true, schema: { default: 'APP' } })
   @Get(':id')
-  findOne(@Query('projecao') projecao:string = 'APP',@Param('id') id: string) {
-    return this.formularioService.findOne(projecao,+id);
+  findOne(@Query('projecao') projecao: string = 'APP', @Param('id') id: string) {
+    return this.formularioService.findOne(projecao, +id);
   }
 
-  @ApiOperation({summary:'Atualizar um formulario'})
-  @ApiResponse({status: 200,description:'Formulario atualizado com sucesso.', type: Formulario})
+ 
+  @ApiQuery({ name: 'projecao', allowEmptyValue: true, schema: { default: 'APP' } })
+  @Get()
+  findByQuery(@Query() formularioQuery: QueryFormularioDTO) {
+    return this.formularioService.findByQuery(formularioQuery);
+  }
+
+  @ApiOperation({ summary: 'Atualizar um formulario' })
+  @ApiResponse({ status: 200, description: 'Formulario atualizado com sucesso.', type: Formulario })
   @Put(':id')
   update(@Param('id') id: string, @Body() updateFormularioDto: UpdateFormularioDto) {
     return this.formularioService.update(+id, updateFormularioDto);
   }
 
-  @ApiOperation({summary:'Apagar dados de um formulario'})
-  @ApiResponse({status: 200,description:'Dados apagados com sucesso.', type: Formulario})
+  @ApiOperation({ summary: 'Apagar dados de um formulario' })
+  @ApiResponse({ status: 200, description: 'Dados apagados com sucesso.', type: Formulario })
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.formularioService.remove(+id);

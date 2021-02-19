@@ -15,7 +15,7 @@ export class CreateDispositivoDto {
         description:''
     })
     @IsString()
-    codUsuarioSistema: string;
+    codUsuarioSistema: number;
 
     @ApiProperty({
         example:'',

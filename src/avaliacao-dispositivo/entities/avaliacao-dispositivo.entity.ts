@@ -4,6 +4,8 @@ import { Avaliacao } from 'src/avaliacao/entities/avaliacao.entity';
 import { Dispositivo } from 'src/dispositivo/entities/dispositivo.entity';
 import { ExperienciaDispositivo } from 'src/experiencia-dispositivo/entities/experiencia-dispositivo.entity';
 
+const { DataTypes } = require("sequelize");
+
 @Table({
     underscored:true,
     tableName: 'avaliacao_dispositivo',  
@@ -48,7 +50,7 @@ export class AvaliacaoDispositivo extends Model{
     numNotaGostou: number;
 
     @ApiProperty()
-    @Column
+    @Column({type:DataTypes.STRING(40)})
     numNotaIndica: string;
     
 }
