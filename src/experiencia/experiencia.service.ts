@@ -28,12 +28,27 @@ export class ExperienciaService {
   async findAll(projecao = 'APP') {
     try {
       const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
-      return this.experienciaModule.findAll({
-        include: [CheckList, { model: FaseExperiencia, attributes: ['codFase', 'codTipoFase','datAtualizacao'] }],
-        attributes: { exclude: [...exclude_attr] },
-        order: [
-          [{ model: FaseExperiencia, 'as': 'faseExperiencia' }, 'numSequencia', 'ASC']
-        ]
+      return this.experienciaModule.findAll({ include:[
+        {model: CheckList,
+        attributes:['detalhesCheckList'],
+      include:[
+        {
+          model:DetalheChecklist,
+          right: true,
+          attributes:['dscTextoCheckList']
+        }
+      ]},
+      {
+        model:FaseExperiencia,
+        attributes: ['codFase','codTipoFase']
+
+      }
+      ],
+      attributes:{exclude: [...exclude_attr]},
+      order: [
+        [{model: DetalheChecklist, 'as': 'detalhesCheckList'},'numSequencia', 'ASC'],
+        [{ model: FaseExperiencia, 'as': 'faseExperiencia' }, 'numSequencia', 'ASC']
+      ]
       });
 
     } catch (error) {
