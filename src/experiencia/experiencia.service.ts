@@ -1,6 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CheckList } from 'src/check-list/entities/check-list.entity';
+import { DetalheChecklist } from 'src/detalhe-checklist/entities/detalhe-checklist.entity';
 import { FaseExperiencia } from 'src/fase-experiencia/entities/fase-experiencia.entity';
 import { CreateExperienciaDto } from './dto/create-experiencia.dto';
 import { UpdateExperienciaDto } from './dto/update-experiencia.dto';
@@ -45,9 +46,25 @@ export class ExperienciaService {
     try {
       const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
       return this.experienciaModule.findOne({
-        include: { include: [CheckList, { model: FaseExperiencia, attributes: ['codFase', 'codTipoFase'] }] },
-        attributes: { exclude: [...exclude_attr] },
+        include:[
+          {model: CheckList,
+          attributes:['detalhesCheckList'],
+        include:[
+          {
+            model:DetalheChecklist,
+            right: true,
+            attributes:['dscTextoCheckList']
+          }
+        ]},
+        {
+          model:FaseExperiencia,
+          attributes: ['codFase','codTipoFase']
+
+        }
+        ],
+        attributes:{exclude: [...exclude_attr]},
         order: [
+          [{model: DetalheChecklist, 'as': 'detalhesCheckList'},'numSequencia', 'ASC'],
           [{ model: FaseExperiencia, 'as': 'faseExperiencia' }, 'numSequencia', 'ASC']
         ], where: { codExperiencia: id }
       });

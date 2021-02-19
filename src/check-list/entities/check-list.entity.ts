@@ -9,6 +9,7 @@ import {
   ForeignKey,
   BelongsTo
 } from 'sequelize-typescript';
+import { DetalheChecklist } from 'src/detalhe-checklist/entities/detalhe-checklist.entity';
 import { Experiencia } from 'src/experiencia/entities/experiencia.entity';
 
 const { DataTypes } = require("sequelize");
@@ -45,4 +46,7 @@ export class CheckList extends Model {
 
   @HasMany(() => Experiencia)
   experiencia: Experiencia[];
+
+  @HasMany(()=> DetalheChecklist)
+  detalhesCheckList: DetalheChecklist;
 }

@@ -14,8 +14,8 @@ export class TestDriveController {
   @ApiOperation({summary:'Criar um test-drive'})
   @ApiResponse({status: 200, description:'Test-drive criado com sucesso.' , type:TestDrive })
   @Post()
-  create(@Body() createTestDriveDto: CreateTestDriveDto, formularioQueryDto: QueryFormularioDTO) {
-    return this.testDriveService.create(createTestDriveDto, formularioQueryDto);
+  create(@Body() createTestDriveDto: CreateTestDriveDto, @Query() numCpf:string, @Query() datNascimento: string) {
+    return this.testDriveService.create(createTestDriveDto,numCpf,datNascimento );
   }
   
   @ApiOperation({summary:'Listar test-drives'})

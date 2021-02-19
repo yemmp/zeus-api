@@ -36,9 +36,11 @@ export class FormularioController {
 
  
   @ApiQuery({ name: 'projecao', allowEmptyValue: true, schema: { default: 'APP' } })
+  @ApiQuery({ name: 'cpf', allowEmptyValue: false})
+  @ApiQuery({ name: 'datNascimento', allowEmptyValue: false })
   @Get()
-  findByQuery(@Query() formularioQuery: QueryFormularioDTO) {
-    return this.formularioService.findByQuery(formularioQuery);
+  findByQuery(@Query('projecao')  projecao: string = 'APP',@Query('cpf') numCpf: string,@Query('datNascimento')datNascimento: string) {
+    return this.formularioService.findByQuery(projecao,numCpf,datNascimento);
   }
 
   @ApiOperation({ summary: 'Atualizar um formulario' })

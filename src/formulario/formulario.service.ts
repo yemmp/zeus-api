@@ -46,12 +46,12 @@ export class FormularioService {
     }
   }
 
-  async findByQuery(projecao = 'APP', cpf: string, datNascimento: string){
+  async findByQuery(projecao = 'APP', numCpf:string, datNascimento : string){
   try {
-    const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES: [];
+    //const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES: [];
     let [results, metadata] = await this.formularioModel.sequelize.query({
-      query: "SELECT * from formulario where num_cpf = ? and date_format(dat_nascimento, \'%d%m\' ) like ? ",
-      values: [cpf, datNascimento]
+      query: "SELECT * from formulario where num_cpf like ? and date_format(dat_nascimento, \'%d%m\' ) like ? ",
+      values: [numCpf, datNascimento]
     },{
       type: sequelize.QueryTypes.SELECT
       

@@ -13,9 +13,9 @@ export class TestDriveService {
   constructor(@InjectModel(TestDrive) private testDriveModel: typeof TestDrive,
     private formularioService: FormularioService) { }
 
-  async create(createTestDriveDto: CreateTestDriveDto, formularioQueryDto: QueryFormularioDTO) {
+  async create(createTestDriveDto: CreateTestDriveDto, numCpf: string, datNascimento: string) {
     try {
-      await this.formularioService.findByQuery(formularioQueryDto)
+      await this.formularioService.findByQuery('WEB',numCpf,datNascimento);
       await this.testDriveModel.create(createTestDriveDto);
       console.log('Test-Drive Criado com Sucesso!');
       return 'Test-Drive Criado com Sucesso!';
