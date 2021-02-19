@@ -48,5 +48,5 @@ export class CheckList extends Model {
   experiencia: Experiencia[];
 
   @HasMany(()=> DetalheChecklist)
-  detalhesCheckList: DetalheChecklist;
+  detalhesCheckList: DetalheChecklist[];
 }
