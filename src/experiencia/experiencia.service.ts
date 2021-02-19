@@ -7,7 +7,7 @@ import { CreateExperienciaDto } from './dto/create-experiencia.dto';
 import { UpdateExperienciaDto } from './dto/update-experiencia.dto';
 import { Experiencia } from './entities/experiencia.entity';
 
-const EXCLUDED_APP_ATTRIBUTES = ['datCriacao', 'datExclusao', 'indAtivo', 'codConcessionaria', 'codUsuarioCriacao','codFaseAvancada']
+const EXCLUDED_APP_ATTRIBUTES = ['datCriacao', 'datExclusao', 'indAtivo', 'codConcessionaria', 'codUsuarioCriacao', 'codFaseAvancada']
 
 
 @Injectable()
@@ -28,28 +28,43 @@ export class ExperienciaService {
   async findAll(projecao = 'APP') {
     try {
       const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
-      return this.experienciaModule.findAll({ include:[
-        {model: CheckList,
-        attributes:['detalhesCheckList'],
-      include:[
-        {
-          model:DetalheChecklist,
-          right: true,
-          attributes:['dscTextoCheckList']
-        }
-      ]},
-      {
-        model:FaseExperiencia,
-        attributes: ['codFase','codTipoFase']
+      let listExperiencias = await this.experienciaModule.findAll({
+        include: [
+          {
+            model: CheckList,
+            include: [
+              {
+                model: DetalheChecklist,
+                right: true,
+                attributes: ['dscTextoCheckList']
+              }
+            ]
+          },
+          {
+            model: FaseExperiencia,
+            attributes: ['codFase', 'codTipoFase']
 
-      }
-      ],
-      attributes:{exclude: [...exclude_attr]},
-      order: [
-        [{model: DetalheChecklist, 'as': 'detalhesCheckList'},'numSequencia', 'ASC'],
-        [{ model: FaseExperiencia, 'as': 'faseExperiencia' }, 'numSequencia', 'ASC']
-      ]
+          }
+        ],
+        attributes: { exclude: [...exclude_attr] },
+        order: [
+          [{ model: FaseExperiencia, 'as': 'faseExperiencia' }, 'numSequencia', 'ASC']
+        ]
       });
+
+      console.log(listExperiencias)
+      
+
+      return listExperiencias.map(experiencia=> {
+        const {codExperiencia, nomExperiencia, checkList, faseExperiencia} = experiencia
+        const checkListCopy = checkList.detalhesCheckList.map(detalhe => detalhe.dscTextoCheckList)
+        return {
+          codExperiencia,
+          nomExperiencia,
+          "checklist": checkListCopy,
+          faseExperiencia
+        }
+      })
 
     } catch (error) {
       console.error('Erro ao Buscar Experiencias', error.message);
@@ -61,25 +76,27 @@ export class ExperienciaService {
     try {
       const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
       return this.experienciaModule.findOne({
-        include:[
-          {model: CheckList,
-          attributes:['detalhesCheckList'],
-        include:[
+        include: [
           {
-            model:DetalheChecklist,
-            right: true,
-            attributes:['dscTextoCheckList']
-          }
-        ]},
-        {
-          model:FaseExperiencia,
-          attributes: ['codFase','codTipoFase']
+            model: CheckList,
+            attributes: ['detalhesCheckList'],
+            include: [
+              {
+                model: DetalheChecklist,
+                right: true,
+                attributes: ['dscTextoCheckList']
+              }
+            ]
+          },
+          {
+            model: FaseExperiencia,
+            attributes: ['codFase', 'codTipoFase']
 
-        }
+          }
         ],
-        attributes:{exclude: [...exclude_attr]},
+        attributes: { exclude: [...exclude_attr] },
         order: [
-          [{model: DetalheChecklist, 'as': 'detalhesCheckList'},'numSequencia', 'ASC'],
+          [{ model: DetalheChecklist, 'as': 'detalhesCheckList' }, 'numSequencia', 'ASC'],
           [{ model: FaseExperiencia, 'as': 'faseExperiencia' }, 'numSequencia', 'ASC']
         ], where: { codExperiencia: id }
       });
