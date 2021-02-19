@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Table, Column, Model, PrimaryKey, AutoIncrement, ForeignKey, BelongsTo } from "sequelize-typescript";
+import { Table, Column, Model, PrimaryKey, AutoIncrement, ForeignKey, BelongsTo, DataType } from "sequelize-typescript";
 import { Trajeto } from "src/trajeto/entities/trajeto.entity";
 
 @Table({
@@ -34,11 +34,11 @@ export class PontoTrajeto extends Model {
     numSequencia: number;
 
     @ApiProperty()
-    @Column
+    @Column(DataType.DOUBLE)
     numPosicaoX: number;
 
     @ApiProperty()
-    @Column
+    @Column(DataType.DOUBLE)
     numPosicaoY: number;
 
     @ApiProperty()

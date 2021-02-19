@@ -11,8 +11,6 @@ export class CreateTrajetoDto {
     @IsString()
     @IsByteLength(1,100)
     nomTrajeto: string;
-    
-    
    
     @ApiProperty({
         example:'Trajeto que passa pelo circuito cultural da Praça da Liberdade...',
@@ -28,18 +26,7 @@ export class CreateTrajetoDto {
     })
     @IsNotEmpty()
     @IsNumber()
-    qtdPontos: number;
-    
-    
-    @ApiProperty({
-        example:'S',
-        description:'Indica se o trajeto está ativo ou não, sendo utilzado "S" para Ativo e "N" para Inativo.',
-    })
-    @IsNotEmpty()
-    @IsString()
-    @IsByteLength(1,1)
-    indAtivo: string;
-    
+    qtdPontos: number;    
     
     @ApiProperty({
         example:'2',
@@ -48,8 +35,7 @@ export class CreateTrajetoDto {
     @IsNotEmpty()
     @IsNumber()
     codConcessionaria: number;
-    
-    
+
     @ApiProperty({
         example:'2',
         description:'Número do índice do usuário que criou o trajeto.',
