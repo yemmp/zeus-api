@@ -5,7 +5,7 @@ import { CheckList } from 'src/check-list/entities/check-list.entity';
 const { DataTypes } = require("sequelize");
 @Table({
     underscored:true,
-    tableName: 'detalhe_checklist',  
+    tableName: 'detalhe_check_list',  
     createdAt: 'datCriacao',
     updatedAt: 'datAtualizacao',
     deletedAt: 'datExclusao'
