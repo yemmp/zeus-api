@@ -14,15 +14,12 @@ const { DataTypes } = require("sequelize");
 
 @Table({
   underscored: true,
-  tableName: 'formulario',
+  tableName: 'cadastro',
   createdAt: 'datCriacao',
   updatedAt: 'datAtualizacao',
   deletedAt: 'datExclusao',
 })
 export class Formulario extends Model {
-  static findByQuery(arg0: { attributes: { exclude: string[]; }; where: {}; }) {
-    throw new Error('Method not implemented.');
-  }
   
  
   @ApiProperty()
