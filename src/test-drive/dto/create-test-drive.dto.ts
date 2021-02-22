@@ -25,15 +25,6 @@ export class CreateTestDriveDto {
         example:'',
         description:''
     })
-    @IsNotEmpty()
-    @IsDateString()
-    datAgendamento: Date;
-
-
-    @ApiProperty({
-        example:'',
-        description:''
-    })
     @IsString()
     codStatusTestDrive: string;
 
@@ -52,14 +43,7 @@ export class CreateTestDriveDto {
     @IsNumber()
     numKmFinal: number;
 
-    @ApiProperty({
-        example: 'yIRK29C',
-        description: 'Código do Voucher'
-    })
-    @IsString()
-    @IsByteLength(4)
-    codVoucher: string;
-
+ 
     @ApiProperty({
         example: '09-02-2021',
         description: 'Data de saída da concessionaria.',
@@ -110,10 +94,11 @@ export class CreateTestDriveDto {
     codUsuarioCriacao: number;
 
     @IsNotEmpty()
-    @IsDateString()
-    datNascimento: Date;
-
+    @IsByteLength(4,4)
+    datNascimento: string;
+    
     @IsNotEmpty()
     @IsString()
+    @IsByteLength(4,4)
     numCpf:string;
 }

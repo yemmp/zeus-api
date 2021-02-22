@@ -5,6 +5,7 @@ import { UpdateTestDriveDto } from './dto/update-test-drive.dto';
 import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { TestDrive } from './entities/test-drive.entity';
 import { QueryFormularioDTO } from 'src/formulario/dto/query-formulario.dto';
+import { CreateFormularioDto } from 'src/formulario/dto/create-formulario.dto';
 
 @Controller('test-drive')
 @ApiTags('test-drive')
@@ -14,8 +15,8 @@ export class TestDriveController {
   @ApiOperation({summary:'Criar um test-drive'})
   @ApiResponse({status: 200, description:'Test-drive criado com sucesso.' , type:TestDrive })
   @Post()
-  create(@Body() createTestDriveDto: CreateTestDriveDto, @Query() numCpf:string, @Query() datNascimento: string) {
-    return this.testDriveService.create(createTestDriveDto,numCpf,datNascimento );
+  create(@Body() createTestDriveDto: CreateTestDriveDto) {
+    return this.testDriveService.create(createTestDriveDto );
   }
   
   @ApiOperation({summary:'Listar test-drives'})

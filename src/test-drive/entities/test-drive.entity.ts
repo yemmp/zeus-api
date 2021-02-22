@@ -40,10 +40,7 @@ export class TestDrive extends Model {
   @BelongsTo(()=>Dispositivo)
   dispositivo: Dispositivo;
 
-  @ApiProperty()
-  @Column
-  datAgendamento: Date;
-  
+ 
   @ApiProperty()
   @Column({type:DataTypes.STRING(10)})
   codStatusTestDrive: string;
@@ -54,11 +51,6 @@ export class TestDrive extends Model {
   @ApiProperty()
   @Column
   numKmFinal: number;
-  
-  @ApiProperty()
-  @Column({type:DataTypes.STRING(4)})
-  codVoucher: string;
-
   
   @ApiProperty()
   @Column

@@ -5,16 +5,14 @@ import {
   Table,
   Column,
   PrimaryKey,
-  ForeignKey,
   AutoIncrement,
-  BelongsTo,
 } from 'sequelize-typescript';
 
 const { DataTypes } = require("sequelize");
 
 @Table({
   underscored: true,
-  tableName: 'cadastro',
+  tableName: 'formulario',
   createdAt: 'datCriacao',
   updatedAt: 'datAtualizacao',
   deletedAt: 'datExclusao',

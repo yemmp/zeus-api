@@ -41,7 +41,7 @@ export class CreateFormularioDto {
   })
   @IsNotEmpty()
   @IsString()
-  dscRG: string;
+  dscRg: string;
 
   @ApiProperty({
     example: '(31) 9 9429-2333',
@@ -57,7 +57,7 @@ export class CreateFormularioDto {
   })
   @IsNotEmpty()
   @IsString()
-  numCPF: string;
+  numCpf: string;
 
   @ApiProperty({
     example: '000123456789',
@@ -65,7 +65,7 @@ export class CreateFormularioDto {
   })
   @IsNotEmpty()
   @IsString()
-  numCNH: string;
+  numCnh: string;
 
 
   file: any;
