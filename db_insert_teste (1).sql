@@ -571,6 +571,26 @@ VALUES
     'Feedback de encerramento', 'Repetindo narração do feedback de encerramento',
     1, 3, Now(), Now()
     );
+/* ---------------------------------------------------------------------- */
+/* "formulario"                                                           */
+/* ---------------------------------------------------------------------- */
+
+INSERT INTO formulario 
+    ( cod_formulario, nom_cliente, num_telefone, dsc_email, dsc_rg, num_celular, num_cpf, num_cnh, cod_sexo, dat_nascimento, dat_validade_cnh, cod_concessionaria, cod_usuario_criacao, dat_criacao, dat_atualizacao )
+VALUES
+    ( 1,  'John Doe', '(21) 111-5678', 'john@doe.com', 'M-1.111.111', '(21) 98765-1111',  '111.111.111-11', 'CNH-111111', 'MASC', STR_TO_DATE('01/01/1970','DD/MM/YYYY'), STR_TO_DATE('01/01/2031','DD/MM/YYYY'), 1, 3, Now(), Now() );
+
+INSERT INTO formulario 
+    ( cod_formulario, nom_cliente, num_telefone, dsc_email, dsc_rg, num_celular, num_cpf, num_cnh, cod_sexo, dat_nascimento, dat_validade_cnh, cod_concessionaria, cod_usuario_criacao, dat_criacao, dat_atualizacao )
+VALUES
+    ( 2,  'Mary Doe', '(21) 222-6789', 'mary@doe.com', 'M-2.222.222', '(21) 98765-2222',  '222.222.222-22', 'CNH-222222', 'MASC', STR_TO_DATE('01/01/1970','DD/MM/YYYY'), STR_TO_DATE('02/02/2032','DD/MM/YYYY'), 1, 3, Now(), Now() );
+
+INSERT INTO formulario 
+    ( cod_formulario, nom_cliente, num_telefone, dsc_email, dsc_rg, num_celular, num_cpf, num_cnh, cod_sexo, dat_nascimento, dat_validade_cnh, cod_concessionaria, cod_usuario_criacao, dat_criacao, dat_atualizacao )
+VALUES
+    ( 3,  'Junior Doe', '(21) 333-6789', 'junior@doe.com', 'M-3.333.333', '(21) 98765-3333',  '333.333.333-33', 'CNH-33333', 'MASC', STR_TO_DATE('01/01/1970','DD/MM/YYYY'), STR_TO_DATE('03/03/2033','DD/MM/YYYY'), 1, 3, Now(), Now() );
+
+
 
     /* ---------------------------------------------------------------------- */
 /* "experiencia"                                                          */
