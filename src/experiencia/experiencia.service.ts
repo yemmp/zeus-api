@@ -122,7 +122,7 @@ export class ExperienciaService {
       throw new BadRequestException();
     }
   }
-
+//
   remove(id: number) {
     try {
       this.experienciaModule.destroy({ where: { codExperiencia: id } });
