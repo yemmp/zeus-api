@@ -42,7 +42,7 @@ export class ExperienciaService {
           },
           {
             model: FaseExperiencia,
-            attributes: ['codFase', 'codTipoFase']
+            attributes: ['codFase', 'codTipoFase','datAtualizacao']
 
           }
         ],
@@ -53,14 +53,15 @@ export class ExperienciaService {
       });
 
       console.log(listExperiencias)
-      
 
-      return listExperiencias.map(experiencia=> {
-        const {codExperiencia, nomExperiencia, checkList, faseExperiencia} = experiencia
+
+      return listExperiencias.map(experiencia => {
+        const { codExperiencia, nomExperiencia, updatedAt,checkList, faseExperiencia } = experiencia
         const checkListCopy = checkList.detalhesCheckList.map(detalhe => detalhe.dscTextoCheckList)
         return {
           codExperiencia,
           nomExperiencia,
+          updatedAt, 'as': 'datAtualizacao',
           "checklist": checkListCopy,
           faseExperiencia
         }
@@ -73,37 +74,41 @@ export class ExperienciaService {
   }
 
   async findOne(projecao = 'APP', id: number) {
-    try {
-      const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
+    Experiencia.belongsTo(CheckList);
+    CheckList.hasMany(DetalheChecklist);
+    DetalheChecklist.belongsTo(CheckList);
+
+    try{
+      const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES:[];
+
       return this.experienciaModule.findOne({
-        include: [
+        include:[
           {
-            model: CheckList,
-            attributes: ['detalhesCheckList'],
-            include: [
-              {
-                model: DetalheChecklist,
-                right: true,
-                attributes: ['dscTextoCheckList']
-              }
-            ]
+            model:CheckList,
+            include:[
+              {model: DetalheChecklist,
+                attributes: ['dscTextoCheckList'],
+              },
+            ],
           },
           {
             model: FaseExperiencia,
-            attributes: ['codFase', 'codTipoFase']
-
+            attributes:['codFase','codTipoFase','datAtualizacao']
           }
+        ], attributes:{exclude:[...exclude_attr]},
+        order:[
+          [{model: DetalheChecklist, 'as': 'detalhesCheckList'}, 'numSequencia','ASC'],
+          [{model: FaseExperiencia, 'as': 'faseExperiencia'}, 'numSequencia', 'ASC']
         ],
-        attributes: { exclude: [...exclude_attr] },
-        order: [
-          [{ model: DetalheChecklist, 'as': 'detalhesCheckList' }, 'numSequencia', 'ASC'],
-          [{ model: FaseExperiencia, 'as': 'faseExperiencia' }, 'numSequencia', 'ASC']
-        ], where: { codExperiencia: id }
+        where:{codExperiencia: id}
       });
-    } catch (error) {
-      console.error(`Erro ao Buscar Experiencia #${id}`, error.message);
-    }
 
+    } catch (error) {
+
+      console.error(`Erro ao Buscar Experiencia #${id}`,error.message);
+      throw new BadRequestException();
+
+    }
   }
 
   async update(id: number, updateExperienciaDto: UpdateExperienciaDto) {
@@ -117,7 +122,7 @@ export class ExperienciaService {
       throw new BadRequestException();
     }
   }
-
+//
   remove(id: number) {
     try {
       this.experienciaModule.destroy({ where: { codExperiencia: id } });

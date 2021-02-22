@@ -21,6 +21,9 @@ const { DataTypes } = require("sequelize");
   deletedAt: 'datExclusao'
 })
 export class Usuario extends Model {
+  static find(arg0: (Usuario: any) => boolean): Usuario | PromiseLike<Usuario> {
+    throw new Error('Method not implemented.');
+  }
  
   @ApiProperty()
   @PrimaryKey

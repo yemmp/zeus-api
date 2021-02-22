@@ -22,6 +22,7 @@ const { DataTypes } = require("sequelize");
   deletedAt: 'datExclusao',
 })
 export class Experiencia extends Model {
+  
   @ApiProperty()
   @PrimaryKey
   @AutoIncrement

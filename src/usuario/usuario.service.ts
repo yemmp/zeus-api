@@ -67,6 +67,10 @@ export class UsuarioService {
     }
   }
 
+  async findByNome(nomUsuario: string): Promise<Usuario | undefined>{
+    return this.usuarioModel.find(Usuario => Usuario.nomUsuario === nomUsuario)
+  }
+
   async update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
     try {
       Usuario.update(
