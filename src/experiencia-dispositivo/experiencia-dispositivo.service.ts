@@ -1,4 +1,4 @@
-import { BadRequestException, Inject, Injectable } from '@nestjs/common';
+import {  HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateExperienciaDispositivoDto } from './dto/create-experiencia-dispositivo.dto';
 import { UpdateExperienciaDispositivoDto } from './dto/update-experiencia-dispositivo.dto';
@@ -18,8 +18,14 @@ export class ExperienciaDispositivoService {
       return 'Experiencia-Dispositivo Criada com Sucesso';
 
     } catch (error) {
-      console.error('Erro ao Criar Experiencia-Dispositivo', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao criar Experiencia Dispositivo`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -31,8 +37,14 @@ export class ExperienciaDispositivoService {
 
     } catch (error) {
 
-      console.error('Erro ao Buscar Experiencia-Dispositivo', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Experiencia-Dispositivo`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -42,8 +54,14 @@ export class ExperienciaDispositivoService {
       return this.experienciaDispositivoModel.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codExperienciaDispositivo: id } });
     } catch (error) {
 
-      console.error(`Erro ao Buscar Experiencia-Dispositivo #${id}`, error.message);
-      throw new BadRequestException()
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Experiencia-Dispositivo #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -55,8 +73,14 @@ export class ExperienciaDispositivoService {
       })
     } catch (error) {
 
-      console.error(`Erro ao Atualizar Experiencia-Dispositivo #${id}`, error.message);
-      throw new BadRequestException()
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao atualizar Experiencia Dispositivo #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -65,8 +89,14 @@ export class ExperienciaDispositivoService {
       this.experienciaDispositivoModel.destroy({ where: { codExperienciaDispositivo: id } });
       return `Experiencia-Dispositivo #${id} Deletada`;
     } catch (error) {
-      console.error(`Erro ao Buscar Experiencia-Dispositivo #${id}`, error.message);
-      throw new BadRequestException()
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao deletar Experiencia-Dispositivo #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
 
     }
   }

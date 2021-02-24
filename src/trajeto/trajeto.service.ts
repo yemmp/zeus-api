@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {  HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { PontoTrajeto } from 'src/ponto-trajeto/entities/ponto-trajeto.entity';
 import { CreateTrajetoDto } from './dto/create-trajeto.dto';
@@ -18,8 +18,14 @@ export class TrajetoService {
       console.log('Trajeto Criado com Sucesso');
       return {codTrajeto: trajetoCriado.codTrajeto};
     } catch (error) {
-      console.error('Erro ao Criar Trajeto', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao criar Trajeto}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -37,8 +43,14 @@ export class TrajetoService {
       });
 
     } catch (error) {
-      console.error(`Erro ao Buscar Trajetos`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Trajetos`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -56,8 +68,14 @@ export class TrajetoService {
         }, 
         where: { codTrajeto: id } });
     } catch (error) {
-      console.error(`Erro ao Buscar Trajeto #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Trajeto #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
 
   }
@@ -70,8 +88,14 @@ export class TrajetoService {
       return `Trajeto #${id} Atualizado com Sucesso!`;
     } catch (error) {
 
-      console.error(`Erro ao Atualizar Trajeto #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao Atualizar Trajeto #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -81,8 +105,14 @@ export class TrajetoService {
       console.log(`Trajeto #${id} Deletado! ${deleteTrajeto} Registros Apagados!`);
       return `Trajeto #${id} Deletado!`;
     } catch (error) {
-      console.error(`Erro ao Deletar Trajeto #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao Deletar Trajeto #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 }

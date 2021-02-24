@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {  HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { PontoRota } from 'src/ponto-rota/entities/ponto-rota.entity';
 import { PontoTrajeto } from 'src/ponto-trajeto/entities/ponto-trajeto.entity';
@@ -21,8 +21,14 @@ export class RotaService {
       console.log('Rota Criada com Sucesso!')
       return 'Rota Criada com Sucesso!';
     } catch (error) {
-      console.error('Erro ao Criar Rota', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao criar Rota`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -60,8 +66,14 @@ export class RotaService {
         ]
       });
     } catch (error) {
-      console.error('Erro ao Buscar Rotas', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Rotas`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
 
   }
@@ -102,7 +114,14 @@ export class RotaService {
         , where: { codRota: id }
       });
     } catch (error) {
-      console.error(`Erro ao Buscar Rota #${id}`, error.message);
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Rota #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -112,8 +131,14 @@ export class RotaService {
         console.log(`Rota #${id} Atualizada com Sucesso!`));
       return `Rota #${id} Atualizada com Sucesso!`;
     } catch (error) {
-      console.error(`Erro ao Atualizar Rota #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao Atualizar Rota #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -123,7 +148,14 @@ export class RotaService {
       console.log(`Rota #${id} Deletada! ${deleteRota} Registros Apagados!`);
       return `Rota #${id} Deletada!`;
     } catch (error) {
-      console.error(`Erro ao Deletar Rota #${id}`, error.message);
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao deletar Rota #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 }

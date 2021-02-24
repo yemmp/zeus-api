@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {  HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateAvaliacaoDispositivoDto } from './dto/create-avaliacao-dispositivo.dto';
 import { UpdateAvaliacaoDispositivoDto } from './dto/update-avaliacao-dispositivo.dto';
@@ -17,8 +17,14 @@ export class AvaliacaoDispositivoService {
       console.log('Avaliacao-Dispositivo Criada com Sucesso!');
       return 'Avaliacao-Dispositivo Criada com Sucesso!';
     } catch (error) {
-      console.error('Erro ao Criar Avaliacao-Dispositvo', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao criar Avaliacao-Dispositivo`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -29,8 +35,14 @@ export class AvaliacaoDispositivoService {
       return this.avaliacaoDispositivoModule.findAll({ attributes: { exclude: [...exclude_attr] } });
 
     } catch (error) {
-      console.error('Erro ao Buscar Avaliacoes-Dispositivo', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Avaliacoes-Dispositivo`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -41,8 +53,14 @@ export class AvaliacaoDispositivoService {
       return this.avaliacaoDispositivoModule.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codAvaliacaoDispositivo: id } });
 
     } catch (error) {
-      console.error(`Erro ao Buscar Avaliacao-Dispositivo #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Avaliacao-Dispositivo #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
 
     }
   }
@@ -54,8 +72,14 @@ export class AvaliacaoDispositivoService {
         return `Atualizacao-Dispositivo #${id} Atualizada com Sucesso!`;
       })
     } catch (error) {
-      console.error(`Erro ao Atualizar Avaliacao-Dispositivo #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao atualizar Avaliacao-Dispositivo #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
 
   }
@@ -65,8 +89,14 @@ export class AvaliacaoDispositivoService {
       this.avaliacaoDispositivoModule.destroy({ where: { codAvaliacaoDispositivo: id } });
       return `Avaliacao-Dispositivo #${id} Deletada!`;
     } catch (error) {
-      console.error(`Erro ao Deletar Avaliacao-Dispositivo #${id}`, error.messsage);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao deletar Avaliacao-Dispositivo #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 }

@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {  HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CheckList } from 'src/check-list/entities/check-list.entity';
 import { DetalheChecklist } from 'src/detalhe-checklist/entities/detalhe-checklist.entity';
@@ -20,8 +20,14 @@ export class ExperienciaService {
       console.log('Experiencia Criada com Sucesso');
       return 'Experiencia Criada com Sucesso';
     } catch (error) {
-      console.error('Erro ao Criar Experiencia', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao criar Experiencia`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -68,8 +74,14 @@ export class ExperienciaService {
       })
 
     } catch (error) {
-      console.error('Erro ao Buscar Experiencias', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Experiencias`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -105,9 +117,14 @@ export class ExperienciaService {
 
     } catch (error) {
 
-      console.error(`Erro ao Buscar Experiencia #${id}`,error.message);
-      throw new BadRequestException();
-
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Experiencia #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -118,8 +135,14 @@ export class ExperienciaService {
         return `Experiencia #${id} Atualizada com Sucesso`;
       });
     } catch (error) {
-      console.error(`Erro ao Atualizar Experiencia #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao Atualizar Experiencia #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 //
@@ -128,7 +151,14 @@ export class ExperienciaService {
       this.experienciaModule.destroy({ where: { codExperiencia: id } });
       return `Experiencia #${id} Deletada!`;
     } catch (error) {
-      console.error(`Erro ao Deletar Experiencia #${id}`, error.message);
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao deletar Experiencia #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 }

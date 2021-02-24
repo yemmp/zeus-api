@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {  HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateDetalheChecklistDto } from './dto/create-detalhe-checklist.dto';
 import { UpdateDetalheChecklistDto } from './dto/update-detalhe-checklist.dto';
@@ -16,8 +16,14 @@ export class DetalheChecklistService {
       console.log('Detalhe-CheckList criado com Sucesso!');
       return 'Detalhe-CheckList criado com Sucesso!';
     } catch (error) {
-      console.error('Erro ao Criar Detalhe-CheckList', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao criar detalhe-check-list`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
 
   }
@@ -28,8 +34,14 @@ export class DetalheChecklistService {
 
       return this.detalheCheckListModule.findAll({ attributes: { exclude: [...exclude_attr] } });
     } catch (error) {
-      console.error('Erro ao Buscar Detalhe-CheckList', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar detalhe-check-list`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
 
   }
@@ -40,7 +52,14 @@ export class DetalheChecklistService {
       return this.detalheCheckListModule.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codDetalheCheckList: id } });
 
     } catch (error) {
-      console.error(`Erro ao Buscar Detalhe-CheckList #${id}`, error.message);
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar detalhe-check-list #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -51,8 +70,14 @@ export class DetalheChecklistService {
         return `Detalhe-CheckList #${id} Atualizado com Sucesso!`;
       })
     } catch (error) {
-      console.error(`Erro ao Atualizar Detalhe-CheckList #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao atualizar detalhe-check-list #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -61,7 +86,14 @@ export class DetalheChecklistService {
       this.detalheCheckListModule.destroy({ where: { codDetalheCheckList: id } });
       return `Detalhe-CheckList #${id} Deletada!`;
     } catch (error) {
-      console.error(`Erro ao Deletar Detalhe-CheckList #${id}`, error.message);
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao deletar detalhe-check-list #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 }

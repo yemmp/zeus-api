@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {  HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateCheckListDto } from './dto/create-check-list.dto';
 import { UpdateCheckListDto } from './dto/update-check-list.dto';
@@ -17,8 +17,14 @@ export class CheckListService {
       console.log('Check-List Criado com Sucesso!');
       return 'Check-List Criado com Sucesso!';
     } catch (error) {
-      console.error('Erro ao Criar Check-List', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao criar Check-List`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -28,8 +34,14 @@ export class CheckListService {
       return this.checkListModel.findAll({ attributes: { exclude: [...exclude_attr] } });
 
     } catch (error) {
-      console.error('Erro ao Buscar Check-Lists', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Check-Lists`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -40,9 +52,14 @@ export class CheckListService {
       return this.checkListModel.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codCheckList: id } });
 
     } catch (error) {
-      console.error(`Erro ao Buscar Check-List #${id}`, error.message);
-      throw new BadRequestException();
-
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Check-List #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -53,8 +70,14 @@ export class CheckListService {
         return `Check-List #${id} Atualizada com Sucesso`;
       })
     } catch (error) {
-      console.error(`Erro ao Atualizar Check-List #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao Atualizar Check-List #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
 
   }
@@ -64,8 +87,14 @@ export class CheckListService {
       this.checkListModel.destroy({ where: { codCheckList: id } });
       return `Check-List #${id} Deletada!`;
     } catch (error) {
-      console.error(`Erro ao Deletar Check-List #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao deletar Check-list #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 }

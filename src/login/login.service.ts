@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateLoginDto } from './dto/create-login.dto';
 import { UpdateLoginDto } from './dto/update-login.dto';
@@ -17,8 +17,14 @@ export class LoginService {
       return 'Login Criado com Sucesso!';
 
     } catch (error) {
-      console.error('Erro ao Criar Login', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao criar Login`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -29,8 +35,14 @@ export class LoginService {
       return this.loginModel.findAll({ attributes: { exclude: [...exclude_attr] } });
 
     } catch (error) {
-      console.error('Erro ao Buscar Logins', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Logins`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -41,9 +53,14 @@ export class LoginService {
       return this.loginModel.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codLogin: id } });
 
     } catch (error) {
-      console.error(`Erro ao Buscar Login #${id}`, error.message);
-      throw new BadRequestException();
-
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Login #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -58,9 +75,14 @@ export class LoginService {
 
     } catch (error) {
 
-      console.error(`Erro ao Atualizar Login #${id}`, error.message);
-      throw new BadRequestException();
-
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao Atualizar Login #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
 
 
@@ -78,8 +100,14 @@ export class LoginService {
 
     } catch (error) {
 
-      console.error(`Erro ao Deletar Login #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao deletar Login #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
 
     }
   }

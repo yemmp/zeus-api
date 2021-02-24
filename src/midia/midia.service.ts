@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {  HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateMidiaDto } from './dto/create-midia.dto';
 import { UpdateMidiaDto } from './dto/update-midia.dto';
@@ -17,8 +17,14 @@ export class MidiaService {
       console.log('Midia Criada com Sucesso');
       return 'Midia Criada com Sucesso';
     } catch (error) {
-      console.error('Erro ao Criar Midia', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao criar Midia`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -29,8 +35,14 @@ export class MidiaService {
       return this.midiaModel.findAll({ attributes: { exclude: [...exclude_attr] } });
 
     } catch (error) {
-      console.error('Erro ao Buscar Midias', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Midias`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -40,7 +52,14 @@ export class MidiaService {
       return this.midiaModel.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codMidia: id } });
 
     } catch (error) {
-      console.error(`Erro ao Buscar Midia #${id}`, error.message);
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Midia #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -51,8 +70,14 @@ export class MidiaService {
         return `Midia #${id} Atualizada com Sucesso!`;
       })
     } catch (error) {
-      console.error(`Erro ao Atualizar Midia #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao Atualizar Midia #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -63,8 +88,14 @@ export class MidiaService {
       console.log(`Midia #${id} Deletada! ${deleteMidia} Registros Apagados!`);
       return `Midia #${id} Deletada! `;
     } catch (error) {
-      console.error(`Erro ao Remover Midia #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao deletar Midia #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 }

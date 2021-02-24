@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {  HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { where } from 'sequelize';
 import { CreateFaseExperienciaDto } from './dto/create-fase-experiencia.dto';
@@ -20,8 +20,14 @@ export class FaseExperienciaService {
       return 'Fase-Experiencia Criada com Sucesso';
 
     } catch (error) {
-      console.error('Erro ao criar Fase-Experiencia', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao criar fase-Experiencia`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -32,8 +38,15 @@ export class FaseExperienciaService {
       return this.faseExperienciaModel.findAll({ attributes: { exclude: [...exclude_attr] } });
 
     } catch (error) {
-      console.error('Erro ao Buscar Fase-Experiencia', error.message);
-      throw new BadRequestException();
+     ;
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar fase Experiencia`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -43,8 +56,14 @@ export class FaseExperienciaService {
 
       return this.faseExperienciaModel.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codFaseExperiencia: id } })
     } catch (error) {
-      console.error(`Erro ao Buscar Fase-Experiencia #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Fase-Experiencia #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
 
   }
@@ -56,8 +75,14 @@ export class FaseExperienciaService {
         return `Fase-Experiencia #${id} Atualizada com Sucesso!`;
       })
     } catch (error) {
-      console.error(`Erro ao Aualizar Fase-Experiencia #${id}`)
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao atualizar Fase-Experiencia #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -66,8 +91,14 @@ export class FaseExperienciaService {
       this.faseExperienciaModel.destroy({ where: { codFaseExperiencia: id } });
       return `Fase-Experiencia #${id} Deletada`;
     } catch (error) {
-      console.error(`Erro ao Deleter Fase-Experiencia #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao Deletar Fase-Experiencia #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 }

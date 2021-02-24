@@ -1,6 +1,5 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import Query from 'mysql2/typings/mysql/lib/protocol/sequences/Query';
 import { DatabaseError, WhereAttributeHash } from 'sequelize';
 import { createQueryObject } from 'src/common/utils';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
@@ -23,12 +22,14 @@ export class UsuarioService {
       console.log('Usuário criado com sucesso!');
       return 'Usuario Criado com Sucesso';
     } catch (error) {
-      console.error('Erro ao Criar Usuario',error.message);
-      if(error instanceof DatabaseError){
-        throw new BadRequestException(error.original.message);
-      }else{
-        throw new BadRequestException("Database error");
-      }
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao Criar Usuario`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -45,8 +46,14 @@ export class UsuarioService {
         where: query
       })
     } catch (error) {
-      console.error('Erro ao Buscar Usuarios:', error.message);
-      throw new BadRequestException(error, "error.findAll");
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Usuarios`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -62,8 +69,14 @@ export class UsuarioService {
         }
       });
     } catch (error) {
-      console.error(`Erro ao Buscar Usuario #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Usuario #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -83,8 +96,14 @@ export class UsuarioService {
 
     } catch (error) {
 
-      console.error(`Erro ao Atualizar Usuario #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao Atualizar Usuario #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
 
   }
@@ -98,8 +117,14 @@ export class UsuarioService {
       return `Usuario #${id} Deletado!`;
 
     } catch (error) {
-      console.error(`Erro ao Deletar Usuario #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao deletar Usuario#${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
 
     }
   }

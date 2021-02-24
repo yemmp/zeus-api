@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {  HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateAvaliacaoDto } from './dto/create-avaliacao.dto';
 import { UpdateAvaliacaoDto } from './dto/update-avaliacao.dto';
@@ -16,8 +16,14 @@ export class AvaliacaoService {
       console.log('Avaliacao Criada com Sucesso!');
       return 'Avaliacao Criada com Sucesso!';
     } catch (error) {
-      console.error('Erro ao Criar Avaliacao', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao criar Avaliacao`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -27,8 +33,14 @@ export class AvaliacaoService {
       return this.avaliacaoModel.findAll({ attributes: { exclude: [...exclude_attr] } });
 
     } catch (error) {
-      console.error('Erro ao Buscar Avaliacoes');
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Atividades`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -40,8 +52,14 @@ export class AvaliacaoService {
 
 
     } catch (error) {
-      console.error(`Erro ao Buscar Avaliacao #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Atividade #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -53,8 +71,14 @@ export class AvaliacaoService {
       })
     } catch (error) {
 
-      console.error(`Erro ao Atualizar Avaliacao #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao Atualizar Atividade #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -64,8 +88,14 @@ export class AvaliacaoService {
       return `Avaliacao #${id} Deletada!`;
     } catch (error) {
 
-      console.error(`Erro ao Deletar Avaliacao #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao deletar Atividade #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 }

@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {  Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import sequelize from 'sequelize';
 import { Atividade } from 'src/atividade/entities/atividade.entity';
@@ -20,8 +20,14 @@ export class InformacaoService {
       console.log('Informacao Criada com Sucesso!');
       return 'Informacao Criada com Sucesso!';
     } catch (error) {
-      console.error('Erro ao Criar Informacao', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao criar Informacao`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -49,8 +55,14 @@ export class InformacaoService {
       });
 
     } catch (error) {
-      console.error('Erro ao Buscar Informacoes', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Informacoes`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -79,8 +91,14 @@ export class InformacaoService {
       });
 
     } catch (error) {
-      console.error(`Erro ao Buscar Informacao #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Informacao #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -91,8 +109,14 @@ export class InformacaoService {
         return `Informacao #${id} Atualizada`;
       })
     } catch (error) {
-      console.error(`Erro ao Atualizar Informacao #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao Atualizar Informacao #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -101,7 +125,14 @@ export class InformacaoService {
       this.informacaoModel.destroy({ where: { codInformacao: id } });
       return `Informacao #${id} Deletada `;
     } catch (error) {
-      console.error(`Erro ao Deletar Informacao #${id}`, error.message);
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao deletar Informacao #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 }

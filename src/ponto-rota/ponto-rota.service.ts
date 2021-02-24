@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {  HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreatePontoRotaDto } from './dto/create-ponto-rota.dto';
 import { UpdatePontoRotaDto } from './dto/update-ponto-rota.dto';
@@ -15,8 +15,14 @@ export class PontoRotaService {
       console.log('Ponto-Rota Criado com Sucesso');
       return 'Ponto-Rota Criado com Sucesso';
     } catch (error) {
-      console.error('Erro ao Criar Ponto-Rota', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao Criar Ponto-Rota`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -26,8 +32,14 @@ export class PontoRotaService {
       return this.pontoRotaModel.findAll({ attributes: { exclude: [...exclude_attr] } });
 
     } catch (error) {
-      console.error('Erro ao Buscar Pontos-Rota', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Ponto-Rota`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -37,8 +49,14 @@ export class PontoRotaService {
       return this.pontoRotaModel.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codPontoRota: id } });
 
     } catch (error) {
-      console.error(`Erro ao Buscar Ponto-Rota #${id}`, error.message)
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Ponto-Rota #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -49,7 +67,14 @@ export class PontoRotaService {
         return `Ponto-Rota #${id} Atualizado com Sucesso`;
       })
     } catch (error) {
-      console.error(`Erro ao Atualizar Ponto-Rota #${id}`, error.message);
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao Atualizar Ponto-Rota #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -58,8 +83,14 @@ export class PontoRotaService {
       this.pontoRotaModel.destroy({ where: { codPontoRota: id } });
       return `Ponto-Rota #${id} Deletado!`;
     } catch (error) {
-      console.error(`Erro ao Deletar Ponto-Rota #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao deletar Ponto-rota #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 }

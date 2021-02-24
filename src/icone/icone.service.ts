@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {  HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateIconeDto } from './dto/create-icone.dto';
 import { UpdateIconeDto } from './dto/update-icone.dto';
@@ -16,8 +16,14 @@ export class IconeService {
       console.log('Icone Criado com Sucesso!')
       return 'Icone Criado com Sucesso!';
     } catch (error) {
-      console.error('Erro ao Criar Usuario', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao criar Icone `
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -27,8 +33,14 @@ export class IconeService {
       return this.iconeModel.findAll({ attributes: { exclude: [...exclude_attr] } });
 
     } catch (error) {
-      console.error('Erro ao Buscar Icones', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Icones`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -38,8 +50,14 @@ export class IconeService {
       return this.iconeModel.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codIcone: id } });
 
     } catch (error) {
-      console.error(`Erro ao Criar Icone`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Icone #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -50,8 +68,14 @@ export class IconeService {
         return `Icone #${id} Atualizado com Sucesso!`;
       })
     } catch (error) {
-      console.error(`Erro ao Atualizar Icone #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao Atualizar Icone #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -60,7 +84,14 @@ export class IconeService {
       this.iconeModel.destroy({ where: { codIcone: id } });
       return `Icone #${id} Deletado!`;
     } catch (error) {
-      console.error(`Erro ao Deletar Icone #${id}`, error.message);
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao  deletar Icone #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 }

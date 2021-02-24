@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateConcessionariaDto } from './dto/create-concessionaria.dto';
 import { UpdateConcessionariaDto } from './dto/update-concessionaria.dto';
@@ -18,8 +18,14 @@ export class ConcessionariaService {
 
     } catch (error) {
 
-      console.error('Erro ao Criar Concessionaria', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao Criar Concessionaria`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -30,10 +36,14 @@ export class ConcessionariaService {
       return this.concessionariaModel.findAll({ attributes: { exclude: [...exclude_attr] } });
 
     } catch (error) {
-
-      console.error('Erro ao Buscar Concessionarias', error.message);
-      throw new BadRequestException();
-
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Concessionarias`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
 
   }
@@ -46,9 +56,14 @@ export class ConcessionariaService {
 
     } catch (error) {
 
-      console.error(`Erro ao Buscar Concessionaria #${id}`, error.message);
-      throw new BadRequestException();
-
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Concessionaria #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -62,8 +77,14 @@ export class ConcessionariaService {
       return `Concessionaria #${id} Atualizada com Sucesso!`;
 
     } catch (error) {
-      console.error(`Erro ao Atualizar Concessionaria #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao atualizar Concessionaria #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -76,9 +97,14 @@ export class ConcessionariaService {
       return `Concessionaria #${id} Deletada!`;
     } catch (error) {
 
-      console.error(`Erro ao Deletar Concessionaria #${id}`, error.message);
-      throw new BadRequestException();
-
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao deletar concessionaria #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 }

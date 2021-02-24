@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {  HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Midia } from 'src/midia/entities/midia.entity';
 import { CreateAtividadeDto } from './dto/create-atividade.dto';
@@ -18,8 +18,14 @@ export class AtividadeService {
       console.log('Atividade Criada com Sucesso!');
       return 'Atividade Criada com Sucesso!';
     } catch (error) {
-      console.error('Erro ao Criar a Atividade', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao criar Atividade`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -31,8 +37,14 @@ export class AtividadeService {
         attributes: { exclude: [...exclude_attr] }
       });
     } catch (error) {
-      console.error('Erro ao Procurar Atividades', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Atividades`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -43,10 +55,14 @@ export class AtividadeService {
       return this.atividadeModel.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codAtividade: id } });
 
     } catch (error) {
-
-      console.error(`Erro ao Procurar Atividade #${id}`, error.message);
-      throw new BadRequestException();
-
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Atividade #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -57,8 +73,14 @@ export class AtividadeService {
         .then(() => { console.log(`Atividade #${id} Atualizada com Sucesso!`) });
       return `Atividade #${id} Atualizada com Sucesso! `;
     } catch (error) {
-      console.error(`Erro ao Atualizar Atividade #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao atualizar Atividade #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
 
 
@@ -71,9 +93,14 @@ export class AtividadeService {
       console.log(`Atividade #${id} Deletada! ${deleteAtividade} Registros Apagados!`);
       return `This action removes a #${id} atividade`;
     } catch (error) {
-      console.error(`Erro ao Apagar Atividade #${id}`, error.message);
-      throw new BadRequestException();
-
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao Deletar Atividade #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
 
   }

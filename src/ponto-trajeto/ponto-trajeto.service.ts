@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreatePontoTrajetoDto } from './dto/create-ponto-trajeto.dto';
 import { UpdatePontoTrajetoDto } from './dto/update-ponto-trajeto.dto';
@@ -18,8 +18,14 @@ export class PontoTrajetoService {
       console.log('Ponto-Trajeto Criado com Sucesso!');
       return 'Ponto-Trajeto Criado com Sucesso!';
     } catch (error) {
-      console.error('Erro ao Criar Ponto-Trajeto', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao criar Ponto-Trajeto`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -30,8 +36,14 @@ export class PontoTrajetoService {
       console.log('Ponto-Trajeto Criado com Sucesso!');
       return 'Ponto-Trajeto Criado com Sucesso!';
     } catch (error) {
-      console.error('Erro ao Criar Ponto-Trajeto', error.message);
-      throw new BadRequestException();
+       throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao criar Ponto-Trajeto`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -42,8 +54,14 @@ export class PontoTrajetoService {
 
     } catch (error) {
 
-      console.error('Erro ao Buscar Pontos-Trajeto', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Pontos-Trajeto`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
 
     }
   }
@@ -53,8 +71,14 @@ export class PontoTrajetoService {
       const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTE : []
       return this.pontoTrajetoModel.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codPontoTrajeto: id } });
     } catch (error) {
-      console.error(`Erro ao Buscar Ponto-Trajeto #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Ponto-Trajeto #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -66,8 +90,14 @@ export class PontoTrajetoService {
         });
       return `Ponto-Trajeto #${id} Atualizado com Sucesso!`;
     } catch (error) {
-      console.error(`Erro ao Atualizar Ponto-Trajeto #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao Atualizar Ponto-Trajeto #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -77,7 +107,14 @@ export class PontoTrajetoService {
       console.log(`Ponto-Trajeto #${id} Deletado! ${deletePontoTrajeto} Registros Apagados!`);
       return `Ponto-Trajeto #${id} Deletado!`;
     } catch (error) {
-      console.error(`Erro ao Deletar Ponto-Trajeto #${id}`, error.message);
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao Deletar Ponto-Trajeto #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -87,7 +124,14 @@ export class PontoTrajetoService {
       console.log(`Ponto-Trajeto relacionados ao trajeto #${id} foram deletados Deletado! ${deletePontoTrajeto} Registros Apagados!`);
       return `Ponto-Trajetos do trajecto #${id} foram Deletados!`;
     } catch (error) {
-      console.error(`Erro ao Deletar Ponto-Trajeto by codTrajeto #${id}`, error.message);
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao deletar Ponto Trajeto #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 

@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateSessaoDto } from './dto/create-sessao.dto';
 import { UpdateSessaoDto } from './dto/update-sessao.dto';
@@ -16,8 +16,14 @@ export class SessaoService {
       return 'Sessao Criada com Sucesso';
 
     } catch (error) {
-      console.error('Erro ao Criar Sessao');
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao criar Sessao`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -27,8 +33,14 @@ export class SessaoService {
       return this.sessaoModel.findAll({ attributes: { exclude: [...exclude_attr] } });
 
     } catch (error) {
-      console.error('Erro ao Buscar Sessoes', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Sessoes}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
 
     }
   }
@@ -39,9 +51,14 @@ export class SessaoService {
       return this.sessaoModel.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codSessao: id } });
 
     } catch (error) {
-      console.error(`Erro ao Buscar Sessao #${id}`, error.message);
-      throw new BadRequestException();
-
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Sessao #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -55,8 +72,14 @@ export class SessaoService {
       });
 
     } catch (error) {
-      console.error(`Erro ao Atualizar Sessao nº=${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao Atualizar Sessao #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -69,8 +92,14 @@ export class SessaoService {
       return `Sessao nº=${id} Deletada!`;
 
     } catch (error) {
-      console.error(`Erro ao Remover Sessao nº=${id}`);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao deletar Sessao #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 }

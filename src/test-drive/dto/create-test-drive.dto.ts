@@ -4,12 +4,7 @@ import { Is } from "sequelize-typescript";
 
 export class CreateTestDriveDto {
 
-    @ApiProperty({
-        example:'',
-        description:''
-    })
-    @IsNotEmpty()
-    @IsNumber()
+
     codFormulario: number;
 
 

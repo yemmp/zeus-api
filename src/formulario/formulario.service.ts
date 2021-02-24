@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import sequelize from 'sequelize';
 import { CreateFormularioDto } from './dto/create-formulario.dto';
@@ -19,8 +19,14 @@ export class FormularioService {
       console.log('Formulario Criado com Sucesso!');
       return 'Formulario Criado com Sucesso!';
     } catch (error) {
-      console.error('Erro ao Criar Formulario', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao criar Formulario`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -30,8 +36,14 @@ export class FormularioService {
       return this.formularioModel.findAll({ attributes: { exclude: [...exclude_attr] } });
 
     } catch (error) {
-      console.error('Erro ao Buscar Formularios', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Formularios`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -41,8 +53,14 @@ export class FormularioService {
       return this.formularioModel.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codFormulario: id } });
 
     } catch (error) {
-      console.error(`Erro ao Buscar Formulario #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Formula #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -57,7 +75,14 @@ export class FormularioService {
       return results;
     } catch (error) {
       console.error('Erro', error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar CPF e DATA_NASCIMENTO`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -70,8 +95,14 @@ export class FormularioService {
         return `Formulario #${id} Atualizado com Sucesso!`;
       });
     } catch (error) {
-      console.error(`Erro ao Atualizar Formulario #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao Atualizar Formulario #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 
@@ -80,8 +111,14 @@ export class FormularioService {
       this.formularioModel.destroy({ where: { codFormulario: id } });
       return `Formulario #${id} Deletado`;
     } catch (error) {
-      console.error(`Erro ao Deletar Formulario #${id}`, error.message);
-      throw new BadRequestException();
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao Deletar Formulario #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
     }
   }
 }
