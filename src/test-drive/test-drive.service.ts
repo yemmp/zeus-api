@@ -1,11 +1,5 @@
-import {
-  HttpException,
-  Injectable,
-  HttpStatus,
-} from '@nestjs/common';
+import { HttpException, Injectable, HttpStatus } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { CreateFormularioDto } from 'src/formulario/dto/create-formulario.dto';
-import { QueryFormularioDTO } from 'src/formulario/dto/query-formulario.dto';
 import { FormularioService } from 'src/formulario/formulario.service';
 import { CreateTestDriveDto } from './dto/create-test-drive.dto';
 import { UpdateTestDriveDto } from './dto/update-test-drive.dto';
@@ -27,36 +21,45 @@ export class TestDriveService {
         '.' +
         createTestDriveDto.numCpf.substr(3, 4) +
         '%';
+
+        createTestDriveDto.codConcessionaria = 1;
+      createTestDriveDto.codRegiao = 1;
+      createTestDriveDto.codDispositivo = 1;
+
       let cliente = await this.formularioService.findByCpf_DataNascimento(
         cpf,
         createTestDriveDto.datNascimento,
       );
 
-      
       console.log('Find By Data Nascimento: ', cliente);
       //Validação dos dados
       if (!cliente) {
-        console.log('Cliente não encontrado!', cpf,createTestDriveDto.datNascimento);
+        console.log(
+          'Cliente não encontrado!',
+          cpf,
+          createTestDriveDto.datNascimento,
+        );
         throw new HttpException(
           {
             status: HttpStatus.BAD_REQUEST,
-            error: 'Cliente não encontrado.\nVerifique os dados inseridos.',
+            error: 'Cliente não encontrado.Verifique os dados inseridos.',
           },
           HttpStatus.BAD_REQUEST,
-          );
-          
-        }
-        
-        createTestDriveDto.codFormulario = cliente.codFormulario;
+        );
+      }
+
+      console.log(cliente.codFormulario);
+      createTestDriveDto.codFormulario = cliente.codFormulario;
+      console.log(createTestDriveDto.codFormulario);
+    
       await this.testDriveModel.create(createTestDriveDto);
       console.log('Test-Drive Criado com Sucesso!');
       return 'Test-Drive Criado com Sucesso!';
     } catch (error) {
-      if(error instanceof HttpException){ throw error}
-     
-      else{
-      console.error('Erro ao Criar Test-Drive', error.message);
-      
+      if (error instanceof HttpException) {
+        throw error;
+      } else {
+        console.error('Erro ao Criar Test-Drive', error.message);
       }
     }
   }
@@ -74,8 +77,7 @@ export class TestDriveService {
           error: 'Erro ao buscar Test-Drive.',
         },
         HttpStatus.BAD_REQUEST,
-        );
-        
+      );
     }
   }
 
@@ -90,11 +92,10 @@ export class TestDriveService {
       throw new HttpException(
         {
           status: HttpStatus.BAD_REQUEST,
-          error: `Erro ao buscar Test-Drive #${id}`
+          error: `Erro ao buscar Test-Drive #${id}`,
         },
         HttpStatus.BAD_REQUEST,
-        );
-        
+      );
     }
   }
 
@@ -110,11 +111,10 @@ export class TestDriveService {
       throw new HttpException(
         {
           status: HttpStatus.BAD_REQUEST,
-          error: `Erro ao Atualizar Test-Drive #${id}`
+          error: `Erro ao Atualizar Test-Drive #${id}`,
         },
         HttpStatus.BAD_REQUEST,
-        );
-        
+      );
     }
   }
 
@@ -126,11 +126,10 @@ export class TestDriveService {
       throw new HttpException(
         {
           status: HttpStatus.BAD_REQUEST,
-          error: `Erro ao Deletar Test-Drive #${id}`
+          error: `Erro ao Deletar Test-Drive #${id}`,
         },
         HttpStatus.BAD_REQUEST,
-        );
-        
+      );
     }
   }
 }

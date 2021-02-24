@@ -9,7 +9,7 @@ export class CreateTestDriveDto {
 
 
     @ApiProperty({
-        example:'',
+        example:'1',
         description:''
     })
     @IsNumber()
@@ -17,7 +17,7 @@ export class CreateTestDriveDto {
 
 
     @ApiProperty({
-        example:'',
+        example:'Executando',
         description:''
     })
     @IsString()
@@ -40,7 +40,7 @@ export class CreateTestDriveDto {
 
  
     @ApiProperty({
-        example: '09-02-2021',
+        example: '2021-02-24',
         description: 'Data de saída da concessionaria.',
     })
     @IsNotEmpty()
@@ -48,7 +48,7 @@ export class CreateTestDriveDto {
     datSaida: Date;
 
     @ApiProperty({
-        example: '09-02-2021',
+        example: '2021-02-24',
         description: 'Data de retorno à concessionaria.',
     })
     @IsDateString()
@@ -67,10 +67,10 @@ export class CreateTestDriveDto {
     dscResposta2: string;
 
     @ApiProperty({
-        example:'',
+        example:'1',
         description:''
     })
-    codRegião: number;
+    codRegiao: number;
     
     @ApiProperty({
         example: '1',
@@ -88,10 +88,17 @@ export class CreateTestDriveDto {
     @IsNumber()
     codUsuarioCriacao: number;
 
+    @ApiProperty({
+        example:'0202',
+        description:''
+    })
     @IsNotEmpty()
     @IsByteLength(4,4)
     datNascimento: string;
-    
+    @ApiProperty({
+        example:'1111',
+        description:''
+    })
     @IsNotEmpty()
     @IsString()
     @IsByteLength(4,4)
