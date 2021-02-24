@@ -48,15 +48,15 @@ export class TestDriveService {
         );
       }
 
-      console.log('cliente cod formulario', cliente.toJSON());
+      //console.log('cliente cod formulario', cliente.toJSON());
 
       createTestDriveDto.codFormulario = cliente.codFormulario;
 
       console.log(createTestDriveDto.codFormulario);
 
-      await this.testDriveModel.create(createTestDriveDto);
+      let result = await this.testDriveModel.create(createTestDriveDto);
       console.log('Test-Drive Criado com Sucesso!');
-      return 'Test-Drive Criado com Sucesso!';
+      return result;
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
