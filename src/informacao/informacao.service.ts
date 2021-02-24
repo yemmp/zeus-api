@@ -1,4 +1,4 @@
-import {  Injectable } from '@nestjs/common';
+import {  HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import sequelize from 'sequelize';
 import { Atividade } from 'src/atividade/entities/atividade.entity';
