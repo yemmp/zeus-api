@@ -56,7 +56,7 @@ export class TestDriveService {
 
       let result = await this.testDriveModel.create(createTestDriveDto);
       console.log('Test-Drive Criado com Sucesso!');
-      return result;
+      return `Codigo Test Drive #${result.codTestDrive}`;
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
