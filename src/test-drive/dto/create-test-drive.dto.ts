@@ -12,7 +12,7 @@ export class CreateTestDriveDto {
         example:'1',
         description:''
     })
-    @IsNumber()
+ //   @IsNumber()
     codDispositivo: number;
 
 
@@ -20,22 +20,22 @@ export class CreateTestDriveDto {
         example:'Executando',
         description:''
     })
-    @IsString()
+  //  @IsString()
     codStatusTestDrive: string;
 
     @ApiProperty({
         example: '5',
         description: 'Número do Km inicial.',
     })
-    @IsNotEmpty()
-    @IsNumber()
+  //  @IsNotEmpty()
+   // @IsNumber()
     numKmInicial: number;
 
     @ApiProperty({
         example: '35',
         description: 'Número do Km final.',
     })
-    @IsNumber()
+   // @IsNumber()
     numKmFinal: number;
 
  
@@ -43,8 +43,8 @@ export class CreateTestDriveDto {
         example: '2021-02-24',
         description: 'Data de saída da concessionaria.',
     })
-    @IsNotEmpty()
-    @IsDateString()
+   // @IsNotEmpty()
+ //   @IsDateString()
     datSaida: Date;
 
     @ApiProperty({
@@ -57,13 +57,13 @@ export class CreateTestDriveDto {
         example:'',
         description:''
     })
-    @IsString()
+   // @IsString()
     dscResposta1: string;
     @ApiProperty({
         example:'',
         description:''
     })
-    @IsString()
+   // @IsString()
     dscResposta2: string;
 
     @ApiProperty({
@@ -76,16 +76,16 @@ export class CreateTestDriveDto {
         example: '1',
         description: 'Número do índice da concessionaria ao qual o test-drive está atrelado.',
     })
-    @IsNotEmpty()
-    @IsNumber()
+ //   @IsNotEmpty()
+  //  @IsNumber()
     codConcessionaria: number;
 
     @ApiProperty({
         example: '4',
         description: 'Número do índice do usuário que criou o test-drive.',
     })
-    @IsNotEmpty()
-    @IsNumber()
+  //  @IsNotEmpty()
+   // @IsNumber()
     codUsuarioCriacao: number;
 
     @ApiProperty({

@@ -22,7 +22,7 @@ export class TestDriveService {
         createTestDriveDto.numCpf.substr(3, 4) +
         '%';
 
-        createTestDriveDto.codConcessionaria = 1;
+      createTestDriveDto.codConcessionaria = 1;
       createTestDriveDto.codRegiao = 1;
       createTestDriveDto.codDispositivo = 1;
 
@@ -48,10 +48,12 @@ export class TestDriveService {
         );
       }
 
-      console.log(cliente.codFormulario);
+      console.log('cliente cod formulario', cliente.toJSON());
+
       createTestDriveDto.codFormulario = cliente.codFormulario;
+
       console.log(createTestDriveDto.codFormulario);
-    
+
       await this.testDriveModel.create(createTestDriveDto);
       console.log('Test-Drive Criado com Sucesso!');
       return 'Test-Drive Criado com Sucesso!';
