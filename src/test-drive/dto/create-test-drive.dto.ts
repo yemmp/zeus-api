@@ -51,7 +51,7 @@ export class CreateTestDriveDto {
         example: '2021-02-24',
         description: 'Data de retorno à concessionaria.',
     })
-    @IsDateString()
+   // @IsDateString()
     datRetorno: Date;
     @ApiProperty({
         example:'',
