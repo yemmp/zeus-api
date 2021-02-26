@@ -4,7 +4,7 @@ import { CreateMidiaDto } from './dto/create-midia.dto';
 import { UpdateMidiaDto } from './dto/update-midia.dto';
 import { Midia } from './entities/midia.entity';
 
-const EXCLUDED_APP_ATTRIBUTES = ['datExclusao', 'datCriacao', 'datAtualizacao', 'nomMidia', 'nomDiretorio', 'indAtivo', 'codConcessionaria', 'codUsuarioCriacao']
+const EXCLUDED_APP_ATTRIBUTES = ['datExclusao', 'datCriacao', 'datAtualizacao', 'nomDiretorio', 'indAtivo', 'codConcessionaria', 'codUsuarioCriacao']
 
 @Injectable()
 export class MidiaService {
@@ -13,14 +13,13 @@ export class MidiaService {
 
   async create(createMidiaDto: CreateMidiaDto) {
     try {
-      await this.midiaModel.create(createMidiaDto);
-      console.log('Midia Criada com Sucesso');
-      return 'Midia Criada com Sucesso';
+      return await this.midiaModel.create(createMidiaDto);
     } catch (error) {
       throw new HttpException(
         {
           status: HttpStatus.BAD_REQUEST,
-          error: `Erro ao criar Midia`
+          error: `Erro ao criar Midia`,
+          details: error.message
         },
         HttpStatus.BAD_REQUEST,
         );

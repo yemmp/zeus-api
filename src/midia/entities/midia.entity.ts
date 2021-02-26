@@ -29,7 +29,7 @@ export class Midia extends Model {
     codTipoMidia: string;
 
     @ApiProperty()
-    @Column({type: DataTypes.STRING(5)})
+    @Column({type: DataTypes.STRING(100)})
     nomArquivo: string;
 
     @ApiProperty()
