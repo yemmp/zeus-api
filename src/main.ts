@@ -13,6 +13,7 @@ async function bootstrap() {
   .setDescription('The ZEUS Project REST Webservices')
   .setVersion('1.0')
   .addTag('zeus')
+  .addBearerAuth()
   .addServer("http://127.0.0.1:3000/", "dev-local")
   .addServer("http://100.26.1.157/zeus-api", "zeus-api")
   .build();
