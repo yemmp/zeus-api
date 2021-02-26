@@ -17,6 +17,13 @@ export class PontoRotaController {
     return this.pontoRotaService.create(createPontoRotaDto);
   }
 
+  @ApiOperation({summary:'Criar uma lista de ponto-rota'})
+  @ApiResponse({status: 200,description:'Ponto-rota criado com sucesso.',type: PontoRota})
+  @Post("_bulk")
+  bulkCreate(@Body() createPontoTrajetoDto: [CreatePontoRotaDto]) {
+    return this.pontoRotaService.bulkCreate(createPontoTrajetoDto);
+  }
+
   @ApiOperation({summary:'Listar pontos-rota'})
   @ApiResponse({status: 200,description:'Ok', type: [PontoRota]})
   @ApiQuery({name:'projecao',allowEmptyValue: true, schema:{default: 'APP'}})
@@ -45,5 +52,12 @@ export class PontoRotaController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.pontoRotaService.remove(+id);
+  }
+
+  @ApiOperation({summary:'Apagar todos os ponto-rotas associados a um rota'})
+  @ApiResponse({status: 200,description:'Dados apagados com sucesso.',type: PontoRota})
+  @Delete('rota/:id')
+  removeByCodTrajeto(@Param('id') id: string) {
+    return this.pontoRotaService.removeByCodRota(+id);
   }
 }

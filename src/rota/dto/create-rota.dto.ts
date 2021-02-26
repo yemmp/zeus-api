@@ -21,13 +21,6 @@ export class CreateRotaDto {
     @IsByteLength(1,100)
     nomRota: string;
     
-    
-    @ApiProperty({
-        example:'S',
-        description:'Indica se a rota está ativo ou não, sendo utilzado "S" para Ativo e "N" para Inativo.',
-    })
-    @IsNotEmpty()
-    @IsByteLength(1,1)
     indAtivo: string;
     
     

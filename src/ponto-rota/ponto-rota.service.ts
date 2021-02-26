@@ -26,6 +26,23 @@ export class PontoRotaService {
     }
   }
 
+  async bulkCreate(pontoRotaDto: [CreatePontoRotaDto]) {
+    try {
+      let result = await this.pontoRotaModel.bulkCreate(pontoRotaDto);
+      console.log('Ponto-Rota Criado com Sucesso!');
+      return result;
+    } catch (error) {
+       throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao criar Ponto-Rota`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
+    }
+  }
+
   async findAll(projecao = 'APP') {
     try {
       const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
@@ -87,6 +104,23 @@ export class PontoRotaService {
         {
           status: HttpStatus.BAD_REQUEST,
           error: `Erro ao deletar Ponto-rota #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
+    }
+  }
+
+  async removeByCodRota(id: number) {
+    try {
+      const result = this.pontoRotaModel.destroy({ where: { codRota: id } });
+      console.log(`Ponto-Rota relacionados ao trajeto #${id} foram deletados Deletado! ${result} Registros Apagados!`);
+      return `Pontos-Rota da rota #${id} foram Deletados!`;
+    } catch (error) {
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao deletar Ponto Rota #${id}`
         },
         HttpStatus.BAD_REQUEST,
         );

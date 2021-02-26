@@ -17,9 +17,8 @@ export class RotaService {
 
   async create(createRotaDto: CreateRotaDto) {
     try {
-      await this.rotaModel.create(createRotaDto);
-      console.log('Rota Criada com Sucesso!')
-      return 'Rota Criada com Sucesso!';
+      return await this.rotaModel.create(createRotaDto);
+      
     } catch (error) {
       throw new HttpException(
         {
@@ -35,9 +34,7 @@ export class RotaService {
   async findAll(projecao = 'APP') {
     try {
       const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
-      Trajeto.hasMany(PontoTrajeto);
-      PontoTrajeto.belongsTo(Trajeto);
-      return this.rotaModel.findAll({
+      let result =  await this.rotaModel.findAll({
         include: [
           {
             model: Trajeto,
@@ -65,6 +62,8 @@ export class RotaService {
           [{ model: Trajeto, 'as': 'trajeto' }, { model: PontoTrajeto, 'as': 'pontosTrajeto' }, 'numSequencia', 'ASC']
         ]
       });
+      console.log(result)
+      return result
     } catch (error) {
       throw new HttpException(
         {
@@ -79,13 +78,10 @@ export class RotaService {
   }
 
   async findOne(projecao = 'APP', id: number) {
-
-    Trajeto.hasMany(PontoTrajeto);
-    PontoTrajeto.belongsTo(Trajeto);
     try {
       const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
 
-      return this.rotaModel.findOne({
+      let result = await this.rotaModel.findOne({
         include: [
           {
             model: Trajeto,
@@ -101,7 +97,7 @@ export class RotaService {
           {
             model: PontoRota,
             right: true,
-            attributes: ['numPosicaoX', 'numPosicaoY','dscTextoVisual','dscTextoNarrado']
+            attributes: ['numSequencia', 'nomPontoRota', 'numPosicaoX', 'numPosicaoY','dscTextoVisual','dscTextoNarrado', 'codMidia']
           },
 
         ]
@@ -113,6 +109,8 @@ export class RotaService {
         ]
         , where: { codRota: id }
       });
+      console.log(result)
+      return result
     } catch (error) {
       throw new HttpException(
         {

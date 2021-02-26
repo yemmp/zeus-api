@@ -7,6 +7,7 @@ import {
   ForeignKey,
   AutoIncrement,
   BelongsTo,
+  DataType,
 } from 'sequelize-typescript';
 import { Midia } from 'src/midia/entities/midia.entity';
 import { Rota } from 'src/rota/entities/rota.entity';
@@ -64,11 +65,11 @@ export class PontoRota extends Model {
   dscTextoNarrado: string;
 
   @ApiProperty()
-  @Column
+  @Column(DataType.DOUBLE)
   numPosicaoX: number;
 
   @ApiProperty()
-  @Column
+  @Column(DataType.DOUBLE)
   numPosicaoY: number;
 
   @ApiProperty()

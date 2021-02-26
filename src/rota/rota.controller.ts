@@ -30,7 +30,9 @@ export class RotaController {
   @ApiQuery({name:'projecao',allowEmptyValue: true,schema:{default:'APP'}})
   @Get(':id')
   findOne(@Query('projecao') projecao:string = 'APP',@Param('id') id: string) {
-    return this.rotaService.findOne(projecao,+id);
+    let data = this.rotaService.findOne(projecao,+id);
+    console.log(data)
+    return data
   }
 
   @ApiOperation({summary:'Atualizar uma rota'})
