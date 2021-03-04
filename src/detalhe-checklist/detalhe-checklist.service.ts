@@ -1,4 +1,4 @@
-import {  HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateDetalheChecklistDto } from './dto/create-detalhe-checklist.dto';
 import { UpdateDetalheChecklistDto } from './dto/update-detalhe-checklist.dto';
@@ -22,10 +22,30 @@ export class DetalheChecklistService {
           error: `Erro ao criar detalhe-check-list`
         },
         HttpStatus.BAD_REQUEST,
-        );
-        
+      );
+
     }
 
+  }
+
+  async bulkCreate(dto: [CreateDetalheChecklistDto]) {
+    try {
+
+      await this.detalheCheckListModule.bulkCreate(dto);
+      console.log('Detalhe Checklist Criado com Sucesso!');
+      return 'Detalhe Checklist Criado com Sucesso!';
+    } catch (error) {
+      console.log(error)
+      throw new HttpException(
+        {
+          status: HttpStatus.INTERNAL_SERVER_ERROR,
+          error: `Erro ao criar Detalhe Checklist`,
+          info: error.message
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+
+    }
   }
 
   async findAll(projecao = 'APP') {
@@ -40,8 +60,8 @@ export class DetalheChecklistService {
           error: `Erro ao buscar detalhe-check-list`
         },
         HttpStatus.BAD_REQUEST,
-        );
-        
+      );
+
     }
 
   }
@@ -49,7 +69,14 @@ export class DetalheChecklistService {
   async findOne(projecao = 'APP', id: number) {
     try {
       const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
-      return this.detalheCheckListModule.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codDetalheCheckList: id } });
+      return this.detalheCheckListModule.findOne({
+        attributes: {
+          exclude: [...exclude_attr]
+        },
+        where: {
+          codDetalheCheckList: id
+        }
+      });
 
     } catch (error) {
       throw new HttpException(
@@ -58,8 +85,8 @@ export class DetalheChecklistService {
           error: `Erro ao buscar detalhe-check-list #${id}`
         },
         HttpStatus.BAD_REQUEST,
-        );
-        
+      );
+
     }
   }
 
@@ -76,8 +103,8 @@ export class DetalheChecklistService {
           error: `Erro ao atualizar detalhe-check-list #${id}`
         },
         HttpStatus.BAD_REQUEST,
-        );
-        
+      );
+
     }
   }
 
@@ -92,8 +119,30 @@ export class DetalheChecklistService {
           error: `Erro ao deletar detalhe-check-list #${id}`
         },
         HttpStatus.BAD_REQUEST,
-        );
-        
+      );
+
+    }
+  }
+
+  async removeByCodChecklist(id: number) {
+    try {
+      const deletePontoTrajeto = this.detalheCheckListModule.destroy({
+        where: {
+          codCheckList: id
+        }
+      });
+      console.log(`Detalhe Checklist relacionados a experiencia #${id} foram deletados! ${deletePontoTrajeto} Registros Apagados!`);
+      return `Detalhe Checklist da experiencia #${id} foram Deletados!`;
+    } catch (error) {
+      throw new HttpException(
+        {
+          status: HttpStatus.INTERNAL_SERVER_ERROR,
+          error: `Erro ao deletar Detalhe Checklist #${id}`,
+          errorMessage: error.message
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+
     }
   }
 }
