@@ -1,26 +1,11 @@
-import { Controller, Get, Post, Body, Put, Param, Delete, Query, ClassSerializerInterceptor, UseInterceptors, PipeTransform, ArgumentMetadata, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, Query, ClassSerializerInterceptor, UseInterceptors, PipeTransform, ArgumentMetadata, UseGuards, Req } from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { ApiBearerAuth, ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Usuario } from './entities/usuario.entity';
 import { QueryUsuarioDTO } from './dto/query-usuario.dto';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-
-class JSONPipe implements PipeTransform {
-  transform(value: any, metadata: ArgumentMetadata) {
-    if(value){
-      try{
-        return JSON.parse(value)
-      }catch(error){
-        console.log("JSONPipe: Invalid JSON value: ", value)
-        console.error(error)
-        throw error
-      }
-    }
-  }
-  
-}
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @Controller('usuario')
 @ApiTags('usuario')
@@ -40,7 +25,7 @@ export class UsuarioController {
   @ApiResponse({ status: 200, description: 'Ok', type: [Usuario] })
   @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default:'APP'}})
   @Get()
-  async findAll(@Query() usuarioQuery: QueryUsuarioDTO) {
+  async findAll(@Query() usuarioQuery: QueryUsuarioDTO, @Req() req) {
     return this.usuarioService.findAll(usuarioQuery);
   }
   
