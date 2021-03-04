@@ -12,13 +12,13 @@ const EXCLUDED_APP_ATTRIBUTES = ['datCriacao', 'datExclusao', 'indAtivo', 'codCo
 
 @Injectable()
 export class ExperienciaService {
-  constructor(@InjectModel(Experiencia) private experienciaModule: typeof Experiencia) { }
+  constructor(@InjectModel(Experiencia) private experienciaModel: typeof Experiencia) { }
 
   async create(createExperienciaDto: CreateExperienciaDto) {
     try {
-      await this.experienciaModule.create(createExperienciaDto);
+      const experiencia = await this.experienciaModel.create(createExperienciaDto);
       console.log('Experiencia Criada com Sucesso');
-      return 'Experiencia Criada com Sucesso';
+      return experiencia
     } catch (error) {
       throw new HttpException(
         {
@@ -34,14 +34,13 @@ export class ExperienciaService {
   async findAll(projecao = 'APP') {
     try {
       const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
-      let listExperiencias = await this.experienciaModule.findAll({
+      let listExperiencias = await this.experienciaModel.findAll({
         include: [
           {
             model: CheckList,
             include: [
               {
                 model: DetalheChecklist,
-                right: true,
                 attributes: ['dscTextoCheckList']
               }
             ]
@@ -58,12 +57,9 @@ export class ExperienciaService {
         ]
       });
 
-      console.log(listExperiencias)
-
-
       return listExperiencias.map(experiencia => {
         const { codExperiencia, nomExperiencia, updatedAt,checkList, faseExperiencia } = experiencia
-        const checkListCopy = checkList.detalhesCheckList.map(detalhe => detalhe.dscTextoCheckList)
+        let checkListCopy = checkList?.detalhesCheckList && checkList?.detalhesCheckList?.map(detalhe => detalhe.dscTextoCheckList)
         return {
           codExperiencia,
           nomExperiencia,
@@ -74,6 +70,7 @@ export class ExperienciaService {
       })
 
     } catch (error) {
+      console.log(error)
       throw new HttpException(
         {
           status: HttpStatus.BAD_REQUEST,
@@ -86,36 +83,33 @@ export class ExperienciaService {
   }
 
   async findOne(projecao = 'APP', id: number) {
-    Experiencia.belongsTo(CheckList);
-    CheckList.hasMany(DetalheChecklist);
-    DetalheChecklist.belongsTo(CheckList);
-
     try{
       const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES:[];
 
-      return this.experienciaModule.findOne({
+      return this.experienciaModel.findOne({
         include:[
           {
             model:CheckList,
             include:[
-              {model: DetalheChecklist,
+              {
+                model: DetalheChecklist,
                 attributes: ['dscTextoCheckList'],
               },
             ],
           },
           {
             model: FaseExperiencia,
-            attributes:['codFase','codTipoFase','datAtualizacao']
+            attributes:['codFase','codTipoFase','datAtualizacao', 'numSequencia']
           }
         ], attributes:{exclude:[...exclude_attr]},
         order:[
-          [{model: DetalheChecklist, 'as': 'detalhesCheckList'}, 'numSequencia','ASC'],
-          [{model: FaseExperiencia, 'as': 'faseExperiencia'}, 'numSequencia', 'ASC']
+          ["faseExperiencia", "num_sequencia", 'DESC'],
         ],
         where:{codExperiencia: id}
       });
 
     } catch (error) {
+      console.log(error)
 
       throw new HttpException(
         {
@@ -148,7 +142,7 @@ export class ExperienciaService {
 //
   remove(id: number) {
     try {
-      this.experienciaModule.destroy({ where: { codExperiencia: id } });
+      this.experienciaModel.destroy({ where: { codExperiencia: id } });
       return `Experiencia #${id} Deletada!`;
     } catch (error) {
       throw new HttpException(

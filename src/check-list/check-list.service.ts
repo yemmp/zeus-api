@@ -1,5 +1,6 @@
-import {  HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import { DetalheChecklist } from 'src/detalhe-checklist/entities/detalhe-checklist.entity';
 import { CreateCheckListDto } from './dto/create-check-list.dto';
 import { UpdateCheckListDto } from './dto/update-check-list.dto';
 import { CheckList } from './entities/check-list.entity';
@@ -23,8 +24,8 @@ export class CheckListService {
           error: `Erro ao criar Check-List`
         },
         HttpStatus.BAD_REQUEST,
-        );
-        
+      );
+
     }
   }
 
@@ -40,8 +41,8 @@ export class CheckListService {
           error: `Erro ao buscar Check-Lists`
         },
         HttpStatus.BAD_REQUEST,
-        );
-        
+      );
+
     }
   }
 
@@ -49,7 +50,15 @@ export class CheckListService {
     try {
       const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
 
-      return this.checkListModel.findOne({ attributes: { exclude: [...exclude_attr] }, where: { codCheckList: id } });
+      return this.checkListModel.findOne({
+        attributes: {
+          exclude: [...exclude_attr]
+        },
+        include: [
+        { model: DetalheChecklist, attributes: ["numSequencia", "dscTextoCheckList"]}
+        ],
+        where: { codCheckList: id }
+      });
 
     } catch (error) {
       throw new HttpException(
@@ -58,8 +67,8 @@ export class CheckListService {
           error: `Erro ao buscar Check-List #${id}`
         },
         HttpStatus.BAD_REQUEST,
-        );
-        
+      );
+
     }
   }
 
@@ -76,8 +85,8 @@ export class CheckListService {
           error: `Erro ao Atualizar Check-List #${id}`
         },
         HttpStatus.BAD_REQUEST,
-        );
-        
+      );
+
     }
 
   }
@@ -93,8 +102,8 @@ export class CheckListService {
           error: `Erro ao deletar Check-list #${id}`
         },
         HttpStatus.BAD_REQUEST,
-        );
-        
+      );
+
     }
   }
 }

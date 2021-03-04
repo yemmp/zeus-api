@@ -17,6 +17,13 @@ export class FaseExperienciaController {
     return this.faseExperienciaService.create(createFaseExperienciaDto);
   }
 
+  @ApiOperation({summary:'Criar uma lista de ponto-trajeto'})
+  @ApiResponse({status: 200,description:'Ponto-trajeto criado com sucesso.',type: FaseExperiencia})
+  @Post("_bulk")
+  bulkCreate(@Body() dto: [CreateFaseExperienciaDto]) {
+    return this.faseExperienciaService.bulkCreate(dto);
+  }
+
   @ApiOperation({summary:'Listar fases-experiencia'})
   @ApiResponse({status: 200,description:'Ok', type: [FaseExperiencia]})
   @ApiQuery({name:'projecao',allowEmptyValue:true,schema:{default: 'APP'}})
@@ -45,5 +52,12 @@ export class FaseExperienciaController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.faseExperienciaService.remove(+id);
+  }
+
+  @ApiOperation({summary:'Apagar todos os ponto-trajetos associados a um trajeto'})
+  @ApiResponse({status: 200,description:'Dados apagados com sucesso.'})
+  @Delete('experiencia/:id')
+  removeByCodTrajeto(@Param('id') id: string) {
+    return this.faseExperienciaService.removeByCodExperiencia(+id);
   }
 }

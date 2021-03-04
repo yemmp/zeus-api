@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { DatabaseError, WhereAttributeHash } from 'sequelize';
 import { createQueryObject } from 'src/common/utils';
+import { Concessionaria } from 'src/concessionaria/entities/concessionaria.entity';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { QueryUsuarioDTO } from './dto/query-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
@@ -60,7 +60,7 @@ export class UsuarioService {
   async findOne(projecao = 'APP', id: number) {
     try {
       const exclude_attr = (projecao == 'APP')? EXCLUDE_APP_ATTRIBUTES:['dscSenha', 'indAtivo']
-      return this.usuarioModel.findOne({
+      return this.usuarioModel.findOne({include:{ model: Concessionaria},
         attributes: {
           exclude:[...exclude_attr]
         },
@@ -73,6 +73,25 @@ export class UsuarioService {
         {
           status: HttpStatus.BAD_REQUEST,
           error: `Erro ao buscar Usuario #${id}`
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
+    }
+  }
+
+  async findByUserName(dscLogin: string) {
+    try {
+      return this.usuarioModel.findOne({ 
+        where:{
+           dscLogin
+          }
+      });
+    } catch (error) {
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao buscar Usuario #${dscLogin}`
         },
         HttpStatus.BAD_REQUEST,
         );

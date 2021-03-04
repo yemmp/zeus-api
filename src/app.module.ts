@@ -30,6 +30,7 @@ import { VeiculoModule } from './veiculo/veiculo.module';
 import { ModeloModule } from './modelo/modelo.module';
 import { RelatorioModule } from './relatorio/relatorio.module';
 import { CommonModule } from './common/common.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -73,6 +74,7 @@ import { CommonModule } from './common/common.module';
     ModeloModule,
     RelatorioModule,
     CommonModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

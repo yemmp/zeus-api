@@ -8,7 +8,7 @@ export class CreateCheckListDto {
     })
     @IsNotEmpty()
     @IsString()
-    nomChecklist: string;
+    nomCheckList: string;
 
     @ApiProperty({
         example:'2',

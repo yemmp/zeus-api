@@ -1,9 +1,11 @@
+import { Optional } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
 import {
   IsByteLength,
   IsNotEmpty,
   IsNumber,
   IsString,
+  IsOptional
 } from 'class-validator';
 
 export class CreateExperienciaDto {
@@ -20,25 +22,22 @@ export class CreateExperienciaDto {
     description:
       'Número do índice do check-list ao qual experiência está atrelada.',
   })
+  @IsOptional()
   @IsNumber()
   codCheckList: number;
-
-  @ApiProperty({
-    example: 'S',
-    description:
-      'Indica se a experiência está ativo ou não, sendo utilzado "S" para Ativo e "N" para Inativo.',
-  })
   
   @ApiProperty({
     example: '2',
     description: 'codFaseAvancada',
   })
   @IsNumber()
+  @IsOptional()
   codFaseAvancada: number;
 
   @IsNotEmpty()
   @IsString()
   @IsByteLength(1, 1)
+  @Optional()
   indAtivo: string;
 
   @ApiProperty({

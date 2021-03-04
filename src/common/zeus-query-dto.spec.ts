@@ -1,7 +1,7 @@
-import { ZeusQueryDto } from './zeus-query-dto';
+import { ZeusQueryDTO } from './zeus-query-dto';
 
 describe('ZeusQueryDto', () => {
   it('should be defined', () => {
-    expect(new ZeusQueryDto()).toBeDefined();
+    expect(new ZeusQueryDTO()).toBeDefined();
   });
 });
