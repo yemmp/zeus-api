@@ -36,8 +36,6 @@ export class FaseExperiencia extends Model {
     @Column
     codFase: number;
 
-
-
     @ApiProperty()
     @Column
     numSequencia: number;

@@ -31,6 +31,26 @@ export class FaseExperienciaService {
     }
   }
 
+  async bulkCreate(dto: [CreateFaseExperienciaDto]) {
+    try {
+
+      await this.faseExperienciaModel.bulkCreate(dto);
+      console.log('Ponto-Trajeto Criado com Sucesso!');
+      return 'Ponto-Trajeto Criado com Sucesso!';
+    } catch (error) {
+      console.log(error)
+       throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: `Erro ao criar Ponto-Trajeto`,
+          info: error.message
+        },
+        HttpStatus.BAD_REQUEST,
+        );
+        
+    }
+  }
+
   async findAll(projecao = 'APP') {
     try {
       const exclude_attr = (projecao == 'APP') ? EXCLUDED_APP_ATTRIBUTES : []
@@ -97,6 +117,24 @@ export class FaseExperienciaService {
           error: `Erro ao Deletar Fase-Experiencia #${id}`
         },
         HttpStatus.BAD_REQUEST,
+        );
+        
+    }
+  }
+
+  async removeByCodExperiencia(id: number) {
+    try {
+      const deletePontoTrajeto = this.faseExperienciaModel.destroy({ where: { codExperiencia: id } });
+      console.log(`FaseExperiencia relacionados a experiencia #${id} foram deletados! ${deletePontoTrajeto} Registros Apagados!`);
+      return `FaseExperiencia da experiencia #${id} foram Deletados!`;
+    } catch (error) {
+      throw new HttpException(
+        {
+          status: HttpStatus.INTERNAL_SERVER_ERROR,
+          error: `Erro ao deletar FaseExperiencia #${id}`,
+          errorMessage: error.message
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
         );
         
     }
