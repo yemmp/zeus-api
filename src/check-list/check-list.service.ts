@@ -55,7 +55,7 @@ export class CheckListService {
           exclude: [...exclude_attr]
         },
         include: [
-        { model: DetalheChecklist, attributes: ["numSequencia", "dscTextoCheckList"]}
+          { model: DetalheChecklist, attributes: ["numSequencia", "dscTextoCheckList"] }
         ],
         where: { codCheckList: id }
       });
