@@ -27,17 +27,6 @@ export class Atividade extends Model {
   @Column
   codAtividade: number;
 
-  /*
-@ForeignKey(()=>FaseExperiencia)
-*/
-  @ApiProperty()
-  @Column
-  codFase: number;
-
-  /*
-@BelongsTo(()=>FaseExperiencia)
-faseExperiencia: FaseExperiencia;
-*/
   @ApiProperty()
   @ForeignKey(() => Midia)
   @Column

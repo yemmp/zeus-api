@@ -1,14 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsByteLength, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsByteLength, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateAtividadeDto {
-  @ApiProperty({
-    example: '2',
-    description: 'Número do índice da fase a qual a atividade está atrelada.',
-  })
-  @IsNotEmpty()
-  @IsNumber()
-  codFase: number;
 
   @ApiProperty({
     example: '2',
@@ -16,6 +9,7 @@ export class CreateAtividadeDto {
   })
   @IsNotEmpty()
   @IsNumber()
+  @IsOptional()
   codMidia: number;
 
   @ApiProperty({
@@ -50,6 +44,7 @@ export class CreateAtividadeDto {
   })
   @IsString()
   @IsByteLength(1,300)
+  @IsOptional()
   dscTextoVisual: string;
 
   @ApiProperty({
@@ -58,6 +53,7 @@ export class CreateAtividadeDto {
   })
   @IsString()
   @IsByteLength(1,500)
+  @IsOptional()
   dscTextoNarrado: string;
 
   @ApiProperty({
@@ -67,6 +63,7 @@ export class CreateAtividadeDto {
   })
   @IsNotEmpty() //Optando por não deixar vazio, para ter um track de qual concessionaria pertence tal Atividade
   @IsNumber()
+  @IsOptional()
   codConcessionaria: number;
 
   @ApiProperty({
